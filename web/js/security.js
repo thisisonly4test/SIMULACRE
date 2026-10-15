@@ -69,18 +69,6 @@ export function initUv() {
   try { on = localStorage.getItem(UV_KEY); } catch { on = null; }
   // Paper is the default, whatever the OS theme: UV is opt-in only.
   setUv(on === "1", false);
-  // The pointer is a UV torch: it reveals the invisible layer under it.
-  let raf = 0, x = -999, y = -999;
-  addEventListener("pointermove", (e) => {
-    x = e.clientX; y = e.clientY;
-    if (!raf) raf = requestAnimationFrame(() => {
-      raf = 0;
-      const r = document.documentElement.style;
-      r.setProperty("--mx", `${x}px`);
-      r.setProperty("--my", `${y}px`);
-    });
-  }, { passive: true });
-  addEventListener("pointerleave", () => { document.documentElement.style.setProperty("--mx", "-999px"); });
   addEventListener("keydown", (e) => {
     if (e.key.toLowerCase() === "u" && !/INPUT|TEXTAREA|SELECT/.test(document.activeElement?.tagName || "") && !e.ctrlKey && !e.metaKey) setUv(!isUv());
   });
