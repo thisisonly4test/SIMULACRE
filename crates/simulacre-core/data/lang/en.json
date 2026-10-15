@@ -1,0 +1,29 @@
+{
+  "bios": {
+    "instagram": ["{demonym} {emoji} | {hobby} & {hobby2}", "{job} by day, {hobby} the rest of the time {emoji}", "📍 {city} · {hobby} · {hobby2}", "{first} · {city} · {emoji}{emoji2}", "Small joys, {hobby} and {specialty} {emoji}"],
+    "tiktok": ["{hobby} and whatever else {emoji}", "just someone from {city} {emoji}", "{age} · {hobby} {emoji}"],
+    "x": ["{job}. {city}. Strong opinions about {hobby}.", "{demonym}. I post about {hobby}, {team} and nothing much.", "Here for {hobby} and pointless arguments.", "{hobby}, {hobby2}, coffee. In that order."],
+    "facebook": ["Lives in {city}", "{job} at {employer}", "Big fan of {hobby} 😊"],
+    "linkedin": ["{job} at {employer} | {field}", "{job} — {city} | Passionate about {hobby}", "{job} · {years} years of experience · {city}"],
+    "reddit": ["{hobby} · {city}", "lurker for way too long"],
+    "github": ["Evening tinkering. {hobby}.", "{job} · {city} · self-hosting enthusiast"],
+    "mastodon": ["{job} in {city}. Posts about {hobby} and {hobby2}.", "{demonym} · {hobby} · no work DMs please"],
+    "generic": ["{hobby} · {city}", "{first}, {city}"]
+  },
+  "posts": {
+    "hobby": ["Big day: {thing} 🙌", "This weekend: {thing}. No regrets.", "Anyone else into {hobby} around {city}? Could meet up.", "Week in review: {thing}. The rest can wait.", "Afternoon well spent: {thing}. Would recommend.", "Three years of {hobby} and still just as excited."],
+    "city": ["Sunset over {landmark} never gets old.", "New coffee place opened {in_district}, verdict tomorrow.", "{city} in the rain, episode 437.", "People who say {city} is boring have never hung out {in_district}.", "More roadworks {in_district}… we live on a building site."],
+    "food": ["Nothing beats {specialty} on a Sunday.", "Tried {specialty} at a new place, really good.", "Little evening treat: {specialty}."],
+    "team": ["Come on {team}! Believing tonight.", "{team} game: I don't want to talk about it.", "Tough season for {team} but we stay loyal."],
+    "work": ["Monday. Coffee. Good luck everyone.", "Huge week at work, roll on Friday.", "When your colleague goes on holiday and leaves you all their files…", "Training all day, my brain is mush."],
+    "pet": ["{pet} has decided my bed is theirs again.", "Walk with {pet} this morning, chilly one.", "{pet} says hi 🐾"],
+    "family": ["Kids asleep before 9 pm. A miracle.", "Wednesday = parent taxi. Four activities, zero breaks.", "Family lunch on Sunday, fourteen of us."],
+    "mood": ["Screen-free day tomorrow. Maybe.", "I really need to tidy my desk.", "Genuine question: how do you all get up at 6?", "Nothing much to say, just a good day.", "It's raining. Blanket, tea, a series."]
+  },
+  "slang": {
+    "young": ["lol", "ngl", "fr", "lowkey", "tbh", "omg", "istg"],
+    "mid": ["lol", "anyway", "honestly", "tbh", "great"],
+    "old": ["😊", "Have a lovely day all", "Kind regards", "xx"]
+  },
+  "punctuation_space": false
+}

@@ -1,0 +1,47 @@
+{
+  "code": "de_DE",
+  "language": "de",
+  "country": { "fr": "Allemagne", "en": "Germany" },
+  "country_code": "DE",
+  "phone": { "mobile": null, "landline": null, "fiction_reserved": false },
+  "first_names": {
+    "male": [["Klaus",1945],["Wolfgang",1948],["Jürgen",1950],["Peter",1955],["Uwe",1955],["Thomas",1964],["Frank",1964],["Michael",1965],["Andreas",1966],["Stefan",1970],["Markus",1972],["Christian",1978],["Daniel",1982],["Sebastian",1984],["Tobias",1985],["Dennis",1985],["Mehmet",1985],["Florian",1986],["Jan",1988],["Tim",1990],["Kevin",1990],["Lukas",1995],["Niklas",1995],["Jonas",1997],["Felix",1998],["Leon",2000],["Maximilian",2000],["Finn",2005],["Ben",2008],["Paul",2010],["Elias",2012],["Noah",2015]],
+    "female": [["Ursula",1945],["Monika",1950],["Petra",1960],["Sabine",1963],["Andrea",1965],["Claudia",1966],["Susanne",1966],["Nicole",1975],["Katrin",1975],["Sandra",1975],["Stefanie",1980],["Melanie",1982],["Christina",1985],["Julia",1990],["Lisa",1990],["Sarah",1990],["Ayşe",1990],["Laura",1992],["Anna",1995],["Jana",1995],["Lena",1997],["Lea",2000],["Hannah",2000],["Marie",2002],["Sophie",2005],["Mia",2008],["Emma",2010],["Charlotte",2010],["Emilia",2015]]
+  },
+  "last_names": ["Müller","Schmidt","Schneider","Fischer","Weber","Meyer","Wagner","Becker","Schulz","Hoffmann","Schäfer","Koch","Bauer","Richter","Klein","Wolf","Schröder","Neumann","Schwarz","Zimmermann","Braun","Krüger","Hofmann","Hartmann","Lange","Schmitt","Werner","Schmitz","Krause","Meier","Lehmann","Schmid","Schulze","Maier","Köhler","Herrmann","König","Walter","Mayer","Huber","Kaiser","Fuchs","Peters","Lang","Scholz","Möller","Weiß","Jung","Hahn","Vogel","Yılmaz","Kaya","Nowak"],
+  "cities": [
+    { "name": "Hamburg", "region": "Hamburg", "postcode": "22765", "lat": 53.55, "lon": 9.99, "tz": "Europe/Berlin", "pop": 1850000, "demonym": "Hamburger|Hamburgerin", "team": "der HSV", "landmark": "die Elbphilharmonie", "specialty": "ein Fischbrötchen", "districts": ["Ottensen", "Eimsbüttel", "St. Georg", "Barmbek", "Winterhude"], "university": "die Universität Hamburg", "weather": "Schmuddelwetter" },
+    { "name": "Köln", "region": "Nordrhein-Westfalen", "postcode": "50823", "lat": 50.94, "lon": 6.96, "tz": "Europe/Berlin", "pop": 1080000, "demonym": "Kölner|Kölnerin", "team": "der FC", "landmark": "der Dom", "specialty": "ein Kölsch und ein Halve Hahn", "districts": ["Ehrenfeld", "Nippes", "Sülz", "Deutz", "das Belgische Viertel"], "university": "die Universität zu Köln", "weather": "mild und oft grau" },
+    { "name": "Leipzig", "region": "Sachsen", "postcode": "04275", "lat": 51.34, "lon": 12.37, "tz": "Europe/Berlin", "pop": 620000, "demonym": "Leipziger|Leipzigerin", "team": "RB", "landmark": "das Völkerschlachtdenkmal", "specialty": "Leipziger Lerchen", "districts": ["Connewitz", "Plagwitz", "Gohlis", "Südvorstadt", "Lindenau"], "university": "die Universität Leipzig", "weather": "trocken, kalte Winter" },
+    { "name": "Dresden", "region": "Sachsen", "postcode": "01099", "lat": 51.05, "lon": 13.74, "tz": "Europe/Berlin", "pop": 560000, "demonym": "Dresdner|Dresdnerin", "team": "Dynamo", "landmark": "die Frauenkirche", "specialty": "Eierschecke", "districts": ["die Neustadt", "Striesen", "Löbtau", "Pieschen", "Blasewitz"], "university": "die TU Dresden", "weather": "Elbtal, heiße Sommer" },
+    { "name": "Hannover", "region": "Niedersachsen", "postcode": "30159", "lat": 52.37, "lon": 9.73, "tz": "Europe/Berlin", "pop": 535000, "demonym": "Hannoveraner|Hannoveranerin", "team": "96", "landmark": "der Maschsee", "specialty": "Lüttje Lage", "districts": ["Linden", "List", "die Südstadt", "die Nordstadt", "Döhren"], "university": "die Leibniz Universität", "weather": "norddeutsch mild" },
+    { "name": "Nürnberg", "region": "Bayern", "postcode": "90402", "lat": 49.45, "lon": 11.08, "tz": "Europe/Berlin", "pop": 520000, "demonym": "Nürnberger|Nürnbergerin", "team": "der Club", "landmark": "die Kaiserburg", "specialty": "drei im Weggla", "districts": ["Gostenhof", "St. Johannis", "Maxfeld", "Wöhrd", "die Südstadt"], "university": "die FAU", "weather": "fränkisch, warme Sommer" },
+    { "name": "Stuttgart", "region": "Baden-Württemberg", "postcode": "70180", "lat": 48.78, "lon": 9.18, "tz": "Europe/Berlin", "pop": 630000, "demonym": "Stuttgarter|Stuttgarterin", "team": "der VfB", "landmark": "der Fernsehturm", "specialty": "Maultaschen", "districts": ["der Stuttgarter Westen", "Bad Cannstatt", "Degerloch", "Vaihingen", "Feuerbach"], "university": "die Universität Stuttgart", "weather": "Kessel, schwüle Sommer" },
+    { "name": "Bremen", "region": "Bremen", "postcode": "28203", "lat": 53.08, "lon": 8.8, "tz": "Europe/Berlin", "pop": 570000, "demonym": "Bremer|Bremerin", "team": "Werder", "landmark": "die Stadtmusikanten", "specialty": "Knipp", "districts": ["das Viertel", "Findorff", "Schwachhausen", "Walle", "die Neustadt"], "university": "die Universität Bremen", "weather": "windig" },
+    { "name": "Freiburg im Breisgau", "region": "Baden-Württemberg", "postcode": "79102", "lat": 47.99, "lon": 7.85, "tz": "Europe/Berlin", "pop": 236000, "demonym": "Freiburger|Freiburgerin", "team": "der SC", "landmark": "das Münster", "specialty": "eine Lange Rote", "districts": ["Vauban", "Wiehre", "Stühlinger", "Herdern", "Haslach"], "university": "die Albert-Ludwigs-Universität", "weather": "sonnigste Stadt Deutschlands" },
+    { "name": "Münster", "region": "Nordrhein-Westfalen", "postcode": "48143", "lat": 51.96, "lon": 7.63, "tz": "Europe/Berlin", "pop": 320000, "demonym": "Münsteraner|Münsteranerin", "team": "Preußen Münster", "landmark": "der Prinzipalmarkt", "specialty": "Töttchen", "districts": ["Kreuzviertel", "Hansaviertel", "Geist", "Gievenbeck", "Mauritz"], "university": "die Universität Münster", "weather": "Entweder regnet es, oder es läuten die Glocken" },
+    { "name": "Dortmund", "region": "Nordrhein-Westfalen", "postcode": "44137", "lat": 51.51, "lon": 7.47, "tz": "Europe/Berlin", "pop": 590000, "demonym": "Dortmunder|Dortmunderin", "team": "der BVB", "landmark": "das U", "specialty": "eine Currywurst", "districts": ["das Kreuzviertel", "die Nordstadt", "Hörde", "Kaiserviertel", "Hombruch"], "university": "die TU Dortmund", "weather": "grau, Ruhrgebiet" },
+    { "name": "Mainz", "region": "Rheinland-Pfalz", "postcode": "55116", "lat": 50.0, "lon": 8.27, "tz": "Europe/Berlin", "pop": 220000, "demonym": "Mainzer|Mainzerin", "team": "die 05er", "landmark": "der Dom", "specialty": "Spundekäs", "districts": ["die Neustadt", "Gonsenheim", "Bretzenheim", "die Altstadt", "Hechtsheim"], "university": "die Johannes Gutenberg-Universität", "weather": "mild, Weinwetter" },
+    { "name": "Rostock", "region": "Mecklenburg-Vorpommern", "postcode": "18055", "lat": 54.09, "lon": 12.13, "tz": "Europe/Berlin", "pop": 210000, "demonym": "Rostocker|Rostockerin", "team": "Hansa", "landmark": "Warnemünde", "specialty": "ein Backfisch am Hafen", "districts": ["die KTV", "Warnemünde", "Gehlsdorf", "die Südstadt", "Brinckmansdorf"], "university": "die Universität Rostock", "weather": "Ostseewind" }
+  ],
+  "education": {
+    "secondary": { "degree": "Abitur", "institution": "{school}-Gymnasium" },
+    "vocational": { "degree": "Ausbildung ({field})", "institution": "Berufsschule {city}" },
+    "bachelor": { "degree": "Bachelor {field}", "institution": "{university}" },
+    "master": { "degree": "Master {field}", "institution": "{university}" },
+    "doctorate": { "degree": "Promotion ({field})", "institution": "{university}" }
+  },
+  "schools": ["Goethe","Schiller","Humboldt","Heinrich-Heine","Lessing","Albert-Einstein","Max-Planck","Geschwister-Scholl","Kepler","Gutenberg","Leibniz","Kant"],
+  "fields": { "tech": "Informatik", "health": "Pflegewissenschaft", "education": "Lehramt", "retail": "Betriebswirtschaft", "hospitality": "Hotelmanagement", "trades": "Bauingenieurwesen", "logistics": "Logistik", "office": "Betriebswirtschaft", "creative": "Kommunikationsdesign", "public": "Verwaltungswissenschaft", "industry": "Maschinenbau", "agri": "Agrarwissenschaft" },
+  "employers": {
+    "default": ["{surname} & Söhne GmbH", "{word} Gruppe", "{word} Service GmbH", "{surname} Technik", "{word} {city}"],
+    "health": ["Klinikum {city}", "Praxis {surname}", "{word}-Apotheke", "Seniorenzentrum {word}"],
+    "education": ["{school}-Grundschule", "{school}-Gymnasium", "Volkshochschule {city}", "{word} Akademie"],
+    "public": ["Stadt {city}", "Stadtbibliothek {city}", "Deutsche Post — {city}", "Grünflächenamt {city}"],
+    "hospitality": ["Gasthaus {word}", "Hotel {word}", "Café {surname}", "Brauhaus {word}"],
+    "retail": ["{word} Markt", "{word} Moden", "Eisenwaren {surname}"]
+  },
+  "words": ["Nordlicht","Lindenhof","Adler","Rheinblick","Sonnenhof","Eiche","Hanse","Alpen","Falke","Seeblick","Morgenrot","Kranich","Brücke","Tannenhof","Elbe"],
+  "pet_names": { "dog": ["Bello","Luna","Balu","Emma","Rocky","Paula","Bruno","Lotte"], "cat": ["Minka","Felix","Mimi","Tiger","Kira","Moritz","Leo","Lilly"] },
+  "housing": { "apartment": "Wohnung", "house": "Haus" }
+}

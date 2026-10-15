@@ -1,0 +1,48 @@
+{
+  "code": "en_GB",
+  "language": "en",
+  "country": { "fr": "Royaume-Uni", "en": "United Kingdom" },
+  "country_code": "GB",
+  "phone": { "mobile": "+44 7700 900###", "landline": "+44 7700 900###", "fiction_reserved": true },
+  "first_names": {
+    "male": [["John",1950],["Peter",1950],["Keith",1955],["David",1960],["Paul",1962],["Ian",1962],["Stephen",1964],["Richard",1965],["Mark",1966],["Gary",1966],["Andrew",1968],["Simon",1968],["Darren",1972],["Lee",1975],["Craig",1978],["Daniel",1985],["James",1985],["Matthew",1988],["Thomas",1990],["Ryan",1990],["Jamie",1990],["Ben",1990],["Sam",1993],["Liam",1995],["Callum",1995],["Connor",1997],["Jack",2000],["Mohammed",2000],["Harry",2005],["Oliver",2008],["Charlie",2008],["George",2010],["Alfie",2010]],
+    "female": [["Margaret",1945],["Susan",1955],["Linda",1955],["Jane",1960],["Karen",1965],["Sharon",1966],["Julie",1968],["Tracey",1970],["Helen",1970],["Claire",1975],["Nicola",1975],["Sarah",1980],["Emma",1983],["Laura",1987],["Rebecca",1988],["Gemma",1988],["Amy",1990],["Lucy",1990],["Charlotte",1992],["Hannah",1993],["Sophie",1993],["Jessica",1995],["Lauren",1995],["Megan",1995],["Chloe",1998],["Aisha",1998],["Olivia",2008],["Ella",2008],["Poppy",2008],["Amelia",2010],["Isla",2012]]
+  },
+  "last_names": ["Smith","Jones","Williams","Taylor","Brown","Davies","Evans","Wilson","Thomas","Johnson","Roberts","Robinson","Thompson","Wright","Walker","White","Edwards","Hughes","Green","Hall","Lewis","Harris","Clarke","Patel","Jackson","Wood","Turner","Martin","Cooper","Hill","Ward","Morris","Moore","Clark","Lee","King","Baker","Harrison","Morgan","Allen","James","Scott","Phillips","Watson","Davis","Parker","Price","Bennett","Young","Griffiths","Mitchell","Kelly","Cook","Carter","Richardson","Bailey","Collins","Bell","Shaw","Murphy","Khan","MacDonald","Campbell","Reid"],
+  "cities": [
+    { "name": "Manchester", "region": "Greater Manchester", "postcode": "M14", "lat": 53.48, "lon": -2.24, "tz": "Europe/London", "pop": 550000, "demonym": "Mancunian", "team": "City", "landmark": "the Northern Quarter", "specialty": "a curry on the Curry Mile", "districts": ["Didsbury", "Chorlton", "Ancoats", "Levenshulme", "Fallowfield"], "university": "the University of Manchester", "weather": "rain, then more rain" },
+    { "name": "Leeds", "region": "West Yorkshire", "postcode": "LS6", "lat": 53.8, "lon": -1.55, "tz": "Europe/London", "pop": 500000, "demonym": "Loiner", "team": "Leeds United", "landmark": "Kirkgate Market", "specialty": "a Yorkshire pudding wrap", "districts": ["Headingley", "Chapel Allerton", "Kirkstall", "Meanwood", "Roundhay"], "university": "the University of Leeds", "weather": "grey and chilly" },
+    { "name": "Bristol", "region": "South West England", "postcode": "BS3", "lat": 51.45, "lon": -2.59, "tz": "Europe/London", "pop": 470000, "demonym": "Bristolian", "team": "Bristol City", "landmark": "the Clifton Suspension Bridge", "specialty": "a Pieminister pie", "districts": ["Bedminster", "Clifton", "Easton", "Southville", "Bishopston"], "university": "the University of Bristol", "weather": "mild and damp" },
+    { "name": "Sheffield", "region": "South Yorkshire", "postcode": "S11", "lat": 53.38, "lon": -1.47, "tz": "Europe/London", "pop": 556000, "demonym": "Sheffielder", "team": "the Blades", "landmark": "the Peak District on the doorstep", "specialty": "Henderson's Relish on everything", "districts": ["Ecclesall Road", "Kelham Island", "Crookes", "Walkley", "Nether Edge"], "university": "the University of Sheffield", "weather": "hilly and windy" },
+    { "name": "Nottingham", "region": "East Midlands", "postcode": "NG7", "lat": 52.95, "lon": -1.15, "tz": "Europe/London", "pop": 323000, "demonym": "Nottinghamian", "team": "Forest", "landmark": "the Old Market Square", "specialty": "mushy peas with mint sauce", "districts": ["Hockley", "Sherwood", "West Bridgford", "Beeston", "Lenton"], "university": "the University of Nottingham", "weather": "mild" },
+    { "name": "Newcastle upon Tyne", "region": "Tyne and Wear", "postcode": "NE6", "lat": 54.98, "lon": -1.61, "tz": "Europe/London", "pop": 300000, "demonym": "Geordie", "team": "the Toon", "landmark": "the Tyne Bridge", "specialty": "a stottie", "districts": ["Heaton", "Jesmond", "Ouseburn", "Gosforth", "Byker"], "university": "Newcastle University", "weather": "cold wind off the North Sea" },
+    { "name": "Cardiff", "region": "Wales", "postcode": "CF24", "lat": 51.48, "lon": -3.18, "tz": "Europe/London", "pop": 362000, "demonym": "Cardiffian", "team": "the Bluebirds", "landmark": "the Principality Stadium", "specialty": "Welsh cakes", "districts": ["Roath", "Canton", "Pontcanna", "Cathays", "Grangetown"], "university": "Cardiff University", "weather": "wet" },
+    { "name": "Glasgow", "region": "Scotland", "postcode": "G12", "lat": 55.86, "lon": -4.25, "tz": "Europe/London", "pop": 635000, "demonym": "Glaswegian", "team": "Celtic", "landmark": "the Kelvingrove Art Gallery", "specialty": "a Tunnock's teacake", "districts": ["the West End", "Finnieston", "Shawlands", "Dennistoun", "Partick"], "university": "the University of Glasgow", "weather": "dreich" },
+    { "name": "Edinburgh", "region": "Scotland", "postcode": "EH6", "lat": 55.95, "lon": -3.19, "tz": "Europe/London", "pop": 527000, "demonym": "Edinburgher", "team": "Hearts", "landmark": "Arthur's Seat", "specialty": "haggis, neeps and tatties", "districts": ["Leith", "Marchmont", "Stockbridge", "Morningside", "Portobello"], "university": "the University of Edinburgh", "weather": "four seasons in a day" },
+    { "name": "Brighton", "region": "East Sussex", "postcode": "BN2", "lat": 50.82, "lon": -0.14, "tz": "Europe/London", "pop": 277000, "demonym": "Brightonian", "team": "the Seagulls", "landmark": "the Palace Pier", "specialty": "fish and chips on the beach", "districts": ["Kemptown", "Hanover", "the North Laine", "Hove", "Preston Park"], "university": "the University of Sussex", "weather": "breezy seaside" },
+    { "name": "Norwich", "region": "Norfolk", "postcode": "NR2", "lat": 52.63, "lon": 1.3, "tz": "Europe/London", "pop": 144000, "demonym": "Norwegian", "team": "the Canaries", "landmark": "Norwich Cathedral", "specialty": "Colman's mustard", "districts": ["the Golden Triangle", "Thorpe Hamlet", "NR3", "Eaton", "Earlham"], "university": "UEA", "weather": "dry and flat" },
+    { "name": "Liverpool", "region": "Merseyside", "postcode": "L17", "lat": 53.41, "lon": -2.98, "tz": "Europe/London", "pop": 496000, "demonym": "Scouser", "team": "the Reds", "landmark": "the Royal Albert Dock", "specialty": "scouse", "districts": ["Aigburth", "Lark Lane", "Wavertree", "Anfield", "the Baltic Triangle"], "university": "the University of Liverpool", "weather": "windy and wet" },
+    { "name": "Birmingham", "region": "West Midlands", "postcode": "B13", "lat": 52.48, "lon": -1.9, "tz": "Europe/London", "pop": 1140000, "demonym": "Brummie", "team": "the Villa", "landmark": "the Bullring", "specialty": "a balti", "districts": ["Moseley", "Kings Heath", "Digbeth", "Harborne", "Jewellery Quarter"], "university": "the University of Birmingham", "weather": "grey" },
+    { "name": "York", "region": "North Yorkshire", "postcode": "YO31", "lat": 53.96, "lon": -1.08, "tz": "Europe/London", "pop": 202000, "demonym": "Yorkie", "team": "York City", "landmark": "the Shambles", "specialty": "a Fat Rascal from Bettys", "districts": ["Clifton", "Fulford", "Heworth", "Acomb", "the Groves"], "university": "the University of York", "weather": "chilly, river floods" }
+  ],
+  "education": {
+    "secondary": { "degree": "GCSEs and A-levels", "institution": "{school} School" },
+    "vocational": { "degree": "BTEC Level 3 in {field}", "institution": "{city} College" },
+    "bachelor": { "degree": "BSc (Hons) {field}", "institution": "{university}" },
+    "master": { "degree": "MSc {field}", "institution": "{university}" },
+    "doctorate": { "degree": "PhD in {field}", "institution": "{university}" }
+  },
+  "schools": ["St Mary's","Kingsway","Oakfield","Hillside","Parkside","St John's","Westfield","Highfield","Beaumont","Ashton","Fairfield","Holmwood"],
+  "fields": { "tech": "Computer Science", "health": "Nursing", "education": "Education Studies", "retail": "Business Management", "hospitality": "Hospitality", "trades": "Construction", "logistics": "Logistics", "office": "Accounting and Finance", "creative": "Graphic Design", "public": "Public Policy", "industry": "Mechanical Engineering", "agri": "Agriculture" },
+  "employers": {
+    "default": ["{surname} & Sons Ltd", "{word} Group", "{word} Services Ltd", "{surname} Brothers", "{word} {city}"],
+    "health": ["{city} Royal Infirmary", "{word} Medical Practice", "{surname} Pharmacy", "{word} Care Home"],
+    "education": ["{school} Primary School", "{school} Academy", "{city} College", "{word} Training"],
+    "public": ["{city} City Council", "{city} Central Library", "Royal Mail — {city}", "{city} Parks Service"],
+    "hospitality": ["The {word} Arms", "{word} Hotel", "{surname}'s Café", "The {word} Kitchen"],
+    "retail": ["{word} Stores", "{word} & Co", "{surname}'s Hardware"]
+  },
+  "words": ["Crown","Albion","Oak","Thistle","Highland","Riverside","Greenway","Kingfisher","Lantern","Meridian","Northgate","Willow","Harbour","Ember","Fernhill"],
+  "pet_names": { "dog": ["Bella","Alfie","Poppy","Teddy","Monty","Rosie","Bertie","Ruby"], "cat": ["Tilly","Smudge","Misty","Oscar","Pickle","Jasper","Willow","Biscuit"] },
+  "housing": { "apartment": "flat", "house": "house" }
+}

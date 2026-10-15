@@ -1,0 +1,13 @@
+{
+  "name": "simulacre-e2e",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Browser tests for the SIMULACRE web UI (the platform itself is Rust).",
+  "scripts": {
+    "test:e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0"
+  }
+}

@@ -1,0 +1,179 @@
+// UI strings. Persona text (bios, posts, degrees) stays in the persona's own
+// language on purpose: a French legend posts in French whatever the UI says.
+
+const S = {
+  fr: {
+    skip: "Aller au contenu",
+    nav_forge: "Forge", nav_pool: "Vivier", nav_vault: "Coffre", nav_contam: "Contamination", nav_doctrine: "Doctrine",
+    classified: "FICTIF",
+    tagline: "Toute couverture a besoin d'une <em>histoire</em>.",
+    lede: "SIMULACRE forge des identités fictives complètes pour l'OSINT : parcours daté, entourage, psychologie, rythme en ligne, pseudos valides, voix écrite, visage — et un moteur qui vérifie que tout tient debout.",
+    eyebrow: "Bureau des identités fictives",
+    form_title: "Demande de légende", receipt: "Bordereau d'impression", uv_hint: "Lampe UV : promène le curseur sur le papier, ou appuie sur U.",
+    uv: "Lumière UV",
+    history: "Historique des légendes forgées", hist_prev: "Précédente", hist_next: "Suivante", hist_restored: "légende restaurée",
+    stat_seeds: "légendes possibles", stat_checks: "contrôles de cohérence", stat_locales: "pays",
+    seed: "Graine", locale: "Pays", archetype: "Archétype", gender: "Genre", age_min: "Âge min", age_max: "Âge max",
+    any: "Indifférent", female: "Femme", male: "Homme", random_seed: "Nouvelle graine",
+    forge: "Forger", forging: "Forge…", shortcut: "Ctrl+Entrée",
+    any_arch: "Laisser le hasard choisir le profil de vie.",
+    log_seed: "graine", log_identity: "identité", log_life: "parcours", log_family: "entourage", log_mind: "psychologie",
+    log_rhythm: "rythme", log_digital: "empreinte numérique", log_voice: "voix", log_check: "cohérence", log_done: "légende prête",
+    log_jobs: "postes", log_accounts: "comptes", log_posts: "publications", log_errors: "erreurs",
+    // dossier
+    file: "Dossier", born: "Naissance", age: "Âge", years: "ans", city: "Ville", status: "Statut", job: "Poste", phone: "Téléphone",
+    phone_fiction: "plage réservée à la fiction, non attribuée", phone_none: "aucune plage fictive : utiliser un numéro dédié",
+    coherence: "Cohérence", linkability: "Exposition", linkability_hint: "facilité à relier les comptes entre eux",
+    save: "Enregistrer au coffre", saved: "Enregistrée", export_md: "Fiche .md", export_json: "JSON", quiz: "Interrogatoire", print: "Imprimer",
+    permalink: "Lien", copied: "Copié", face: "Visage", change_face: "Changer", pick_face: "Attribuer un visage",
+    target: "Cible", unsaved: "modifications non enregistrées", edit_hint: "Cliquer sur un texte souligné pour le modifier : le moteur revérifie tout.",
+    reroll: "Retirer cette section", narrative: "Histoire",
+    s_identity: "Identité & apparence", s_identity_sub: "Le socle. Tout le reste en découle.",
+    s_life: "Parcours", s_life_sub: "Études, emplois, déménagements et comptes, datés et ordonnés.",
+    s_family: "Entourage", s_family_sub: "Les gens dont la légende parle sans réfléchir.",
+    s_mind: "Psychologie", s_mind_sub: "Big Five, valeurs, manies : ce qui fait réagir la légende.",
+    s_rhythm: "Rythme", s_rhythm_sub: "Quand la légende est en ligne, heure locale. Poster hors de ces heures trahit l'opérateur.",
+    s_digital: "Empreinte numérique", s_digital_sub: "Plateformes cohérentes avec l'âge et les loisirs ; pseudos validés selon les règles de chaque site.",
+    s_voice: "Voix", s_voice_sub: "Comment la légende écrit : exemples générés avec ses tics, son registre et ses fautes.",
+    s_legend: "Légende", s_legend_sub: "Ce qu'il faut savoir par cœur avant le premier message.",
+    s_checks: "Cohérence", s_checks_sub: "Chaque contrôle correspond à une question qu'un interlocuteur attentif pourrait poser.",
+    nickname: "Surnom", birthplace: "Né·e à", zodiac: "Signe", languages: "Langues", height: "Taille", build: "Corpulence",
+    eyes: "Yeux", hair: "Cheveux", glasses: "Lunettes", marks: "Signes", housing: "Logement", district: "Quartier", since: "depuis",
+    yes: "oui", no: "non", none: "aucun",
+    partner: "Partenaire", child: "Enfant", sibling: "Fratrie", parent: "Parent", mother: "Mère", father: "Père", pet: "Animal", grandchildren: "petits-enfants",
+    relationship: "Situation",
+    ptype: "Profil", values: "Valeurs", quirks: "Manies", peeves: "Agacements", humor: "Humour", interests: "Centres d'intérêt",
+    chronotype: "Chronotype", wake: "Lever", sleep: "Coucher", tz: "Fuseau", device: "Téléphone", computer: "Ordinateur", ppw: "publications / sem.",
+    days: ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"],
+    since_claimed: "depuis", join_public: "Date de création visible : la légende doit expliquer un compte récent.",
+    real_name: "nom réel", posts_week: "/sem.", open_profile: "profil",
+    register: "Registre", casing: "Casse", emoji: "Emojis", typos: "Fautes", habits: "Tics", slang: "Argot", avg_words: "mots / phrase",
+    pitch: "Pitch 30 secondes", talking: "Points d'appui", weak: "Points faibles", opsec: "Hygiène opérationnelle",
+    sev_error: "erreur", sev_warn: "attention", sev_info: "info", sev_ok: "ok",
+    // pool
+    pool_title: "Vivier", pool_sub: "Un flux sans fin de candidats. Chaque carte est une graine : la même graine redonne toujours la même personne.",
+    pool_new: "Nouveau vivier", loading_more: "Chargement…", open: "Ouvrir",
+    // vault
+    vault_title: "Coffre", vault_sub: "Les légendes enregistrées, leur cycle de vie et leur journal d'opérations.",
+    total: "Total", avg_coherence: "Cohérence moyenne", all: "Toutes",
+    st_draft: "Brouillon", st_incubating: "Incubation", st_active: "Active", st_dormant: "Dormante", st_burned: "Grillée",
+    vault_empty: "Coffre vide", vault_empty_sub: "Forge une légende puis « Enregistrer au coffre ».",
+    updated: "Modifiée",
+    // persona
+    lifecycle: "Cycle de vie", journal: "Journal d'opérations", journal_ph: "Ce qui s'est passé, avec qui, sur quelle plateforme…",
+    add: "Ajouter", k_note: "note", k_action: "action", k_contact: "contact", k_incident: "incident",
+    delete: "Supprimer", confirm_delete: "Supprimer définitivement cette légende et son journal ?",
+    burn_confirm: "Marquer la légende comme grillée ? Elle sera exclue de l'analyse de contamination.",
+    back_vault: "← Coffre",
+    // contamination
+    contam_title: "Contamination", contam_sub: "Deux légendes d'un même opérateur ne doivent rien partager qui permette de les relier : visage, pseudo, numéro, quartier, employeur… ni les mêmes heures de connexion.",
+    contam_empty: "Il faut au moins deux légendes actives dans le coffre.", risk: "Risque", no_links: "Aucun recoupement.",
+    // quiz
+    quiz_title: "Interrogatoire", quiz_sub: "Réponds comme la légende, vite. L'hésitation se voit.", next: "Suivant", again: "Recommencer",
+    quiz_score: "bonnes réponses", quiz_time: "temps moyen par réponse", quiz_slow: "Trop lent : relis la fiche.", quiz_good: "Réflexes solides.",
+    // faces
+    faces_title: "Planche contact", faces_sub: "Visages générés par StyleGAN via thispersondoesnotexist.com, téléchargés et ré-encodés par ton serveur (métadonnées supprimées). Choisis celui qui correspond à la cible.",
+    faces_draw: "Tirer 6 visages", faces_upload: "Importer une image", faces_used: "déjà utilisé", faces_fail: "Source indisponible — importe une image.",
+    faces_note: "Les visages GAN ont des artefacts connus (yeux centrés au même endroit, arrière-plans flous, accessoires déformés). Ne jamais utiliser la photo d'une personne réelle.",
+    // misc
+    token_title: "Jeton requis", token_sub: "Ce serveur est protégé par SIMULACRE_TOKEN.", token_ok: "Valider",
+    err: "Erreur", saved_toast: "Légende enregistrée au coffre.", updated_toast: "Mise à jour enregistrée.",
+    epigraph: "« Le simulacre n'est jamais ce qui cache la vérité — c'est la vérité qui cache qu'il n'y en a pas. Le simulacre est vrai. »",
+    epigraph_src: "L'Ecclésiaste, selon Jean Baudrillard, Simulacres et simulation (1981)",
+    footer: "Identités fictives pour enquêtes OSINT, recherche et formation. Aucune donnée ne quitte cette machine, sauf le téléchargement des visages.",
+    doctrine_title: "Doctrine", doctrine_sub: "À quoi sert SIMULACRE, ce qu'il refuse de faire, et comment il fonctionne.",
+  },
+  en: {
+    skip: "Skip to content",
+    nav_forge: "Forge", nav_pool: "Pool", nav_vault: "Vault", nav_contam: "Contamination", nav_doctrine: "Doctrine",
+    classified: "FICTIONAL",
+    tagline: "Every cover needs a <em>story</em>.",
+    lede: "SIMULACRE forges complete fictional identities for OSINT: a dated life path, family, psychology, online rhythm, valid handles, a written voice, a face — and an engine that checks it all holds together.",
+    eyebrow: "Bureau of fictional identities",
+    form_title: "Legend application", receipt: "Print receipt", uv_hint: "UV lamp: sweep the cursor over the paper, or press U.",
+    uv: "UV light",
+    history: "Forged legends history", hist_prev: "Previous", hist_next: "Next", hist_restored: "legend restored",
+    stat_seeds: "possible legends", stat_checks: "coherence checks", stat_locales: "countries",
+    seed: "Seed", locale: "Country", archetype: "Archetype", gender: "Gender", age_min: "Min age", age_max: "Max age",
+    any: "Any", female: "Woman", male: "Man", random_seed: "New seed",
+    forge: "Forge", forging: "Forging…", shortcut: "Ctrl+Enter",
+    any_arch: "Let chance pick the life profile.",
+    log_seed: "seed", log_identity: "identity", log_life: "life path", log_family: "family", log_mind: "psychology",
+    log_rhythm: "rhythm", log_digital: "digital footprint", log_voice: "voice", log_check: "coherence", log_done: "legend ready",
+    log_jobs: "jobs", log_accounts: "accounts", log_posts: "posts", log_errors: "errors",
+    file: "File", born: "Born", age: "Age", years: "", city: "City", status: "Status", job: "Job", phone: "Phone",
+    phone_fiction: "fiction-reserved range, never assigned", phone_none: "no fiction range: use a dedicated number",
+    coherence: "Coherence", linkability: "Exposure", linkability_hint: "how easily the accounts link to each other",
+    save: "Save to vault", saved: "Saved", export_md: ".md file", export_json: "JSON", quiz: "Interrogation", print: "Print",
+    permalink: "Link", copied: "Copied", face: "Face", change_face: "Change", pick_face: "Assign a face",
+    target: "Target", unsaved: "unsaved changes", edit_hint: "Click any underlined text to edit it: the engine re-checks everything.",
+    reroll: "Reroll this section", narrative: "Backstory",
+    s_identity: "Identity & appearance", s_identity_sub: "The foundation. Everything else follows from it.",
+    s_life: "Life path", s_life_sub: "Studies, jobs, moves and accounts, dated and ordered.",
+    s_family: "Circle", s_family_sub: "The people the legend talks about without thinking.",
+    s_mind: "Psychology", s_mind_sub: "Big Five, values, quirks: what makes the legend react.",
+    s_rhythm: "Rhythm", s_rhythm_sub: "When the legend is online, local time. Posting outside these hours exposes the operator.",
+    s_digital: "Digital footprint", s_digital_sub: "Platforms that fit the age and hobbies; handles validated against each site's rules.",
+    s_voice: "Voice", s_voice_sub: "How the legend writes: generated samples with its tics, register and typos.",
+    s_legend: "Legend", s_legend_sub: "What to know by heart before the first message.",
+    s_checks: "Coherence", s_checks_sub: "Each check is a question an attentive contact could ask.",
+    nickname: "Nickname", birthplace: "Born in", zodiac: "Sign", languages: "Languages", height: "Height", build: "Build",
+    eyes: "Eyes", hair: "Hair", glasses: "Glasses", marks: "Marks", housing: "Housing", district: "Area", since: "since",
+    yes: "yes", no: "no", none: "none",
+    partner: "Partner", child: "Child", sibling: "Sibling", parent: "Parent", mother: "Mother", father: "Father", pet: "Pet", grandchildren: "grandchildren",
+    relationship: "Relationship",
+    ptype: "Type", values: "Values", quirks: "Quirks", peeves: "Pet peeves", humor: "Humour", interests: "Interests",
+    chronotype: "Chronotype", wake: "Wakes", sleep: "Sleeps", tz: "Timezone", device: "Phone", computer: "Computer", ppw: "posts / week",
+    days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    since_claimed: "since", join_public: "Creation date is public: the legend must explain a fresh account.",
+    real_name: "real name", posts_week: "/wk", open_profile: "profile",
+    register: "Register", casing: "Casing", emoji: "Emoji", typos: "Typos", habits: "Tics", slang: "Slang", avg_words: "words / sentence",
+    pitch: "30-second pitch", talking: "Talking points", weak: "Weak spots", opsec: "Opsec",
+    sev_error: "error", sev_warn: "warning", sev_info: "info", sev_ok: "ok",
+    pool_title: "Pool", pool_sub: "An endless stream of candidates. Each card is a seed: the same seed always brings back the same person.",
+    pool_new: "New pool", loading_more: "Loading…", open: "Open",
+    vault_title: "Vault", vault_sub: "Saved legends, their lifecycle and their operations journal.",
+    total: "Total", avg_coherence: "Average coherence", all: "All",
+    st_draft: "Draft", st_incubating: "Incubating", st_active: "Active", st_dormant: "Dormant", st_burned: "Burned",
+    vault_empty: "Vault is empty", vault_empty_sub: "Forge a legend, then 'Save to vault'.",
+    updated: "Updated",
+    lifecycle: "Lifecycle", journal: "Operations journal", journal_ph: "What happened, with whom, on which platform…",
+    add: "Add", k_note: "note", k_action: "action", k_contact: "contact", k_incident: "incident",
+    delete: "Delete", confirm_delete: "Permanently delete this legend and its journal?",
+    burn_confirm: "Mark this legend as burned? It will be excluded from the contamination analysis.",
+    back_vault: "← Vault",
+    contam_title: "Contamination", contam_sub: "Two legends run by the same operator must share nothing that links them: face, handle, number, neighbourhood, employer… or the same online hours.",
+    contam_empty: "You need at least two non-burned legends in the vault.", risk: "Risk", no_links: "No overlap.",
+    quiz_title: "Interrogation", quiz_sub: "Answer as the legend, fast. Hesitation shows.", next: "Next", again: "Again",
+    quiz_score: "correct answers", quiz_time: "average time per answer", quiz_slow: "Too slow: reread the file.", quiz_good: "Solid reflexes.",
+    faces_title: "Contact sheet", faces_sub: "StyleGAN faces from thispersondoesnotexist.com, downloaded and re-encoded by your server (metadata stripped). Pick the one that matches the target.",
+    faces_draw: "Draw 6 faces", faces_upload: "Upload an image", faces_used: "already used", faces_fail: "Source unavailable — upload an image.",
+    faces_note: "GAN faces have known artefacts (eyes always at the same spot, blurry backgrounds, warped accessories). Never use a real person's photo.",
+    token_title: "Token required", token_sub: "This server is protected by SIMULACRE_TOKEN.", token_ok: "Unlock",
+    err: "Error", saved_toast: "Legend saved to the vault.", updated_toast: "Changes saved.",
+    epigraph: "“The simulacrum is never what hides the truth — it is the truth that hides that there is none. The simulacrum is true.”",
+    epigraph_src: "Ecclesiastes, according to Jean Baudrillard, Simulacra and Simulation (1981)",
+    footer: "Fictional identities for OSINT investigations, research and training. No data leaves this machine except face downloads.",
+    doctrine_title: "Doctrine", doctrine_sub: "What SIMULACRE is for, what it refuses to do, and how it works.",
+  },
+};
+
+let current = (() => {
+  try { return localStorage.getItem("simulacre.lang") || "fr"; } catch { return "fr"; }
+})();
+
+export const lang = () => current;
+export function setLang(l) {
+  current = l === "en" ? "en" : "fr";
+  try { localStorage.setItem("simulacre.lang", current); } catch { /* private mode */ }
+  document.documentElement.lang = current;
+}
+export const t = (k) => S[current][k] ?? S.en[k] ?? k;
+/** "34 ans" / "1 an" / "34 yrs". */
+export const yrs = (n) => (current === "fr" ? `${n} ${n < 2 ? "an" : "ans"}` : `${n} ${n === 1 ? "yr" : "yrs"}`);
+/** Pick the current language out of an `{fr, en}` object. */
+export const L = (o) => (o && typeof o === "object" ? o[current] ?? o.en ?? "" : o ?? "");
+
+let labels = {};
+export const setLabels = (l) => { labels = l || {}; };
+export const lab = (group, key) => L(labels[group]?.[key]) || key;

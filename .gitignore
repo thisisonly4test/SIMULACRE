@@ -1,0 +1,7 @@
+/target
+/node_modules
+/simulacre-data
+/legend-data
+/.e2e-data
+/test-results
+/playwright-report
