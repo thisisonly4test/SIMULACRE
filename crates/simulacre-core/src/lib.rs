@@ -20,6 +20,7 @@ pub mod labels;
 pub mod model;
 pub mod quiz;
 pub mod rng;
+pub mod service;
 pub mod story;
 pub mod text;
 

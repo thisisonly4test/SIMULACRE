@@ -23,6 +23,7 @@ use tower_http::set_header::SetResponseHeaderLayer;
 
 #[derive(RustEmbed)]
 #[folder = "../../web/"]
+#[exclude = "_headers"]
 struct Web;
 
 #[derive(Clone)]
@@ -105,7 +106,7 @@ async fn static_file(uri: Uri) -> Response {
 pub fn app(state: AppState) -> Router {
     use api::*;
     let api = Router::new()
-        .route("/api/health", get(|| async { Json(json!({ "ok": true })) }))
+        .route("/api/health", get(|| async { Json(json!({ "ok": true, "backend": "server" })) }))
         .route("/api/meta", get(meta))
         .route("/api/seed", get(new_seed))
         .route("/api/forge", post(forge))

@@ -10,9 +10,9 @@ use axum::response::{IntoResponse, Response};
 use chrono::NaiveDate;
 use serde::{Deserialize, Serialize};
 use serde_json::{Value, json};
-use simulacre_core::data::{EduLevel, data};
-use simulacre_core::model::{FaceRef, Gender, Recipe, SECTIONS};
-use simulacre_core::{Persona, Summary, UiLang, contamination, export, generate, labels, quiz, refresh, rng};
+use simulacre_core::model::FaceRef;
+use simulacre_core::service::{self, PoolQuery, RecipeIn};
+use simulacre_core::{Persona, Summary, UiLang, contamination, export, generate, quiz, refresh, rng};
 
 use crate::AppState;
 use crate::faces::{self, Face};
@@ -73,25 +73,7 @@ fn today() -> NaiveDate {
 // ── Meta ─────────────────────────────────────────────────────────────────────
 
 pub async fn meta() -> Json<Value> {
-    let d = data();
-    Json(json!({
-        "version": env!("CARGO_PKG_VERSION"),
-        "locales": d.locales.iter().map(|l| json!({
-            "code": l.code, "language": l.language, "country": l.country, "country_code": l.country_code,
-            "fiction_phone": l.phone.fiction_reserved,
-        })).collect::<Vec<_>>(),
-        "archetypes": d.common.archetypes.iter().map(|a| json!({
-            "key": a.key, "label": a.label, "desc": a.desc, "age": a.age,
-        })).collect::<Vec<_>>(),
-        "platforms": d.common.platforms.iter().map(|p| json!({ "key": p.key, "name": p.name, "kind": p.kind })).collect::<Vec<_>>(),
-        "sectors": d.common.sectors.iter().map(|s| json!({ "key": s.key, "label": s.label })).collect::<Vec<_>>(),
-        "hobbies": d.common.hobbies.iter().map(|h| json!({ "key": h.key, "label": h.l10n(), "cat": h.cat })).collect::<Vec<_>>(),
-        "edu_levels": EduLevel::ALL.iter().map(|e| e.key()).collect::<Vec<_>>(),
-        "sections": SECTIONS,
-        "statuses": STATUSES,
-        "labels": labels::all(),
-        "limits": { "min_age": simulacre_core::generate::MIN_AGE, "max_age": simulacre_core::generate::MAX_AGE },
-    }))
+    Json(service::meta())
 }
 
 pub async fn new_seed() -> Json<Value> {
@@ -100,83 +82,13 @@ pub async fn new_seed() -> Json<Value> {
 
 // ── Forge ────────────────────────────────────────────────────────────────────
 
-/// A recipe as the UI sends it: everything optional.
-#[derive(Debug, Deserialize, Default)]
-pub struct RecipeIn {
-    pub seed: Option<String>,
-    pub locale: Option<String>,
-    pub archetype: Option<String>,
-    pub gender: Option<Gender>,
-    pub age_min: Option<u8>,
-    pub age_max: Option<u8>,
-    pub as_of: Option<NaiveDate>,
-    #[serde(default)]
-    pub rerolls: BTreeMap<String, u32>,
-}
-
-impl RecipeIn {
-    pub fn into_recipe(self) -> Result<Recipe, ApiError> {
-        let seed = self.seed.map(|s| s.trim().to_string()).filter(|s| !s.is_empty()).unwrap_or_else(rng::random_seed);
-        if seed.len() > 64 {
-            return Err(ApiError::bad("seed too long (max 64)"));
-        }
-        if let Some(bad) = self.rerolls.keys().find(|k| !SECTIONS.contains(&k.as_str())) {
-            return Err(ApiError::bad(format!("unknown section '{bad}'")));
-        }
-        let mut r = Recipe::new(seed, self.as_of.unwrap_or_else(today));
-        if let Some(l) = self.locale.filter(|l| !l.is_empty()) {
-            r.locale = l;
-        }
-        r.archetype = self.archetype.filter(|a| !a.is_empty());
-        r.gender = self.gender;
-        r.age_min = self.age_min;
-        r.age_max = self.age_max;
-        r.rerolls = self.rerolls;
-        Ok(r)
-    }
-}
-
 pub async fn forge(Json(body): Json<RecipeIn>) -> ApiResult<Persona> {
-    Ok(Json(generate(&body.into_recipe()?)?))
+    Ok(Json(generate(&body.into_recipe(today()).map_err(ApiError::bad)?)?))
 }
 
-#[derive(Deserialize)]
-pub struct PoolQuery {
-    pool: Option<String>,
-    offset: Option<u64>,
-    limit: Option<u64>,
-    locale: Option<String>,
-    archetype: Option<String>,
-    gender: Option<Gender>,
-}
-
-#[derive(Serialize)]
-pub struct PoolItem {
-    #[serde(flatten)]
-    summary: Summary,
-    locale: String,
-}
-
-/// The "vivier": an endless, stable stream of candidates. Page N of pool P
-/// always shows the same people.
+/// The "vivier": an endless, stable stream of candidates.
 pub async fn pool(Query(q): Query<PoolQuery>) -> ApiResult<Value> {
-    let pool = q.pool.unwrap_or_else(|| "default".into());
-    let offset = q.offset.unwrap_or(0);
-    let limit = q.limit.unwrap_or(24).clamp(1, 60);
-    let locales: Vec<String> = match q.locale.filter(|l| !l.is_empty() && l != "any") {
-        Some(l) => vec![l],
-        None => data().locales.iter().map(|l| l.code.clone()).collect(),
-    };
-    let mut items = Vec::with_capacity(limit as usize);
-    for i in offset..offset + limit {
-        let mut r = Recipe::new(rng::pool_seed(&pool, i), today());
-        r.locale = locales[(i as usize) % locales.len()].clone();
-        r.archetype = q.archetype.clone().filter(|a| !a.is_empty());
-        r.gender = q.gender;
-        let p = generate(&r)?;
-        items.push(PoolItem { summary: Summary::from(&p), locale: r.locale });
-    }
-    Ok(Json(json!({ "items": items, "next": offset + limit })))
+    Ok(Json(service::pool(q, today())?))
 }
 
 #[derive(Deserialize)]
@@ -186,7 +98,7 @@ pub struct LangQuery {
 }
 
 fn lang(q: &Option<String>) -> UiLang {
-    q.as_deref().and_then(|l| l.parse().ok()).unwrap_or_default()
+    service::lang(q.as_deref())
 }
 
 /// Re-runs the coherence engine on an edited persona.
@@ -283,11 +195,7 @@ pub async fn vault_update(State(s): State<AppState>, Path(id): Path<String>, Jso
     refresh(&mut p);
     let before = s.store.get(&id)?;
     let rec = s.store.update(&id, &p)?;
-    if before.persona.coherence.score != rec.persona.coherence.score {
-        s.store.journal_add(&id, "edit", &format!("coherence {} → {}", before.persona.coherence.score, rec.persona.coherence.score))?;
-    } else {
-        s.store.journal_add(&id, "edit", "edited")?;
-    }
+    s.store.journal_add(&id, "edit", &service::edit_note(before.persona.coherence.score, rec.persona.coherence.score))?;
     Ok(Json(rec))
 }
 
@@ -322,15 +230,8 @@ pub async fn journal_add(
     Json(b): Json<JournalIn>,
 ) -> Result<(StatusCode, Json<crate::store::JournalEntry>), ApiError> {
     s.store.get(&id)?;
-    let text = b.text.trim();
-    if text.is_empty() || text.len() > 4000 {
-        return Err(ApiError::bad("journal text must be 1–4000 characters"));
-    }
-    let kind = b.kind.unwrap_or_else(|| "note".into());
-    if !matches!(kind.as_str(), "note" | "action" | "contact" | "incident") {
-        return Err(ApiError::bad("kind must be note, action, contact or incident"));
-    }
-    Ok((StatusCode::CREATED, Json(s.store.journal_add(&id, &kind, text)?)))
+    let (kind, text) = service::journal_entry(b.kind.as_deref(), &b.text).map_err(ApiError::bad)?;
+    Ok((StatusCode::CREATED, Json(s.store.journal_add(&id, &kind, &text)?)))
 }
 
 pub async fn vault_quiz(State(s): State<AppState>, Path(id): Path<String>, Query(q): Query<LangQuery>) -> ApiResult<Vec<quiz::Question>> {
@@ -339,14 +240,9 @@ pub async fn vault_quiz(State(s): State<AppState>, Path(id): Path<String>, Query
 
 pub async fn vault_export_md(State(s): State<AppState>, Path(id): Path<String>, Query(q): Query<LangQuery>) -> Result<Response, ApiError> {
     let rec = s.store.get(&id)?;
-    let mut md = export::markdown(&rec.persona, lang(&q.lang));
     let journal = s.store.journal(&id)?;
-    if !journal.is_empty() {
-        md.push_str("\n## Journal\n");
-        for j in journal.iter().rev() {
-            md.push_str(&format!("- `{}` **{}** {}\n", j.at, j.kind, j.text));
-        }
-    }
+    let lines: Vec<_> = journal.iter().map(|j| service::JournalLine { at: &j.at, kind: &j.kind, text: &j.text }).collect();
+    let md = service::markdown_with_journal(&rec.persona, lang(&q.lang), &lines);
     Ok(markdown_response(md, &rec.persona.recipe.seed))
 }
 

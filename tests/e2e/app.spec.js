@@ -70,7 +70,9 @@ test("face, vault, lifecycle, journal", async ({ page }) => {
   await forge(page, "SIM-E2E-VAULT");
   await page.locator(".mug-btn").click();
   await page.locator(".face-opt:not(.loading)").first().click();
-  await expect(page.locator(".mug-wrap img")).toHaveAttribute("src", /\/faces\/[0-9a-f]{32}\.jpg/);
+  // Server: /faces/<sha>.jpg. Browser build: an object URL from IndexedDB.
+  await expect(page.locator(".mug-wrap img")).toHaveAttribute("src", /\/faces\/[0-9a-f]{32}\.jpg|^blob:/);
+  await expect.poll(() => page.locator(".mug-wrap img").evaluate((i) => i.complete && i.naturalWidth)).toBe(512);
   await page.getByRole("button", { name: /Enregistrer au coffre/ }).click();
   await expect(page).toHaveURL(/#\/p\/\w+/);
   await page.locator(".lifecycle button", { hasText: "Active" }).click();
@@ -134,6 +136,18 @@ test("the marionette's strings move, and the puppet with them", async ({ page })
   await page.waitForTimeout(400);
   expect(await pose()).not.toEqual(a);
   await expect(page.locator(".brand .brand-mark .pm-shade >> nth=0")).toBeVisible();
+});
+
+test("the vault survives a reload", async ({ page }) => {
+  await forge(page, "SIM-E2E-PERSIST");
+  await page.getByRole("button", { name: /Enregistrer au coffre/ }).click();
+  await expect(page).toHaveURL(/#\/p\//);
+  const url = page.url();
+  await page.reload();
+  await expect(page.locator(".fullname")).toBeVisible();
+  expect(page.url()).toBe(url);
+  await page.goto("/#/vault");
+  await expect(page.locator(".pcard").first()).toBeVisible();
 });
 
 test("paper is the default theme even on a dark OS", async ({ page }) => {

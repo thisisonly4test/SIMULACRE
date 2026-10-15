@@ -9,7 +9,7 @@ use rusqlite::{Connection, OptionalExtension, params};
 use serde::{Deserialize, Serialize};
 use simulacre_core::Persona;
 
-pub const STATUSES: &[&str] = &["draft", "incubating", "active", "dormant", "burned"];
+pub use simulacre_core::service::STATUSES;
 
 #[derive(Debug, thiserror::Error)]
 pub enum StoreError {

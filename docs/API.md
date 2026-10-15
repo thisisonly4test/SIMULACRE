@@ -8,7 +8,7 @@ Si `SIMULACRE_TOKEN` est défini, chaque route `/api/*` et `/faces/*` exige `Aut
 
 | Méthode | Route | Corps / requête | Réponse |
 |---|---|---|---|
-| GET | `/api/health` | — | `{ok:true}` |
+| GET | `/api/health` | — | `{ok:true, backend:"server"}` (le Worker Cloudflare répond `backend:"browser"`) |
 | GET | `/api/meta` | — | pays, archétypes, plateformes, secteurs, loisirs, sections, statuts, libellés, limites |
 | GET | `/api/seed` | — | `{seed}` |
 | POST | `/api/forge` | `{seed?, locale?, archetype?, gender?, age_min?, age_max?, as_of?, rerolls?}` | `Persona` |
