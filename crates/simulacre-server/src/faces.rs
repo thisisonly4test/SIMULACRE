@@ -36,9 +36,7 @@ pub struct Face {
     pub source: String,
 }
 
-pub fn is_valid_id(id: &str) -> bool {
-    id.len() == 32 && id.bytes().all(|b| b.is_ascii_hexdigit() && !b.is_ascii_uppercase())
-}
+pub use simulacre_core::service::is_valid_face_id as is_valid_id;
 
 pub fn path_for(dir: &Path, id: &str) -> PathBuf {
     dir.join(format!("{id}.jpg"))

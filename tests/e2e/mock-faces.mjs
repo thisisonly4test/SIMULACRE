@@ -2,6 +2,7 @@
 // PNG on every request. Uses only node:zlib to build valid PNGs.
 import http from "node:http";
 import zlib from "node:zlib";
+import { pathToFileURL } from "node:url";
 
 const CRC = new Int32Array(256).map((_, n) => {
   let c = n;
@@ -41,10 +42,13 @@ export function png(size, seed) {
   return Buffer.concat([Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]), chunk("IHDR", ihdr), chunk("IDAT", zlib.deflateSync(raw)), chunk("IEND", Buffer.alloc(0))]);
 }
 
-const port = Number(process.argv[2] || 7989);
-let n = 0;
-http.createServer((req, res) => {
-  if (req.url === "/health") { res.end("ok"); return; }
-  res.writeHead(200, { "Content-Type": "image/png", "Cache-Control": "no-store" });
-  res.end(png(160, ++n));
-}).listen(port, "127.0.0.1");
+// Run as a script: serve faces. Imported (static-server.mjs): only png().
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+  const port = Number(process.argv[2] || 7989);
+  let n = 0;
+  http.createServer((req, res) => {
+    if (req.url === "/health") { res.end("ok"); return; }
+    res.writeHead(200, { "Content-Type": "image/png", "Cache-Control": "no-store" });
+    res.end(png(160, ++n));
+  }).listen(port, "127.0.0.1");
+}

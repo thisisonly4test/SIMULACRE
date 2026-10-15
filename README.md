@@ -69,6 +69,26 @@ La plateforme s'appelait auparavant LEGEND. Au premier lancement, un ancien doss
 
 Le serveur est un binaire unique : l'interface est embarquée dedans. Il n'y a pas de dépendance JavaScript à l'exécution. Le navigateur ne contacte jamais de tiers : pas de polices web, pas de CDN, CSP `default-src 'self'`.
 
+## Version en ligne (Cloudflare, sans serveur)
+
+Le même site fonctionne sans le serveur Rust, par exemple sur Cloudflare Workers :
+
+- le moteur `simulacre-core` est compilé en WebAssembly (`crates/simulacre-wasm`, sortie dans `web/pkg/`, versionnée) et tourne dans le navigateur ;
+- le coffre, le journal et les visages sont stockés dans le navigateur (IndexedDB). Rien n'est envoyé en ligne, mais chaque visiteur a son propre coffre, et effacer les données du site le vide : exporte en JSON pour garder une copie ;
+- un petit Worker (`worker/index.js`) sert les fichiers de `web/` et relaie uniquement les visages de thispersondoesnotexist.com, que le navigateur ne peut pas récupérer seul (pas d'en-têtes CORS). Il ne stocke rien.
+
+L'interface choisit d'elle-même : si `/api/health` répond `backend: "server"`, elle utilise le serveur Rust ; sinon, le moteur du navigateur.
+
+Déploiement : `wrangler.jsonc` est à la racine. Dans Cloudflare (Workers & Pages → le Worker → Settings → Build), la commande de déploiement doit être `npx wrangler deploy`, sans commande de build ni dossier de sortie. Pour tester en local : `npx wrangler dev`.
+
+Après une modification du moteur Rust, régénérer `web/pkg/` :
+
+```bash
+rustup target add wasm32-unknown-unknown
+cargo install wasm-bindgen-cli --version 0.2.129   # même version que la crate wasm-bindgen
+./scripts/build-wasm.sh
+```
+
 Pour une légende en ligne de commande :
 
 ```bash
@@ -78,9 +98,9 @@ cargo run -p simulacre-core --example forge -- SIM-DEMO-0001 fr_FR parent fr
 ## Tests
 
 ```bash
-cargo test                     # 59 tests : moteur (600 graines × 4 pays) + API HTTP
+cargo test                     # 63 tests : moteur (600 graines × 4 pays) + API HTTP
 cargo clippy --all-targets     # 0 avertissement
-npm install && npx playwright test   # 19 tests navigateur (bureau + mobile), hors ligne
+npm install && npx playwright test   # 40 tests navigateur : serveur Rust et version sans serveur, bureau + mobile, hors ligne
 ```
 
 Ce que couvrent les tests :
@@ -97,8 +117,11 @@ Si Playwright ne trouve pas son Chromium : `CHROMIUM_PATH=/chemin/vers/chrome np
 crates/simulacre-core/    moteur pur (aucune E/S) : données, génération, cohérence, contamination, quiz, export
   data/                pays (fr_FR, en_US, en_GB, de_DE), langues (fr, en, de), catalogue commun
 crates/simulacre-server/  axum + SQLite + forge de visages + UI embarquée
-web/                   interface (HTML/CSS/JS sans build, identité « imprimerie de sécurité »)
-tests/e2e/             Playwright + serveur de visages factice
+crates/simulacre-wasm/    le moteur pour le navigateur (version sans serveur)
+web/                   interface (HTML/CSS/JS sans build, identité « imprimerie de sécurité ») ; web/pkg/ = moteur WebAssembly
+worker/                Worker Cloudflare : fichiers statiques + relais des visages
+scripts/               build-wasm.sh
+tests/e2e/             Playwright (serveur Rust et version sans serveur) + sources de visages factices
 docs/                  architecture, cohérence, API, doctrine
 ```
 

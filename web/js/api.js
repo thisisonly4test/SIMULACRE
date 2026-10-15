@@ -1,5 +1,14 @@
-// Thin fetch wrapper. Adds the optional bearer token and turns error bodies
-// into exceptions carrying the server's message.
+// The UI's single entry point to the engine. Two backends answer the same
+// calls:
+// - "server": the Rust HTTP server (`simulacre`), detected via /api/health;
+// - "browser": no server (static hosting such as Cloudflare). The engine runs
+//   as WebAssembly and the vault lives in IndexedDB (see local.js).
+// The HTTP side adds the optional bearer token and turns error bodies into
+// exceptions carrying the server's message.
+
+import { ApiError } from "./errors.js";
+
+export { ApiError };
 
 let token = (() => { try { return localStorage.getItem("simulacre.token") || ""; } catch { return ""; } })();
 let onUnauthorized = null;
@@ -11,10 +20,6 @@ export function setToken(v) {
   document.cookie = `simulacre_token=${encodeURIComponent(token)}; path=/; SameSite=Strict`;
 }
 export const onAuthNeeded = (fn) => { onUnauthorized = fn; };
-
-export class ApiError extends Error {
-  constructor(status, message) { super(message); this.status = status; }
-}
 
 async function req(method, url, body, raw = false) {
   const headers = {};
@@ -39,7 +44,7 @@ async function req(method, url, body, raw = false) {
 
 if (token) setToken(token);
 
-export const api = {
+const http = {
   meta: () => req("GET", "/api/meta"),
   seed: () => req("GET", "/api/seed"),
   forge: (recipe) => req("POST", "/api/forge", recipe),
@@ -64,3 +69,35 @@ export const api = {
   faceUpload: (blob) => req("POST", "/api/faces/upload", blob),
   faceUsers: (id) => req("GET", `/api/faces/${id}/users`),
 };
+
+let mode = null;
+let backend = null;
+
+/** Picks the backend once: the Rust server if it answers /api/health. */
+function ready() {
+  backend ??= (async () => {
+    try {
+      const res = await fetch("/api/health", { cache: "no-store" });
+      const body = res.ok && (res.headers.get("content-type") || "").includes("json") ? await res.json() : null;
+      // The Cloudflare Worker answers too, with backend "browser".
+      if (body?.ok === true && body.backend !== "browser") {
+        mode = "server";
+        return http;
+      }
+    } catch { /* no server reachable: fall through */ }
+    const local = await import("./local.js");
+    await local.init();
+    mode = "browser";
+    faceUrlFn = local.faceUrl;
+    return local.local;
+  })();
+  return backend;
+}
+
+let faceUrlFn = (id) => `/faces/${id}.jpg`;
+/** Where a stored face can be displayed from (synchronous, for <img src>). */
+export const faceUrl = (id) => faceUrlFn(id);
+/** "server" or "browser", once the first call has resolved. */
+export const backendMode = () => mode;
+
+export const api = Object.fromEntries(Object.keys(http).map((k) => [k, async (...args) => (await ready())[k](...args)]));

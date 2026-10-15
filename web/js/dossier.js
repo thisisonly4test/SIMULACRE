@@ -1,6 +1,7 @@
 // The dossier: one persona, rendered as an operator's case file. Shared by the
 // forge (unsaved) and the vault (saved) views.
 
+import { faceUrl } from "./api.js";
 import { editable, facePicker, gauge, heatmap, oceanBars, quizModal, radar, section } from "./components.js";
 import { L, lab, t, yrs } from "./i18n.js";
 import { holo, mrz } from "./security.js";
@@ -19,7 +20,7 @@ export function dossier(p, o) {
 
   // ── Head: passport data page (SPECIMEN) + verdict ─────────────────────────
   const initialsTxt = initials(`${id.first_name} ${id.last_name}`);
-  const portrait = () => (p.face ? h("img", { src: `/faces/${p.face.id}.jpg`, alt: id.first_name }) : silhouette(p.recipe.seed, initialsTxt));
+  const portrait = () => (p.face ? h("img", { src: faceUrl(p.face.id), alt: id.first_name }) : silhouette(p.recipe.seed, initialsTxt));
   const mug = holo(h("div", { class: "mug-wrap" },
     portrait(),
     h("span", { class: "foil", "aria-hidden": "true" }),
@@ -167,7 +168,7 @@ export function dossier(p, o) {
 
   // ── 07 Voice ──────────────────────────────────────────────────────────────
   const w = b.writing;
-  const avatar = p.face ? h("span", { class: "avatar" }, h("img", { src: `/faces/${p.face.id}.jpg`, alt: "" })) : h("span", { class: "avatar" }, initials(`${id.first_name} ${id.last_name}`));
+  const avatar = p.face ? h("span", { class: "avatar" }, h("img", { src: faceUrl(p.face.id), alt: "" })) : h("span", { class: "avatar" }, initials(`${id.first_name} ${id.last_name}`));
   wrap.append(section({
     id: "s-voice", num: "07", title: t("s_voice"), sub: t("s_voice_sub"), tools: [rerollBtn("voice")].filter(Boolean),
     body: h("div", {},

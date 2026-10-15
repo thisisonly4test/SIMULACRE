@@ -55,6 +55,7 @@ const S = {
     pool_new: "Nouveau vivier", loading_more: "Chargement…", open: "Ouvrir",
     // vault
     vault_title: "Coffre", vault_sub: "Les légendes enregistrées, leur cycle de vie et leur journal d'opérations.",
+    vault_local: "Ce coffre est stocké uniquement dans ce navigateur : effacer les données du site le vide. Exporte en JSON pour garder une copie.",
     total: "Total", avg_coherence: "Cohérence moyenne", all: "Toutes",
     st_draft: "Brouillon", st_incubating: "Incubation", st_active: "Active", st_dormant: "Dormante", st_burned: "Grillée",
     vault_empty: "Coffre vide", vault_empty_sub: "Forge une légende puis « Enregistrer au coffre ».",
@@ -72,7 +73,7 @@ const S = {
     quiz_title: "Interrogatoire", quiz_sub: "Réponds comme la légende, vite. L'hésitation se voit.", next: "Suivant", again: "Recommencer",
     quiz_score: "bonnes réponses", quiz_time: "temps moyen par réponse", quiz_slow: "Trop lent : relis la fiche.", quiz_good: "Réflexes solides.",
     // faces
-    faces_title: "Planche contact", faces_sub: "Visages générés par StyleGAN via thispersondoesnotexist.com, téléchargés et ré-encodés par ton serveur (métadonnées supprimées). Choisis celui qui correspond à la cible.",
+    faces_title: "Planche contact", faces_sub: "Visages générés par StyleGAN via thispersondoesnotexist.com, puis ré-encodés de ton côté (métadonnées supprimées). Choisis celui qui correspond à la cible.",
     faces_draw: "Tirer 6 visages", faces_upload: "Importer une image", faces_used: "déjà utilisé", faces_fail: "Source indisponible — importe une image.",
     faces_note: "Les visages GAN ont des artefacts connus (yeux centrés au même endroit, arrière-plans flous, accessoires déformés). Ne jamais utiliser la photo d'une personne réelle.",
     // misc
@@ -133,6 +134,7 @@ const S = {
     pool_title: "Pool", pool_sub: "An endless stream of candidates. Each card is a seed: the same seed always brings back the same person.",
     pool_new: "New pool", loading_more: "Loading…", open: "Open",
     vault_title: "Vault", vault_sub: "Saved legends, their lifecycle and their operations journal.",
+    vault_local: "This vault is stored in this browser only: clearing site data empties it. Export to JSON to keep a copy.",
     total: "Total", avg_coherence: "Average coherence", all: "All",
     st_draft: "Draft", st_incubating: "Incubating", st_active: "Active", st_dormant: "Dormant", st_burned: "Burned",
     vault_empty: "Vault is empty", vault_empty_sub: "Forge a legend, then 'Save to vault'.",
@@ -146,7 +148,7 @@ const S = {
     contam_empty: "You need at least two non-burned legends in the vault.", risk: "Risk", no_links: "No overlap.",
     quiz_title: "Interrogation", quiz_sub: "Answer as the legend, fast. Hesitation shows.", next: "Next", again: "Again",
     quiz_score: "correct answers", quiz_time: "average time per answer", quiz_slow: "Too slow: reread the file.", quiz_good: "Solid reflexes.",
-    faces_title: "Contact sheet", faces_sub: "StyleGAN faces from thispersondoesnotexist.com, downloaded and re-encoded by your server (metadata stripped). Pick the one that matches the target.",
+    faces_title: "Contact sheet", faces_sub: "StyleGAN faces from thispersondoesnotexist.com, then re-encoded on your side (metadata stripped). Pick the one that matches the target.",
     faces_draw: "Draw 6 faces", faces_upload: "Upload an image", faces_used: "already used", faces_fail: "Source unavailable — upload an image.",
     faces_note: "GAN faces have known artefacts (eyes always at the same spot, blurry backgrounds, warped accessories). Never use a real person's photo.",
     token_title: "Token required", token_sub: "This server is protected by SIMULACRE_TOKEN.", token_ok: "Unlock",

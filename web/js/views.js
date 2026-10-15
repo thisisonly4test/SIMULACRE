@@ -1,4 +1,4 @@
-import { api } from "./api.js";
+import { api, backendMode, faceUrl } from "./api.js";
 import { section } from "./components.js";
 import { marionette } from "./puppet.js";
 import { applyEdit, commonActions, dossier } from "./dossier.js";
@@ -277,7 +277,7 @@ export function forgeView(root) {
 const poolState = { pool: Math.random().toString(36).slice(2, 10), locale: "", archetype: "", gender: "" };
 
 function personCard(item, href, extra = []) {
-  const sil = h("span", { class: "sil" }, item.face ? h("img", { src: `/faces/${item.face.id}.jpg`, alt: "", loading: "lazy" }) : silhouette(item.seed, initials(item.name)));
+  const sil = h("span", { class: "sil" }, item.face ? h("img", { src: faceUrl(item.face.id), alt: "", loading: "lazy" }) : silhouette(item.seed, initials(item.name)));
   return h("a", { class: "pcard", href },
     h("span", { class: "score", vars: { color: scoreColor(item.score) } }, item.score),
     h("div", { class: "pcard-head" }, sil, h("div", {}, h("span", { class: "cn" }, L(item.codename)), h("b", {}, item.name), h("span", { class: "meta" }, `${flag(item.country_code)} ${item.age} · ${item.city}`))),
@@ -345,7 +345,7 @@ export async function vaultView(root) {
     return b;
   }));
   root.append(section({
-    id: "vault", num: "⬒", title: t("vault_title"), sub: t("vault_sub"),
+    id: "vault", num: "⬒", title: t("vault_title"), sub: backendMode() === "browser" ? `${t("vault_sub")} ${t("vault_local")}` : t("vault_sub"),
     body: h("div", {},
       h("ul", { class: "stats" },
         h("li", {}, h("b", {}, stats.total), h("span", {}, t("total"))),

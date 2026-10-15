@@ -1,0 +1,14 @@
+// Cloudflare deployment: the static UI (web/) plus a tiny Worker that relays
+// face pictures. Deploy with `npx wrangler deploy` (Workers Builds runs it on
+// every push).
+{
+  "name": "simulacre",
+  "main": "worker/index.js",
+  "compatibility_date": "2025-09-01",
+  "assets": {
+    "directory": "./web",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  },
+  "observability": { "enabled": true }
+}
