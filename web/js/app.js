@@ -31,8 +31,8 @@ function shell() {
     uvBtn,
     h("div", { class: "lang-switch", role: "group", "aria-label": "Language / Langue" }, langBtn("fr"), langBtn("en"))));
   const foot = h("footer", { class: "foot" }, h("blockquote", { class: "epigraph" }, h("p", {}, t("epigraph")), h("cite", {}, t("epigraph_src"))), h("span", {}, t("footer")), h("span", { class: "mono" }, `SIMULACRE v${ctx.meta.version} · UTO`));
-  // Invisible-ink layers: revealed around the pointer on paper, everywhere under UV.
-  const uv = h("div", { class: "uv-layer", "aria-hidden": "true" }, h("div", { class: "uv-tint" }), h("div", { class: "uv-fibres" }));
+  // Invisible-ink layer: fluorescent fibres, shown only under UV light.
+  const uv = h("div", { class: "uv-layer", "aria-hidden": "true" }, h("div", { class: "uv-fibres" }));
   return [h("a", { class: "skip", href: "#main" }, t("skip")), top, h("main", { id: "main", tabindex: "-1" }), foot, uv];
 }
 
