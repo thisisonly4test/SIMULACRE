@@ -1,0 +1,29 @@
+{
+  "bios": {
+    "instagram": ["{demonym} {emoji} | {hobby} & {hobby2}", "{job} le jour, {hobby} le reste du temps {emoji}", "📍 {city} · {hobby} · {hobby2}", "{first} · {city} · {emoji}{emoji2}", "Petits bonheurs, {hobby} et {specialty} {emoji}"],
+    "tiktok": ["{hobby} et n'importe quoi d'autre {emoji}", "juste quelqu'un de {city} {emoji}", "{age} ans · {hobby} {emoji}"],
+    "x": ["{job}. {city}. Avis tranchés sur {hobby}.", "{demonym}. Je parle de {hobby}, de {team} et de rien.", "Ici pour {hobby} et les débats inutiles.", "{hobby}, {hobby2}, café. Dans cet ordre."],
+    "facebook": ["Vit à {city}", "{job} chez {employer}", "Fan de {hobby} 😊"],
+    "linkedin": ["{job} chez {employer} | {field}", "{job} — {city} | Passionné·e par {hobby}", "{job} · {years} ans d'expérience · {city}"],
+    "reddit": ["{hobby} · {city}", "lurker depuis trop longtemps"],
+    "github": ["Bidouilles du soir. {hobby}.", "{job} · {city} · self-hosting enthusiast"],
+    "mastodon": ["{job} à {city}. Je poste sur {hobby} et {hobby2}.", "{demonym} · {hobby} · pas de DM pro svp"],
+    "generic": ["{hobby} · {city}", "{first}, {city}"]
+  },
+  "posts": {
+    "hobby": ["Ça y est : {thing} 🙌", "Ce week-end : {thing}. Aucun regret.", "Des fans de {hobby} vers {city} ? On pourrait se retrouver.", "Bilan de la semaine : {thing}. Le reste, on verra.", "Après-midi parfait : {thing}. Je recommande.", "Trois ans de {hobby} et toujours la même excitation."],
+    "city": ["Coucher de soleil sur {landmark}, ça ne lasse jamais.", "Nouveau café qui a ouvert {in_district}, verdict demain.", "{city} sous la pluie, version 437.", "Ceux qui disent que {city} c'est nul n'ont jamais traîné {in_district}.", "Travaux encore {in_district}… on vit dans un chantier."],
+    "food": ["Rien ne vaut {specialty} un dimanche.", "Testé {specialty} dans un nouvel endroit, très bon.", "Petit plaisir du soir : {specialty}."],
+    "team": ["Allez {team} ! Ce soir on y croit.", "Match {de_team} : je ne veux pas en parler.", "Saison compliquée pour {team} mais on reste fidèles."],
+    "work": ["Lundi. Café. Courage à tous.", "Grosse semaine au boulot, vivement vendredi.", "Quand ton collègue part en vacances et te laisse tous ses dossiers…", "Formation toute la journée, mon cerveau est en compote."],
+    "pet": ["{pet} a encore décidé que mon lit était le sien.", "Balade avec {pet} ce matin, il faisait frais.", "{pet} vous salue 🐾"],
+    "family": ["Les enfants ont enfin dormi avant 21 h, c'est un miracle.", "Mercredi = taxi parental. Quatre activités, zéro pause.", "Repas de famille dimanche, on était quatorze."],
+    "mood": ["Journée sans écran demain. Peut-être.", "Il faudrait vraiment que je range mon bureau.", "Petite question : vous faites comment pour vous lever à 6 h ?", "Pas grand-chose à dire, juste un bon jour.", "Il pleut. Plaid, thé, série."]
+  },
+  "slang": {
+    "young": ["mdr", "jsp", "ptdr", "trop bien", "grave", "askip", "frr"],
+    "mid": ["lol", "bref", "franchement", "top", "trop bien"],
+    "old": ["😊", "Bonne journée à tous", "Cordialement", "hihi"]
+  },
+  "punctuation_space": true
+}

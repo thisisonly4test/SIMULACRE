@@ -1,0 +1,36 @@
+[package]
+name = "simulacre-server"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "SIMULACRE web platform: HTTP API, vault, face forge and embedded UI"
+
+[[bin]]
+name = "simulacre"
+path = "src/main.rs"
+
+[dependencies]
+simulacre-core = { path = "../simulacre-core" }
+serde.workspace = true
+serde_json.workspace = true
+chrono.workspace = true
+sha2.workspace = true
+thiserror.workspace = true
+axum = { version = "0.8", features = ["macros"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "net", "signal", "fs", "sync", "time"] }
+tower-http = { version = "0.6", features = ["set-header", "limit", "trace"] }
+rusqlite = { version = "0.32", features = ["bundled"] }
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls"] }
+image = { version = "0.25", default-features = false, features = ["jpeg", "png", "webp"] }
+rust-embed = "8"
+mime_guess = "2"
+uuid = { version = "1", features = ["v4"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+futures = "0.3"
+hex = "0.4"
+
+[dev-dependencies]
+tower = { version = "0.5", features = ["util"] }
+http-body-util = "0.1"
+tempfile = "3"

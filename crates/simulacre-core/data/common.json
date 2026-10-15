@@ -1,0 +1,2563 @@
+{
+ "sectors": [
+  {
+   "key": "tech",
+   "label": {
+    "fr": "Numérique",
+    "en": "Tech",
+    "de": "IT"
+   },
+   "jobs": [
+    {
+     "fr": "Développeur web|Développeuse web",
+     "en": "Web developer",
+     "de": "Webentwickler|Webentwicklerin",
+     "edu": "bachelor",
+     "income": 3
+    },
+    {
+     "fr": "Technicien support|Technicienne support",
+     "en": "IT support technician",
+     "de": "IT-Supporttechniker|IT-Supporttechnikerin",
+     "edu": "vocational",
+     "income": 2
+    },
+    {
+     "fr": "Administrateur systèmes|Administratrice systèmes",
+     "en": "Systems administrator",
+     "de": "Systemadministrator|Systemadministratorin",
+     "edu": "bachelor",
+     "income": 3
+    },
+    {
+     "fr": "Analyste de données",
+     "en": "Data analyst",
+     "de": "Datenanalyst|Datenanalystin",
+     "edu": "master",
+     "income": 3
+    },
+    {
+     "fr": "Chef de projet digital|Cheffe de projet digital",
+     "en": "Digital project manager",
+     "de": "Digitaler Projektmanager|Digitale Projektmanagerin",
+     "edu": "master",
+     "income": 4
+    }
+   ]
+  },
+  {
+   "key": "health",
+   "label": {
+    "fr": "Santé",
+    "en": "Healthcare",
+    "de": "Gesundheit"
+   },
+   "jobs": [
+    {
+     "fr": "Infirmier|Infirmière",
+     "en": "Nurse",
+     "de": "Krankenpfleger|Krankenpflegerin",
+     "edu": "bachelor",
+     "income": 2
+    },
+    {
+     "fr": "Aide-soignant|Aide-soignante",
+     "en": "Care assistant",
+     "de": "Pflegehelfer|Pflegehelferin",
+     "edu": "vocational",
+     "income": 1
+    },
+    {
+     "fr": "Pharmacien|Pharmacienne",
+     "en": "Pharmacist",
+     "de": "Apotheker|Apothekerin",
+     "edu": "doctorate",
+     "income": 4
+    },
+    {
+     "fr": "Kinésithérapeute",
+     "en": "Physiotherapist",
+     "de": "Physiotherapeut|Physiotherapeutin",
+     "edu": "master",
+     "income": 3
+    },
+    {
+     "fr": "Secrétaire médical|Secrétaire médicale",
+     "en": "Medical receptionist",
+     "de": "Medizinischer Fachangestellter|Medizinische Fachangestellte",
+     "edu": "vocational",
+     "income": 1
+    }
+   ]
+  },
+  {
+   "key": "education",
+   "label": {
+    "fr": "Enseignement",
+    "en": "Education",
+    "de": "Bildung"
+   },
+   "jobs": [
+    {
+     "fr": "Professeur des écoles|Professeure des écoles",
+     "en": "Primary school teacher",
+     "de": "Grundschullehrer|Grundschullehrerin",
+     "edu": "master",
+     "income": 2
+    },
+    {
+     "fr": "Professeur de mathématiques|Professeure de mathématiques",
+     "en": "Maths teacher",
+     "de": "Mathelehrer|Mathelehrerin",
+     "edu": "master",
+     "income": 3
+    },
+    {
+     "fr": "Formateur pour adultes|Formatrice pour adultes",
+     "en": "Adult education trainer",
+     "de": "Erwachsenenbildner|Erwachsenenbildnerin",
+     "edu": "bachelor",
+     "income": 2
+    },
+    {
+     "fr": "Assistant d'éducation|Assistante d'éducation",
+     "en": "Teaching assistant",
+     "de": "Schulbegleiter|Schulbegleiterin",
+     "edu": "secondary",
+     "income": 1
+    }
+   ]
+  },
+  {
+   "key": "retail",
+   "label": {
+    "fr": "Commerce",
+    "en": "Retail",
+    "de": "Handel"
+   },
+   "jobs": [
+    {
+     "fr": "Vendeur|Vendeuse",
+     "en": "Sales assistant",
+     "de": "Verkäufer|Verkäuferin",
+     "edu": "secondary",
+     "income": 1
+    },
+    {
+     "fr": "Responsable de magasin",
+     "en": "Store manager",
+     "de": "Filialleiter|Filialleiterin",
+     "edu": "vocational",
+     "income": 3
+    },
+    {
+     "fr": "Caissier|Caissière",
+     "en": "Cashier",
+     "de": "Kassierer|Kassiererin",
+     "edu": "secondary",
+     "income": 1
+    },
+    {
+     "fr": "Chargé de e-commerce|Chargée de e-commerce",
+     "en": "E-commerce coordinator",
+     "de": "E-Commerce-Manager|E-Commerce-Managerin",
+     "edu": "bachelor",
+     "income": 2
+    }
+   ]
+  },
+  {
+   "key": "hospitality",
+   "label": {
+    "fr": "Hôtellerie-restauration",
+    "en": "Hospitality",
+    "de": "Gastgewerbe"
+   },
+   "jobs": [
+    {
+     "fr": "Serveur|Serveuse",
+     "en": "Waiter|Waitress",
+     "de": "Kellner|Kellnerin",
+     "edu": "secondary",
+     "income": 1
+    },
+    {
+     "fr": "Cuisinier|Cuisinière",
+     "en": "Cook",
+     "de": "Koch|Köchin",
+     "edu": "vocational",
+     "income": 2
+    },
+    {
+     "fr": "Réceptionniste d'hôtel",
+     "en": "Hotel receptionist",
+     "de": "Hotelrezeptionist|Hotelrezeptionistin",
+     "edu": "vocational",
+     "income": 1
+    },
+    {
+     "fr": "Barista",
+     "en": "Barista",
+     "de": "Barista",
+     "edu": "secondary",
+     "income": 1
+    }
+   ]
+  },
+  {
+   "key": "trades",
+   "label": {
+    "fr": "Artisanat & BTP",
+    "en": "Skilled trades",
+    "de": "Handwerk"
+   },
+   "jobs": [
+    {
+     "fr": "Électricien|Électricienne",
+     "en": "Electrician",
+     "de": "Elektriker|Elektrikerin",
+     "edu": "vocational",
+     "income": 2
+    },
+    {
+     "fr": "Plombier chauffagiste|Plombière chauffagiste",
+     "en": "Plumber",
+     "de": "Installateur|Installateurin",
+     "edu": "vocational",
+     "income": 2
+    },
+    {
+     "fr": "Menuisier|Menuisière",
+     "en": "Carpenter",
+     "de": "Tischler|Tischlerin",
+     "edu": "vocational",
+     "income": 2
+    },
+    {
+     "fr": "Mécanicien automobile|Mécanicienne automobile",
+     "en": "Car mechanic",
+     "de": "Kfz-Mechatroniker|Kfz-Mechatronikerin",
+     "edu": "vocational",
+     "income": 2
+    },
+    {
+     "fr": "Conducteur de travaux|Conductrice de travaux",
+     "en": "Site manager",
+     "de": "Bauleiter|Bauleiterin",
+     "edu": "bachelor",
+     "income": 3
+    }
+   ]
+  },
+  {
+   "key": "logistics",
+   "label": {
+    "fr": "Transport & logistique",
+    "en": "Logistics",
+    "de": "Logistik"
+   },
+   "jobs": [
+    {
+     "fr": "Chauffeur livreur|Chauffeuse livreuse",
+     "en": "Delivery driver",
+     "de": "Auslieferungsfahrer|Auslieferungsfahrerin",
+     "edu": "secondary",
+     "income": 1
+    },
+    {
+     "fr": "Préparateur de commandes|Préparatrice de commandes",
+     "en": "Warehouse picker",
+     "de": "Kommissionierer|Kommissioniererin",
+     "edu": "secondary",
+     "income": 1
+    },
+    {
+     "fr": "Gestionnaire transport",
+     "en": "Transport planner",
+     "de": "Disponent|Disponentin",
+     "edu": "bachelor",
+     "income": 2
+    },
+    {
+     "fr": "Conducteur routier|Conductrice routière",
+     "en": "Truck driver",
+     "de": "Berufskraftfahrer|Berufskraftfahrerin",
+     "edu": "vocational",
+     "income": 2
+    }
+   ]
+  },
+  {
+   "key": "office",
+   "label": {
+    "fr": "Gestion & finance",
+    "en": "Business & finance",
+    "de": "Verwaltung & Finanzen"
+   },
+   "jobs": [
+    {
+     "fr": "Comptable",
+     "en": "Accountant",
+     "de": "Buchhalter|Buchhalterin",
+     "edu": "bachelor",
+     "income": 3
+    },
+    {
+     "fr": "Assistant administratif|Assistante administrative",
+     "en": "Administrative assistant",
+     "de": "Verwaltungsassistent|Verwaltungsassistentin",
+     "edu": "vocational",
+     "income": 1
+    },
+    {
+     "fr": "Chargé de recrutement|Chargée de recrutement",
+     "en": "Recruiter",
+     "de": "Recruiter|Recruiterin",
+     "edu": "bachelor",
+     "income": 2
+    },
+    {
+     "fr": "Conseiller clientèle bancaire|Conseillère clientèle bancaire",
+     "en": "Bank customer advisor",
+     "de": "Bankkaufmann|Bankkauffrau",
+     "edu": "bachelor",
+     "income": 2
+    },
+    {
+     "fr": "Contrôleur de gestion|Contrôleuse de gestion",
+     "en": "Financial controller",
+     "de": "Controller|Controllerin",
+     "edu": "master",
+     "income": 4
+    }
+   ]
+  },
+  {
+   "key": "creative",
+   "label": {
+    "fr": "Création & communication",
+    "en": "Creative & media",
+    "de": "Kreativ & Medien"
+   },
+   "jobs": [
+    {
+     "fr": "Graphiste",
+     "en": "Graphic designer",
+     "de": "Grafikdesigner|Grafikdesignerin",
+     "edu": "bachelor",
+     "income": 2
+    },
+    {
+     "fr": "Photographe indépendant|Photographe indépendante",
+     "en": "Freelance photographer",
+     "de": "Freier Fotograf|Freie Fotografin",
+     "edu": "vocational",
+     "income": 2
+    },
+    {
+     "fr": "Community manager",
+     "en": "Social media manager",
+     "de": "Social-Media-Manager|Social-Media-Managerin",
+     "edu": "bachelor",
+     "income": 2
+    },
+    {
+     "fr": "Rédacteur web|Rédactrice web",
+     "en": "Content writer",
+     "de": "Texter|Texterin",
+     "edu": "bachelor",
+     "income": 2
+    }
+   ]
+  },
+  {
+   "key": "public",
+   "label": {
+    "fr": "Service public",
+    "en": "Public sector",
+    "de": "Öffentlicher Dienst"
+   },
+   "jobs": [
+    {
+     "fr": "Agent administratif territorial|Agente administrative territoriale",
+     "en": "Council administrator",
+     "de": "Verwaltungsfachangestellter|Verwaltungsfachangestellte",
+     "edu": "secondary",
+     "income": 2
+    },
+    {
+     "fr": "Bibliothécaire",
+     "en": "Librarian",
+     "de": "Bibliothekar|Bibliothekarin",
+     "edu": "bachelor",
+     "income": 2
+    },
+    {
+     "fr": "Facteur|Factrice",
+     "en": "Postal worker",
+     "de": "Briefträger|Briefträgerin",
+     "edu": "secondary",
+     "income": 1
+    },
+    {
+     "fr": "Agent d'entretien des espaces verts|Agente d'entretien des espaces verts",
+     "en": "Parks maintenance worker",
+     "de": "Landschaftsgärtner|Landschaftsgärtnerin",
+     "edu": "vocational",
+     "income": 1
+    }
+   ]
+  },
+  {
+   "key": "industry",
+   "label": {
+    "fr": "Industrie",
+    "en": "Manufacturing",
+    "de": "Industrie"
+   },
+   "jobs": [
+    {
+     "fr": "Technicien de maintenance|Technicienne de maintenance",
+     "en": "Maintenance technician",
+     "de": "Instandhaltungstechniker|Instandhaltungstechnikerin",
+     "edu": "vocational",
+     "income": 2
+    },
+    {
+     "fr": "Opérateur de production|Opératrice de production",
+     "en": "Production operator",
+     "de": "Produktionsmitarbeiter|Produktionsmitarbeiterin",
+     "edu": "secondary",
+     "income": 1
+    },
+    {
+     "fr": "Ingénieur qualité|Ingénieure qualité",
+     "en": "Quality engineer",
+     "de": "Qualitätsingenieur|Qualitätsingenieurin",
+     "edu": "master",
+     "income": 4
+    }
+   ]
+  },
+  {
+   "key": "agri",
+   "label": {
+    "fr": "Agriculture & nature",
+    "en": "Agriculture & outdoors",
+    "de": "Landwirtschaft & Natur"
+   },
+   "jobs": [
+    {
+     "fr": "Paysagiste",
+     "en": "Landscape gardener",
+     "de": "Gärtner|Gärtnerin",
+     "edu": "vocational",
+     "income": 2
+    },
+    {
+     "fr": "Ouvrier viticole|Ouvrière viticole",
+     "en": "Vineyard worker",
+     "de": "Winzergehilfe|Winzergehilfin",
+     "edu": "secondary",
+     "income": 1
+    },
+    {
+     "fr": "Exploitant agricole|Exploitante agricole",
+     "en": "Farmer",
+     "de": "Landwirt|Landwirtin",
+     "edu": "vocational",
+     "income": 2
+    }
+   ]
+  }
+ ],
+ "hobbies": [
+  {
+   "key": "running",
+   "cat": "sport",
+   "label": {
+    "fr": "course à pied",
+    "en": "running",
+    "de": "Laufen"
+   },
+   "platforms": [
+    "strava",
+    "instagram"
+   ],
+   "things": {
+    "fr": [
+     "une sortie de 12 km sous la pluie",
+     "un nouveau record sur 10 km",
+     "les fractionnés du mardi"
+    ],
+    "en": [
+     "a 12k in the rain",
+     "a new 10k PB",
+     "Tuesday interval session"
+    ],
+    "de": [
+     "12 km im Regen",
+     "eine neue Bestzeit über 10 km",
+     "das Intervalltraining am Dienstag"
+    ]
+   }
+  },
+  {
+   "key": "cycling",
+   "cat": "sport",
+   "label": {
+    "fr": "vélo de route",
+    "en": "road cycling",
+    "de": "Rennradfahren"
+   },
+   "platforms": [
+    "strava",
+    "instagram"
+   ],
+   "things": {
+    "fr": [
+     "80 bornes avec le club",
+     "un col enfin passé sans poser le pied",
+     "une crevaison au pire moment"
+    ],
+    "en": [
+     "a 50-mile club ride",
+     "finally climbing that hill without stopping",
+     "a puncture at the worst moment"
+    ],
+    "de": [
+     "80 km mit dem Verein",
+     "endlich den Pass ohne Absteigen geschafft",
+     "ein Platten im dümmsten Moment"
+    ]
+   }
+  },
+  {
+   "key": "hiking",
+   "cat": "outdoor",
+   "label": {
+    "fr": "randonnée",
+    "en": "hiking",
+    "de": "Wandern"
+   },
+   "platforms": [
+    "instagram",
+    "strava"
+   ],
+   "things": {
+    "fr": [
+     "un sommet sous les nuages",
+     "une boucle de 18 km",
+     "un refuge perdu"
+    ],
+    "en": [
+     "a summit above the clouds",
+     "an 11-mile loop",
+     "a remote mountain hut"
+    ],
+    "de": [
+     "ein Gipfel über den Wolken",
+     "eine 18-km-Runde",
+     "eine abgelegene Hütte"
+    ]
+   }
+  },
+  {
+   "key": "fishing",
+   "cat": "outdoor",
+   "label": {
+    "fr": "pêche",
+    "en": "fishing",
+    "de": "Angeln"
+   },
+   "platforms": [
+    "facebook",
+    "youtube"
+   ],
+   "things": {
+    "fr": [
+     "une truite de 40 cm",
+     "le lac au petit matin",
+     "un nouveau leurre"
+    ],
+    "en": [
+     "a 16-inch trout",
+     "the lake at dawn",
+     "a new lure"
+    ],
+    "de": [
+     "eine 40-cm-Forelle",
+     "der See im Morgengrauen",
+     "ein neuer Köder"
+    ]
+   }
+  },
+  {
+   "key": "gardening",
+   "cat": "home",
+   "label": {
+    "fr": "jardinage",
+    "en": "gardening",
+    "de": "Gärtnern"
+   },
+   "platforms": [
+    "facebook",
+    "pinterest",
+    "instagram"
+   ],
+   "things": {
+    "fr": [
+     "les premières tomates",
+     "un potager en carrés",
+     "les semis qui lèvent enfin"
+    ],
+    "en": [
+     "the first tomatoes",
+     "the raised beds",
+     "seedlings finally coming up"
+    ],
+    "de": [
+     "die ersten Tomaten",
+     "die Hochbeete",
+     "die Aussaat, die endlich keimt"
+    ]
+   }
+  },
+  {
+   "key": "cooking",
+   "cat": "home",
+   "label": {
+    "fr": "cuisine",
+    "en": "cooking",
+    "de": "Kochen"
+   },
+   "platforms": [
+    "instagram",
+    "pinterest",
+    "tiktok"
+   ],
+   "things": {
+    "fr": [
+     "un bœuf bourguignon de 4 heures",
+     "une pâte à pain maison",
+     "un curry trop épicé"
+    ],
+    "en": [
+     "a four-hour slow-cooked stew",
+     "homemade sourdough",
+     "a curry that was way too spicy"
+    ],
+    "de": [
+     "ein vier Stunden geschmortes Gulasch",
+     "selbst gebackenes Sauerteigbrot",
+     "ein viel zu scharfes Curry"
+    ]
+   }
+  },
+  {
+   "key": "baking",
+   "cat": "home",
+   "label": {
+    "fr": "pâtisserie",
+    "en": "baking",
+    "de": "Backen"
+   },
+   "platforms": [
+    "instagram",
+    "pinterest"
+   ],
+   "things": {
+    "fr": [
+     "une tarte au citron meringuée",
+     "des cookies ratés mais bons",
+     "un fraisier pour un anniversaire"
+    ],
+    "en": [
+     "a lemon meringue pie",
+     "failed but delicious cookies",
+     "a birthday layer cake"
+    ],
+    "de": [
+     "eine Zitronen-Baiser-Tarte",
+     "missglückte, aber leckere Kekse",
+     "eine Geburtstagstorte"
+    ]
+   }
+  },
+  {
+   "key": "photography",
+   "cat": "creative",
+   "label": {
+    "fr": "photographie",
+    "en": "photography",
+    "de": "Fotografie"
+   },
+   "platforms": [
+    "instagram",
+    "flickr",
+    "reddit"
+   ],
+   "things": {
+    "fr": [
+     "une lumière dorée parfaite",
+     "un vieil objectif argentique",
+     "une série en noir et blanc"
+    ],
+    "en": [
+     "perfect golden-hour light",
+     "an old film lens",
+     "a black-and-white series"
+    ],
+    "de": [
+     "perfektes goldenes Licht",
+     "ein altes analoges Objektiv",
+     "eine Schwarzweißserie"
+    ]
+   }
+  },
+  {
+   "key": "video_games",
+   "cat": "gaming",
+   "label": {
+    "fr": "jeux vidéo",
+    "en": "video games",
+    "de": "Videospiele"
+   },
+   "platforms": [
+    "discord",
+    "twitch",
+    "steam",
+    "reddit"
+   ],
+   "things": {
+    "fr": [
+     "une session ranked jusqu'à 2 h du mat'",
+     "un boss enfin battu",
+     "le dernier jeu indé du moment"
+    ],
+    "en": [
+     "a ranked session until 2 am",
+     "finally beating that boss",
+     "the indie game everyone talks about"
+    ],
+    "de": [
+     "eine Ranked-Session bis 2 Uhr nachts",
+     "endlich den Boss besiegt",
+     "das Indie-Spiel, über das alle reden"
+    ]
+   }
+  },
+  {
+   "key": "board_games",
+   "cat": "gaming",
+   "label": {
+    "fr": "jeux de société",
+    "en": "board games",
+    "de": "Brettspiele"
+   },
+   "platforms": [
+    "reddit",
+    "instagram",
+    "discord"
+   ],
+   "things": {
+    "fr": [
+     "une partie de 4 heures",
+     "un jeu coopératif génial",
+     "la soirée jeux du vendredi"
+    ],
+    "en": [
+     "a four-hour game night",
+     "a brilliant co-op game",
+     "Friday games night"
+    ],
+    "de": [
+     "eine vierstündige Partie",
+     "ein geniales Koop-Spiel",
+     "der Spieleabend am Freitag"
+    ]
+   }
+  },
+  {
+   "key": "reading",
+   "cat": "culture",
+   "label": {
+    "fr": "lecture",
+    "en": "reading",
+    "de": "Lesen"
+   },
+   "platforms": [
+    "goodreads",
+    "instagram"
+   ],
+   "things": {
+    "fr": [
+     "un polar dévoré en deux jours",
+     "la pile à lire qui déborde",
+     "un vieux classique relu"
+    ],
+    "en": [
+     "a thriller finished in two days",
+     "an overflowing to-read pile",
+     "an old classic, reread"
+    ],
+    "de": [
+     "ein Krimi in zwei Tagen verschlungen",
+     "der überquellende Bücherstapel",
+     "ein alter Klassiker, neu gelesen"
+    ]
+   }
+  },
+  {
+   "key": "films",
+   "cat": "culture",
+   "label": {
+    "fr": "cinéma",
+    "en": "film",
+    "de": "Kino"
+   },
+   "platforms": [
+    "letterboxd",
+    "x"
+   ],
+   "things": {
+    "fr": [
+     "une séance en VO",
+     "un film de 1974 redécouvert",
+     "un festival de courts-métrages"
+    ],
+    "en": [
+     "an original-language screening",
+     "a rediscovered 1974 film",
+     "a short-film festival"
+    ],
+    "de": [
+     "eine OmU-Vorstellung",
+     "ein wiederentdeckter Film von 1974",
+     "ein Kurzfilmfestival"
+    ]
+   }
+  },
+  {
+   "key": "music_live",
+   "cat": "culture",
+   "label": {
+    "fr": "concerts",
+    "en": "live music",
+    "de": "Konzerte"
+   },
+   "platforms": [
+    "instagram",
+    "x"
+   ],
+   "things": {
+    "fr": [
+     "un concert dans une petite salle",
+     "un festival d'été",
+     "un vinyle trouvé en brocante"
+    ],
+    "en": [
+     "a gig in a tiny venue",
+     "a summer festival",
+     "a vinyl found at a car boot sale"
+    ],
+    "de": [
+     "ein Konzert in einem kleinen Club",
+     "ein Sommerfestival",
+     "eine Schallplatte vom Flohmarkt"
+    ]
+   }
+  },
+  {
+   "key": "guitar",
+   "cat": "creative",
+   "label": {
+    "fr": "guitare",
+    "en": "guitar",
+    "de": "Gitarre"
+   },
+   "platforms": [
+    "youtube",
+    "reddit",
+    "instagram"
+   ],
+   "things": {
+    "fr": [
+     "un riff enfin maîtrisé",
+     "des cordes neuves",
+     "une vieille Fender d'occasion"
+    ],
+    "en": [
+     "finally nailing that riff",
+     "fresh strings",
+     "a second-hand Fender"
+    ],
+    "de": [
+     "endlich das Riff drauf",
+     "neue Saiten",
+     "eine gebrauchte Fender"
+    ]
+   }
+  },
+  {
+   "key": "diy",
+   "cat": "home",
+   "label": {
+    "fr": "bricolage",
+    "en": "DIY",
+    "de": "Heimwerken"
+   },
+   "platforms": [
+    "youtube",
+    "pinterest",
+    "facebook"
+   ],
+   "things": {
+    "fr": [
+     "une étagère en chêne",
+     "la salle de bain refaite",
+     "une perceuse qui a rendu l'âme"
+    ],
+    "en": [
+     "an oak shelf",
+     "the redone bathroom",
+     "a drill that finally died"
+    ],
+    "de": [
+     "ein Eichenregal",
+     "das renovierte Bad",
+     "ein Akkuschrauber, der den Geist aufgegeben hat"
+    ]
+   }
+  },
+  {
+   "key": "cars",
+   "cat": "tech",
+   "label": {
+    "fr": "voitures anciennes",
+    "en": "classic cars",
+    "de": "Oldtimer"
+   },
+   "platforms": [
+    "facebook",
+    "youtube",
+    "instagram"
+   ],
+   "things": {
+    "fr": [
+     "une 205 GTI en restauration",
+     "un rassemblement du dimanche",
+     "un carburateur à régler"
+    ],
+    "en": [
+     "a Mk2 Golf restoration",
+     "a Sunday car meet",
+     "a carburettor that needs tuning"
+    ],
+    "de": [
+     "ein Golf-2-Projekt",
+     "ein Oldtimertreffen am Sonntag",
+     "ein Vergaser, der eingestellt werden muss"
+    ]
+   }
+  },
+  {
+   "key": "tech_diy",
+   "cat": "tech",
+   "label": {
+    "fr": "électronique & self-hosting",
+    "en": "electronics & self-hosting",
+    "de": "Elektronik & Self-Hosting"
+   },
+   "platforms": [
+    "github",
+    "reddit",
+    "mastodon"
+   ],
+   "things": {
+    "fr": [
+     "un Raspberry Pi qui fait serveur",
+     "une station météo maison",
+     "un home-lab qui chauffe le salon"
+    ],
+    "en": [
+     "a Raspberry Pi home server",
+     "a homemade weather station",
+     "a home lab heating the living room"
+    ],
+    "de": [
+     "ein Raspberry Pi als Heimserver",
+     "eine selbst gebaute Wetterstation",
+     "ein Homelab, das das Wohnzimmer heizt"
+    ]
+   }
+  },
+  {
+   "key": "fitness",
+   "cat": "sport",
+   "label": {
+    "fr": "musculation",
+    "en": "weightlifting",
+    "de": "Krafttraining"
+   },
+   "platforms": [
+    "instagram",
+    "tiktok"
+   ],
+   "things": {
+    "fr": [
+     "un nouveau max au squat",
+     "la séance jambes du lundi",
+     "un programme sur 12 semaines"
+    ],
+    "en": [
+     "a new squat PR",
+     "Monday leg day",
+     "a 12-week programme"
+    ],
+    "de": [
+     "ein neues Kniebeugen-Maximum",
+     "Beintag am Montag",
+     "ein 12-Wochen-Plan"
+    ]
+   }
+  },
+  {
+   "key": "yoga",
+   "cat": "sport",
+   "label": {
+    "fr": "yoga",
+    "en": "yoga",
+    "de": "Yoga"
+   },
+   "platforms": [
+    "instagram",
+    "pinterest"
+   ],
+   "things": {
+    "fr": [
+     "une séance au lever du soleil",
+     "une posture enfin tenue",
+     "une retraite d'un week-end"
+    ],
+    "en": [
+     "a sunrise session",
+     "finally holding that pose",
+     "a weekend retreat"
+    ],
+    "de": [
+     "eine Session bei Sonnenaufgang",
+     "endlich die Haltung geschafft",
+     "ein Retreat-Wochenende"
+    ]
+   }
+  },
+  {
+   "key": "football",
+   "cat": "sport",
+   "label": {
+    "fr": "football",
+    "en": "football",
+    "de": "Fußball"
+   },
+   "platforms": [
+    "x",
+    "facebook"
+   ],
+   "things": {
+    "fr": [
+     "le match de ce soir",
+     "un but à la 90e",
+     "le foot à 5 du jeudi"
+    ],
+    "en": [
+     "tonight's match",
+     "a 90th-minute winner",
+     "Thursday five-a-side"
+    ],
+    "de": [
+     "das Spiel heute Abend",
+     "ein Tor in der 90. Minute",
+     "Kicken am Donnerstag"
+    ]
+   }
+  },
+  {
+   "key": "travel",
+   "cat": "outdoor",
+   "label": {
+    "fr": "voyages",
+    "en": "travel",
+    "de": "Reisen"
+   },
+   "platforms": [
+    "instagram",
+    "tripadvisor"
+   ],
+   "things": {
+    "fr": [
+     "un road trip au Portugal",
+     "un vol à 5 h du matin",
+     "une petite auberge en Écosse"
+    ],
+    "en": [
+     "a road trip through Portugal",
+     "a 5 am flight",
+     "a little guesthouse in Scotland"
+    ],
+    "de": [
+     "ein Roadtrip durch Portugal",
+     "ein Flug um 5 Uhr morgens",
+     "eine kleine Pension in Schottland"
+    ]
+   }
+  },
+  {
+   "key": "knitting",
+   "cat": "creative",
+   "label": {
+    "fr": "tricot",
+    "en": "knitting",
+    "de": "Stricken"
+   },
+   "platforms": [
+    "ravelry",
+    "instagram",
+    "pinterest"
+   ],
+   "things": {
+    "fr": [
+     "un pull terminé après trois mois",
+     "une laine mérinos magnifique",
+     "des chaussettes pour l'hiver"
+    ],
+    "en": [
+     "a jumper finished after three months",
+     "gorgeous merino yarn",
+     "winter socks"
+    ],
+    "de": [
+     "ein Pulli nach drei Monaten fertig",
+     "wunderschöne Merinowolle",
+     "Socken für den Winter"
+    ]
+   }
+  },
+  {
+   "key": "birdwatching",
+   "cat": "outdoor",
+   "label": {
+    "fr": "ornithologie",
+    "en": "birdwatching",
+    "de": "Vogelbeobachtung"
+   },
+   "platforms": [
+    "inaturalist",
+    "facebook"
+   ],
+   "things": {
+    "fr": [
+     "un martin-pêcheur au bord du canal",
+     "des jumelles neuves",
+     "la migration des grues"
+    ],
+    "en": [
+     "a kingfisher by the canal",
+     "new binoculars",
+     "the crane migration"
+    ],
+    "de": [
+     "ein Eisvogel am Kanal",
+     "ein neues Fernglas",
+     "der Kranichzug"
+    ]
+   }
+  },
+  {
+   "key": "anime",
+   "cat": "culture",
+   "label": {
+    "fr": "mangas & anime",
+    "en": "manga & anime",
+    "de": "Manga & Anime"
+   },
+   "platforms": [
+    "x",
+    "reddit",
+    "discord",
+    "tiktok"
+   ],
+   "things": {
+    "fr": [
+     "le dernier tome sorti",
+     "une convention japanime",
+     "un anime regardé d'une traite"
+    ],
+    "en": [
+     "the latest volume",
+     "an anime convention",
+     "a series binged in one go"
+    ],
+    "de": [
+     "der neueste Band",
+     "eine Anime-Convention",
+     "eine Serie am Stück geschaut"
+    ]
+   }
+  },
+  {
+   "key": "pets",
+   "cat": "home",
+   "label": {
+    "fr": "animaux",
+    "en": "pets",
+    "de": "Haustiere"
+   },
+   "platforms": [
+    "instagram",
+    "facebook",
+    "tiktok"
+   ],
+   "things": {
+    "fr": [
+     "une balade en forêt avec le chien",
+     "le chat qui squatte le clavier",
+     "une visite chez le véto"
+    ],
+    "en": [
+     "a forest walk with the dog",
+     "the cat sitting on the keyboard",
+     "a trip to the vet"
+    ],
+    "de": [
+     "ein Waldspaziergang mit dem Hund",
+     "die Katze auf der Tastatur",
+     "ein Besuch beim Tierarzt"
+    ]
+   }
+  },
+  {
+   "key": "swimming",
+   "cat": "sport",
+   "label": {
+    "fr": "natation",
+    "en": "swimming",
+    "de": "Schwimmen"
+   },
+   "platforms": [
+    "strava"
+   ],
+   "things": {
+    "fr": [
+     "2 km de crawl avant le boulot",
+     "une baignade en eau froide",
+     "la piscine bondée du samedi"
+    ],
+    "en": [
+     "2k of front crawl before work",
+     "a cold-water swim",
+     "the packed Saturday pool"
+    ],
+    "de": [
+     "2 km Kraul vor der Arbeit",
+     "Eisschwimmen",
+     "das volle Hallenbad am Samstag"
+    ]
+   }
+  },
+  {
+   "key": "wine",
+   "cat": "culture",
+   "label": {
+    "fr": "œnologie",
+    "en": "wine",
+    "de": "Wein"
+   },
+   "platforms": [
+    "instagram",
+    "vivino"
+   ],
+   "things": {
+    "fr": [
+     "un petit domaine découvert",
+     "une dégustation à l'aveugle",
+     "une bouteille de 2015 ouverte enfin"
+    ],
+    "en": [
+     "a small estate discovered",
+     "a blind tasting",
+     "finally opening a 2015 bottle"
+    ],
+    "de": [
+     "ein kleines Weingut entdeckt",
+     "eine Blindverkostung",
+     "endlich die 2015er geöffnet"
+    ]
+   }
+  },
+  {
+   "key": "history",
+   "cat": "culture",
+   "label": {
+    "fr": "histoire locale",
+    "en": "local history",
+    "de": "Heimatgeschichte"
+   },
+   "platforms": [
+    "facebook",
+    "reddit"
+   ],
+   "things": {
+    "fr": [
+     "une vieille carte postale du quartier",
+     "les archives municipales",
+     "une plaque commémorative oubliée"
+    ],
+    "en": [
+     "an old postcard of the neighbourhood",
+     "the local archives",
+     "a forgotten commemorative plaque"
+    ],
+    "de": [
+     "eine alte Postkarte vom Viertel",
+     "das Stadtarchiv",
+     "eine vergessene Gedenktafel"
+    ]
+   }
+  },
+  {
+   "key": "climbing",
+   "cat": "sport",
+   "label": {
+    "fr": "escalade",
+    "en": "climbing",
+    "de": "Klettern"
+   },
+   "platforms": [
+    "instagram",
+    "strava"
+   ],
+   "things": {
+    "fr": [
+     "un bloc 6b enfin passé",
+     "une falaise en Ardèche",
+     "des chaussons neufs qui font mal"
+    ],
+    "en": [
+     "finally sending a V4",
+     "a crag weekend",
+     "new shoes that hurt"
+    ],
+    "de": [
+     "endlich den 6b-Boulder geschafft",
+     "ein Wochenende am Fels",
+     "neue Kletterschuhe, die drücken"
+    ]
+   }
+  },
+  {
+   "key": "podcasts",
+   "cat": "culture",
+   "label": {
+    "fr": "podcasts",
+    "en": "podcasts",
+    "de": "Podcasts"
+   },
+   "platforms": [
+    "x",
+    "mastodon"
+   ],
+   "things": {
+    "fr": [
+     "un épisode sur les faits divers",
+     "une série documentaire audio",
+     "un podcast science écouté en voiture"
+    ],
+    "en": [
+     "a true-crime episode",
+     "an audio documentary series",
+     "a science podcast on the commute"
+    ],
+    "de": [
+     "eine True-Crime-Folge",
+     "eine Audio-Doku-Serie",
+     "ein Wissenschaftspodcast im Auto"
+    ]
+   }
+  },
+  {
+   "key": "skincare",
+   "cat": "lifestyle",
+   "label": {
+    "fr": "beauté & soins",
+    "en": "beauty & skincare",
+    "de": "Beauty & Hautpflege"
+   },
+   "platforms": [
+    "instagram",
+    "tiktok",
+    "youtube"
+   ],
+   "things": {
+    "fr": [
+     "une routine du soir simplifiée",
+     "un sérum qui marche vraiment",
+     "un vernis couleur automne"
+    ],
+    "en": [
+     "a simplified evening routine",
+     "a serum that actually works",
+     "an autumn nail colour"
+    ],
+    "de": [
+     "eine vereinfachte Abendroutine",
+     "ein Serum, das wirklich wirkt",
+     "ein Herbst-Nagellack"
+    ]
+   }
+  },
+  {
+   "key": "fashion",
+   "cat": "lifestyle",
+   "label": {
+    "fr": "mode & seconde main",
+    "en": "fashion & thrifting",
+    "de": "Mode & Secondhand"
+   },
+   "platforms": [
+    "instagram",
+    "vinted",
+    "tiktok",
+    "pinterest"
+   ],
+   "things": {
+    "fr": [
+     "une veste vintage à 8 €",
+     "une tenue de la semaine",
+     "un vide-dressing réussi"
+    ],
+    "en": [
+     "an £8 vintage jacket",
+     "an outfit of the week",
+     "a successful wardrobe clear-out"
+    ],
+    "de": [
+     "eine Vintage-Jacke für 8 €",
+     "ein Outfit der Woche",
+     "ein erfolgreicher Kleiderflohmarkt"
+    ]
+   }
+  }
+ ],
+ "archetypes": [
+  {
+   "key": "student",
+   "label": {
+    "fr": "Étudiant·e",
+    "en": "Student"
+   },
+   "desc": {
+    "fr": "18–25 ans, en cours d'études, vie sociale dense, très présent·e en ligne le soir.",
+    "en": "18–25, still studying, busy social life, very online in the evening."
+   },
+   "age": [
+    18,
+    25
+   ],
+   "status": "student",
+   "hobbies": {
+    "video_games": 3,
+    "anime": 2,
+    "music_live": 3,
+    "films": 2,
+    "fitness": 2,
+    "fashion": 2,
+    "board_games": 2,
+    "travel": 1,
+    "climbing": 1,
+    "podcasts": 1
+   },
+   "sectors": {},
+   "platforms": {
+    "instagram": 3,
+    "tiktok": 3,
+    "discord": 3,
+    "snapchat": 3,
+    "reddit": 2,
+    "x": 1
+   },
+   "ocean": [
+    8,
+    -8,
+    5,
+    0,
+    5
+   ]
+  },
+  {
+   "key": "young_pro",
+   "label": {
+    "fr": "Jeune actif·ve urbain·e",
+    "en": "Young urban professional"
+   },
+   "desc": {
+    "fr": "25–35 ans, premier ou deuxième poste, en ville, sorties et voyages.",
+    "en": "25–35, first or second job, city life, going out and travelling."
+   },
+   "age": [
+    25,
+    35
+   ],
+   "status": "working",
+   "hobbies": {
+    "running": 2,
+    "travel": 3,
+    "cooking": 2,
+    "music_live": 2,
+    "podcasts": 2,
+    "fitness": 2,
+    "films": 1,
+    "climbing": 1,
+    "wine": 1
+   },
+   "sectors": {
+    "tech": 3,
+    "office": 3,
+    "creative": 2,
+    "retail": 1,
+    "health": 1
+   },
+   "platforms": {
+    "instagram": 3,
+    "linkedin": 3,
+    "x": 1,
+    "strava": 1,
+    "reddit": 1
+   },
+   "ocean": [
+    5,
+    5,
+    5,
+    0,
+    0
+   ]
+  },
+  {
+   "key": "parent",
+   "label": {
+    "fr": "Parent de famille",
+    "en": "Family parent"
+   },
+   "desc": {
+    "fr": "30–48 ans, enfants à charge, logistique familiale, groupes Facebook locaux.",
+    "en": "30–48, kids at home, family logistics, local Facebook groups."
+   },
+   "age": [
+    30,
+    48
+   ],
+   "status": "working",
+   "hobbies": {
+    "cooking": 3,
+    "gardening": 2,
+    "diy": 2,
+    "baking": 2,
+    "travel": 1,
+    "running": 1,
+    "pets": 2,
+    "reading": 1
+   },
+   "sectors": {
+    "education": 2,
+    "health": 2,
+    "office": 2,
+    "retail": 2,
+    "public": 2,
+    "trades": 1
+   },
+   "platforms": {
+    "facebook": 3,
+    "instagram": 2,
+    "pinterest": 2,
+    "linkedin": 1
+   },
+   "ocean": [
+    0,
+    8,
+    0,
+    6,
+    3
+   ],
+   "family": "kids"
+  },
+  {
+   "key": "tradesperson",
+   "label": {
+    "fr": "Artisan·e de terrain",
+    "en": "Hands-on tradesperson"
+   },
+   "desc": {
+    "fr": "25–55 ans, métier manuel, peu bavard·e en ligne, Facebook et YouTube.",
+    "en": "25–55, manual trade, quiet online, Facebook and YouTube."
+   },
+   "age": [
+    25,
+    55
+   ],
+   "status": "working",
+   "hobbies": {
+    "fishing": 3,
+    "cars": 3,
+    "diy": 3,
+    "football": 2,
+    "hiking": 1
+   },
+   "sectors": {
+    "trades": 5,
+    "logistics": 2,
+    "industry": 2,
+    "agri": 1
+   },
+   "platforms": {
+    "facebook": 3,
+    "youtube": 2,
+    "instagram": 1
+   },
+   "ocean": [
+    -5,
+    5,
+    -3,
+    3,
+    -3
+   ]
+  },
+  {
+   "key": "retiree",
+   "label": {
+    "fr": "Jeune retraité·e",
+    "en": "Active retiree"
+   },
+   "desc": {
+    "fr": "62–74 ans, temps libre, associations, Facebook, petits-enfants.",
+    "en": "62–74, free time, clubs and societies, Facebook, grandchildren."
+   },
+   "age": [
+    62,
+    74
+   ],
+   "status": "retired",
+   "hobbies": {
+    "gardening": 3,
+    "hiking": 2,
+    "birdwatching": 2,
+    "history": 3,
+    "reading": 2,
+    "travel": 2,
+    "knitting": 1,
+    "wine": 1,
+    "fishing": 1
+   },
+   "sectors": {
+    "public": 2,
+    "education": 2,
+    "industry": 2,
+    "office": 2,
+    "health": 1
+   },
+   "platforms": {
+    "facebook": 4,
+    "youtube": 1,
+    "pinterest": 1
+   },
+   "ocean": [
+    0,
+    6,
+    0,
+    6,
+    -4
+   ],
+   "family": "grandkids"
+  },
+  {
+   "key": "gamer",
+   "label": {
+    "fr": "Gamer nocturne",
+    "en": "Night-owl gamer"
+   },
+   "desc": {
+    "fr": "19–32 ans, actif·ve la nuit, Discord, Twitch, Reddit, Steam.",
+    "en": "19–32, active at night, Discord, Twitch, Reddit, Steam."
+   },
+   "age": [
+    19,
+    32
+   ],
+   "status": "any",
+   "hobbies": {
+    "video_games": 5,
+    "anime": 2,
+    "board_games": 1,
+    "tech_diy": 2,
+    "films": 1
+   },
+   "sectors": {
+    "tech": 3,
+    "retail": 2,
+    "logistics": 2,
+    "hospitality": 1
+   },
+   "platforms": {
+    "discord": 4,
+    "twitch": 3,
+    "steam": 3,
+    "reddit": 3,
+    "x": 2,
+    "youtube": 1
+   },
+   "ocean": [
+    5,
+    -8,
+    -6,
+    0,
+    6
+   ],
+   "chronotype": "owl"
+  },
+  {
+   "key": "athlete",
+   "label": {
+    "fr": "Sportif·ve amateur",
+    "en": "Amateur athlete"
+   },
+   "desc": {
+    "fr": "22–45 ans, entraînements réguliers, Strava, Instagram, lever tôt.",
+    "en": "22–45, regular training, Strava, Instagram, early riser."
+   },
+   "age": [
+    22,
+    45
+   ],
+   "status": "working",
+   "hobbies": {
+    "running": 4,
+    "cycling": 3,
+    "swimming": 2,
+    "fitness": 2,
+    "climbing": 2,
+    "hiking": 1,
+    "yoga": 1
+   },
+   "sectors": {
+    "health": 2,
+    "tech": 2,
+    "education": 2,
+    "office": 2,
+    "trades": 1
+   },
+   "platforms": {
+    "strava": 4,
+    "instagram": 3,
+    "facebook": 1
+   },
+   "ocean": [
+    0,
+    10,
+    5,
+    0,
+    -6
+   ],
+   "chronotype": "lark"
+  },
+  {
+   "key": "maker",
+   "label": {
+    "fr": "Bidouilleur·se tech",
+    "en": "Tech tinkerer"
+   },
+   "desc": {
+    "fr": "24–50 ans, self-hosting, électronique, GitHub, Mastodon, forums.",
+    "en": "24–50, self-hosting, electronics, GitHub, Mastodon, forums."
+   },
+   "age": [
+    24,
+    50
+   ],
+   "status": "working",
+   "hobbies": {
+    "tech_diy": 5,
+    "video_games": 2,
+    "board_games": 1,
+    "podcasts": 2,
+    "photography": 1,
+    "diy": 1
+   },
+   "sectors": {
+    "tech": 5,
+    "industry": 2,
+    "education": 1
+   },
+   "platforms": {
+    "github": 4,
+    "mastodon": 3,
+    "reddit": 3,
+    "discord": 1,
+    "linkedin": 1
+   },
+   "ocean": [
+    10,
+    2,
+    -6,
+    0,
+    0
+   ]
+  },
+  {
+   "key": "creative",
+   "label": {
+    "fr": "Créatif·ve",
+    "en": "Creative soul"
+   },
+   "desc": {
+    "fr": "22–40 ans, photo, musique, couture, très visuel·le, Instagram et Pinterest.",
+    "en": "22–40, photo, music, crafts, very visual, Instagram and Pinterest."
+   },
+   "age": [
+    22,
+    40
+   ],
+   "status": "any",
+   "hobbies": {
+    "photography": 4,
+    "guitar": 2,
+    "knitting": 2,
+    "fashion": 2,
+    "films": 2,
+    "music_live": 2,
+    "reading": 1
+   },
+   "sectors": {
+    "creative": 5,
+    "retail": 2,
+    "hospitality": 1,
+    "education": 1
+   },
+   "platforms": {
+    "instagram": 4,
+    "pinterest": 2,
+    "tiktok": 1,
+    "x": 1,
+    "youtube": 1
+   },
+   "ocean": [
+    12,
+    -2,
+    2,
+    2,
+    4
+   ]
+  },
+  {
+   "key": "outdoors",
+   "label": {
+    "fr": "Amoureux·se de nature",
+    "en": "Outdoors lover"
+   },
+   "desc": {
+    "fr": "28–60 ans, randonnée, oiseaux, jardin, préfère dehors que dedans.",
+    "en": "28–60, hiking, birds, garden, rather outside than in."
+   },
+   "age": [
+    28,
+    60
+   ],
+   "status": "working",
+   "hobbies": {
+    "hiking": 4,
+    "birdwatching": 3,
+    "gardening": 2,
+    "fishing": 2,
+    "photography": 2,
+    "cycling": 1
+   },
+   "sectors": {
+    "agri": 3,
+    "public": 2,
+    "education": 2,
+    "trades": 1,
+    "health": 1
+   },
+   "platforms": {
+    "instagram": 2,
+    "facebook": 2,
+    "strava": 2
+   },
+   "ocean": [
+    6,
+    4,
+    -4,
+    4,
+    -4
+   ],
+   "chronotype": "lark"
+  },
+  {
+   "key": "foodie",
+   "label": {
+    "fr": "Gourmet",
+    "en": "Foodie"
+   },
+   "desc": {
+    "fr": "25–55 ans, cuisine, pâtisserie, vin, restaurants, photos de plats.",
+    "en": "25–55, cooking, baking, wine, restaurants, food photos."
+   },
+   "age": [
+    25,
+    55
+   ],
+   "status": "working",
+   "hobbies": {
+    "cooking": 4,
+    "baking": 3,
+    "wine": 3,
+    "travel": 2,
+    "gardening": 1
+   },
+   "sectors": {
+    "hospitality": 3,
+    "office": 2,
+    "retail": 2,
+    "health": 1,
+    "creative": 1
+   },
+   "platforms": {
+    "instagram": 4,
+    "pinterest": 2,
+    "tiktok": 1,
+    "facebook": 1
+   },
+   "ocean": [
+    6,
+    0,
+    6,
+    4,
+    0
+   ]
+  },
+  {
+   "key": "lifestyle",
+   "label": {
+    "fr": "Lifestyle & tendances",
+    "en": "Lifestyle & trends"
+   },
+   "desc": {
+    "fr": "18–30 ans, mode, beauté, TikTok, vide-dressing, très actif·ve en story.",
+    "en": "18–30, fashion, beauty, TikTok, thrifting, lots of stories."
+   },
+   "age": [
+    18,
+    30
+   ],
+   "status": "any",
+   "hobbies": {
+    "fashion": 4,
+    "skincare": 4,
+    "fitness": 2,
+    "travel": 2,
+    "yoga": 1,
+    "music_live": 1
+   },
+   "sectors": {
+    "retail": 3,
+    "creative": 2,
+    "hospitality": 2,
+    "health": 1
+   },
+   "platforms": {
+    "instagram": 4,
+    "tiktok": 4,
+    "pinterest": 2,
+    "snapchat": 2,
+    "vinted": 2
+   },
+   "ocean": [
+    4,
+    0,
+    10,
+    4,
+    4
+   ]
+  }
+ ],
+ "platforms": [
+  {
+   "key": "instagram",
+   "name": "Instagram",
+   "kind": "social",
+   "min_age": 13,
+   "peak_age": 26,
+   "spread": 14,
+   "handle": {
+    "min": 1,
+    "max": 30,
+    "chars": "a-z0-9._",
+    "lower": true
+   },
+   "url": "https://instagram.com/{h}"
+  },
+  {
+   "key": "tiktok",
+   "name": "TikTok",
+   "kind": "video",
+   "min_age": 13,
+   "peak_age": 20,
+   "spread": 9,
+   "handle": {
+    "min": 2,
+    "max": 24,
+    "chars": "a-z0-9._",
+    "lower": true
+   },
+   "url": "https://tiktok.com/@{h}"
+  },
+  {
+   "key": "x",
+   "name": "X",
+   "kind": "social",
+   "min_age": 13,
+   "peak_age": 32,
+   "spread": 14,
+   "handle": {
+    "min": 4,
+    "max": 15,
+    "chars": "a-zA-Z0-9_",
+    "lower": false
+   },
+   "url": "https://x.com/{h}"
+  },
+  {
+   "key": "facebook",
+   "name": "Facebook",
+   "kind": "social",
+   "min_age": 13,
+   "peak_age": 52,
+   "spread": 18,
+   "handle": {
+    "min": 5,
+    "max": 50,
+    "chars": "a-z0-9.",
+    "lower": true
+   },
+   "url": "https://facebook.com/{h}"
+  },
+  {
+   "key": "reddit",
+   "name": "Reddit",
+   "kind": "forum",
+   "min_age": 13,
+   "peak_age": 27,
+   "spread": 10,
+   "handle": {
+    "min": 3,
+    "max": 20,
+    "chars": "a-zA-Z0-9_-",
+    "lower": false
+   },
+   "url": "https://reddit.com/user/{h}"
+  },
+  {
+   "key": "linkedin",
+   "name": "LinkedIn",
+   "kind": "pro",
+   "min_age": 16,
+   "peak_age": 36,
+   "spread": 12,
+   "handle": {
+    "min": 3,
+    "max": 100,
+    "chars": "a-z0-9-",
+    "lower": true
+   },
+   "url": "https://linkedin.com/in/{h}"
+  },
+  {
+   "key": "youtube",
+   "name": "YouTube",
+   "kind": "video",
+   "min_age": 13,
+   "peak_age": 35,
+   "spread": 20,
+   "handle": {
+    "min": 3,
+    "max": 30,
+    "chars": "a-zA-Z0-9._-",
+    "lower": false
+   },
+   "url": "https://youtube.com/@{h}"
+  },
+  {
+   "key": "twitch",
+   "name": "Twitch",
+   "kind": "video",
+   "min_age": 13,
+   "peak_age": 23,
+   "spread": 7,
+   "handle": {
+    "min": 4,
+    "max": 25,
+    "chars": "a-z0-9_",
+    "lower": true
+   },
+   "url": "https://twitch.tv/{h}"
+  },
+  {
+   "key": "discord",
+   "name": "Discord",
+   "kind": "chat",
+   "min_age": 13,
+   "peak_age": 22,
+   "spread": 8,
+   "handle": {
+    "min": 2,
+    "max": 32,
+    "chars": "a-z0-9._",
+    "lower": true
+   },
+   "url": null
+  },
+  {
+   "key": "github",
+   "name": "GitHub",
+   "kind": "dev",
+   "min_age": 13,
+   "peak_age": 30,
+   "spread": 10,
+   "handle": {
+    "min": 1,
+    "max": 39,
+    "chars": "a-zA-Z0-9-",
+    "lower": false
+   },
+   "url": "https://github.com/{h}"
+  },
+  {
+   "key": "pinterest",
+   "name": "Pinterest",
+   "kind": "social",
+   "min_age": 13,
+   "peak_age": 38,
+   "spread": 15,
+   "handle": {
+    "min": 3,
+    "max": 30,
+    "chars": "a-zA-Z0-9_",
+    "lower": false
+   },
+   "url": "https://pinterest.com/{h}"
+  },
+  {
+   "key": "strava",
+   "name": "Strava",
+   "kind": "sport",
+   "min_age": 13,
+   "peak_age": 36,
+   "spread": 12,
+   "handle": null,
+   "url": null
+  },
+  {
+   "key": "mastodon",
+   "name": "Mastodon",
+   "kind": "social",
+   "min_age": 16,
+   "peak_age": 34,
+   "spread": 10,
+   "handle": {
+    "min": 1,
+    "max": 30,
+    "chars": "a-zA-Z0-9_",
+    "lower": false
+   },
+   "url": null
+  },
+  {
+   "key": "snapchat",
+   "name": "Snapchat",
+   "kind": "chat",
+   "min_age": 13,
+   "peak_age": 19,
+   "spread": 6,
+   "handle": {
+    "min": 3,
+    "max": 15,
+    "chars": "a-z0-9._-",
+    "lower": true
+   },
+   "url": null
+  },
+  {
+   "key": "steam",
+   "name": "Steam",
+   "kind": "gaming",
+   "min_age": 13,
+   "peak_age": 25,
+   "spread": 8,
+   "handle": {
+    "min": 3,
+    "max": 32,
+    "chars": "a-zA-Z0-9_",
+    "lower": false
+   },
+   "url": null
+  },
+  {
+   "key": "vinted",
+   "name": "Vinted",
+   "kind": "market",
+   "min_age": 18,
+   "peak_age": 27,
+   "spread": 10,
+   "handle": {
+    "min": 3,
+    "max": 20,
+    "chars": "a-z0-9_.-",
+    "lower": true
+   },
+   "url": null
+  },
+  {
+   "key": "flickr",
+   "name": "Flickr",
+   "kind": "social",
+   "min_age": 13,
+   "peak_age": 40,
+   "spread": 15,
+   "handle": {
+    "min": 3,
+    "max": 32,
+    "chars": "a-zA-Z0-9_",
+    "lower": false
+   },
+   "url": "https://flickr.com/people/{h}",
+   "niche": true
+  },
+  {
+   "key": "goodreads",
+   "name": "Goodreads",
+   "kind": "culture",
+   "min_age": 13,
+   "peak_age": 38,
+   "spread": 15,
+   "handle": null,
+   "url": null,
+   "niche": true
+  },
+  {
+   "key": "letterboxd",
+   "name": "Letterboxd",
+   "kind": "culture",
+   "min_age": 13,
+   "peak_age": 28,
+   "spread": 10,
+   "handle": {
+    "min": 2,
+    "max": 15,
+    "chars": "a-zA-Z0-9_",
+    "lower": false
+   },
+   "url": "https://letterboxd.com/{h}",
+   "niche": true
+  },
+  {
+   "key": "tripadvisor",
+   "name": "Tripadvisor",
+   "kind": "review",
+   "min_age": 18,
+   "peak_age": 45,
+   "spread": 15,
+   "handle": null,
+   "url": null,
+   "niche": true
+  },
+  {
+   "key": "ravelry",
+   "name": "Ravelry",
+   "kind": "craft",
+   "min_age": 13,
+   "peak_age": 40,
+   "spread": 15,
+   "handle": {
+    "min": 3,
+    "max": 40,
+    "chars": "a-zA-Z0-9_-",
+    "lower": false
+   },
+   "url": "https://ravelry.com/people/{h}",
+   "niche": true
+  },
+  {
+   "key": "inaturalist",
+   "name": "iNaturalist",
+   "kind": "science",
+   "min_age": 13,
+   "peak_age": 45,
+   "spread": 18,
+   "handle": {
+    "min": 3,
+    "max": 40,
+    "chars": "a-z0-9_",
+    "lower": true
+   },
+   "url": "https://inaturalist.org/people/{h}",
+   "niche": true
+  },
+  {
+   "key": "vivino",
+   "name": "Vivino",
+   "kind": "review",
+   "min_age": 18,
+   "peak_age": 42,
+   "spread": 12,
+   "handle": null,
+   "url": null,
+   "niche": true
+  }
+ ],
+ "codename": {
+  "animals": [
+   {
+    "fr": "Héron",
+    "g": "m",
+    "en": "Heron"
+   },
+   {
+    "fr": "Loutre",
+    "g": "f",
+    "en": "Otter"
+   },
+   {
+    "fr": "Renard",
+    "g": "m",
+    "en": "Fox"
+   },
+   {
+    "fr": "Chouette",
+    "g": "f",
+    "en": "Owl"
+   },
+   {
+    "fr": "Lynx",
+    "g": "m",
+    "en": "Lynx"
+   },
+   {
+    "fr": "Hermine",
+    "g": "f",
+    "en": "Stoat"
+   },
+   {
+    "fr": "Corbeau",
+    "g": "m",
+    "en": "Raven"
+   },
+   {
+    "fr": "Gazelle",
+    "g": "f",
+    "en": "Gazelle"
+   },
+   {
+    "fr": "Faucon",
+    "g": "m",
+    "en": "Falcon"
+   },
+   {
+    "fr": "Belette",
+    "g": "f",
+    "en": "Weasel"
+   },
+   {
+    "fr": "Blaireau",
+    "g": "m",
+    "en": "Badger"
+   },
+   {
+    "fr": "Pie",
+    "g": "f",
+    "en": "Magpie"
+   },
+   {
+    "fr": "Caméléon",
+    "g": "m",
+    "en": "Chameleon"
+   },
+   {
+    "fr": "Mante",
+    "g": "f",
+    "en": "Mantis"
+   },
+   {
+    "fr": "Phalène",
+    "g": "f",
+    "en": "Moth"
+   },
+   {
+    "fr": "Coucou",
+    "g": "m",
+    "en": "Cuckoo"
+   },
+   {
+    "fr": "Pieuvre",
+    "g": "f",
+    "en": "Octopus"
+   },
+   {
+    "fr": "Chacal",
+    "g": "m",
+    "en": "Jackal"
+   }
+  ],
+  "adjectives": [
+   {
+    "fr": "Gris|Grise",
+    "en": "Grey"
+   },
+   {
+    "fr": "Silencieux|Silencieuse",
+    "en": "Silent"
+   },
+   {
+    "fr": "Pâle",
+    "en": "Pale"
+   },
+   {
+    "fr": "Nocturne",
+    "en": "Nocturnal"
+   },
+   {
+    "fr": "Discret|Discrète",
+    "en": "Quiet"
+   },
+   {
+    "fr": "Patient|Patiente",
+    "en": "Patient"
+   },
+   {
+    "fr": "Lointain|Lointaine",
+    "en": "Distant"
+   },
+   {
+    "fr": "Furtif|Furtive",
+    "en": "Furtive"
+   },
+   {
+    "fr": "Ordinaire",
+    "en": "Ordinary"
+   },
+   {
+    "fr": "Voilé|Voilée",
+    "en": "Veiled"
+   },
+   {
+    "fr": "Tranquille",
+    "en": "Calm"
+   },
+   {
+    "fr": "Ambré|Ambrée",
+    "en": "Amber"
+   }
+  ]
+ },
+ "traits": {
+  "values": {
+   "fr": [
+    "la loyauté",
+    "l'indépendance",
+    "la famille",
+    "l'honnêteté",
+    "la curiosité",
+    "la sécurité",
+    "l'humour",
+    "la justice",
+    "la liberté",
+    "le travail bien fait",
+    "la simplicité",
+    "l'entraide"
+   ],
+   "en": [
+    "loyalty",
+    "independence",
+    "family",
+    "honesty",
+    "curiosity",
+    "security",
+    "humour",
+    "fairness",
+    "freedom",
+    "a job well done",
+    "simplicity",
+    "helping others"
+   ]
+  },
+  "quirks": {
+   "fr": [
+    "répond toujours aux messages le lendemain",
+    "met des surnoms à tout le monde",
+    "commence ses phrases par « bref »",
+    "photographie systématiquement son café",
+    "ne supporte pas les notifications non lues",
+    "se perd même avec un GPS",
+    "collectionne les tickets de concert",
+    "connaît toutes les répliques de ses films cultes",
+    "arrive toujours dix minutes en avance",
+    "parle à ses plantes"
+   ],
+   "en": [
+    "always replies to messages the next day",
+    "gives everyone nicknames",
+    "starts sentences with 'anyway'",
+    "photographs every coffee",
+    "cannot stand unread notifications",
+    "gets lost even with GPS",
+    "keeps every gig ticket",
+    "knows every line of their favourite films",
+    "always arrives ten minutes early",
+    "talks to the houseplants"
+   ]
+  },
+  "peeves": {
+   "fr": [
+    "les gens qui parlent fort au téléphone",
+    "les réunions qui auraient pu être un mail",
+    "les retards de train",
+    "les fautes d'orthographe dans les menus",
+    "les vocaux de plus de deux minutes",
+    "les spoilers"
+   ],
+   "en": [
+    "loud phone calls in public",
+    "meetings that could have been an email",
+    "late trains",
+    "typos on menus",
+    "voice notes longer than two minutes",
+    "spoilers"
+   ]
+  },
+  "humor": {
+   "fr": [
+    "pince-sans-rire",
+    "autodérision",
+    "jeux de mots",
+    "absurde",
+    "taquin·e",
+    "peu d'humour en ligne"
+   ],
+   "en": [
+    "deadpan",
+    "self-deprecating",
+    "puns",
+    "absurdist",
+    "teasing",
+    "rarely jokes online"
+   ]
+  }
+ }
+}
