@@ -125,6 +125,21 @@ async function storeFace(raw, source) {
 
 export const faceUrl = (id) => faceUrls.get(id) || "";
 
+function toBase64(blob) {
+  return new Promise((resolve, reject) => {
+    const r = new FileReader();
+    r.onload = () => resolve(String(r.result).slice(String(r.result).indexOf(",") + 1));
+    r.onerror = () => reject(r.error);
+    r.readAsDataURL(blob);
+  });
+}
+function fromBase64(b64) {
+  const bin = atob(b64);
+  const out = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+  return out;
+}
+
 // ── Backend ─────────────────────────────────────────────────────────────────
 export async function init() {
   const mod = await import("../pkg/simulacre_wasm.js");
@@ -248,6 +263,54 @@ export const local = {
     const { id, url } = await storeFace(blob, "upload");
     return { id, url };
   },
+  // ── Whole-vault backup ───────────────────────────────────────────────────
+  // Same file format as the server's (simulacre-core::backup), so a backup
+  // moves freely between the browser build and a self-hosted server.
+  backup: async () => {
+    const [recs, journal, faces] = await tx(["personas", "journal", "faces"], "readonly", async (s) =>
+      Promise.all([done(s.personas.getAll()), done(s.journal.getAll()), done(s.faces.getAll())]));
+    const byPersona = new Map();
+    for (const j of journal.sort((a, b) => a.id - b.id)) {
+      if (!byPersona.has(j.persona_id)) byPersona.set(j.persona_id, []);
+      byPersona.get(j.persona_id).push({ at: j.at, kind: j.kind, text: j.text });
+    }
+    const records = recs.map((r) => ({ id: r.id, status: r.status, created_at: r.created_at, updated_at: r.updated_at, persona: r.persona, journal: byPersona.get(r.id) || [] }));
+    const encoded = await Promise.all(faces.map(async (f) => ({ id: f.id, source: f.source, created_at: f.created_at, data: await toBase64(f.blob) })));
+    return JSON.stringify({ ...J(wasm.backup_header()), exported_at: now(), records, faces: encoded });
+  },
+  restore: async (text) => {
+    const b = J(engine(wasm.backup_parse, String(text)));
+    const report = { added: 0, updated: 0, skipped: 0, faces: 0, faces_missing: 0 };
+    // Faces first, so the legends that use them pass validation.
+    for (const f of b.faces) {
+      const blob = new Blob([fromBase64(f.data)], { type: "image/jpeg" });
+      const added = await tx("faces", "readwrite", async (s) => {
+        if (await done(s.faces.getKey(f.id))) return false;
+        await done(s.faces.put({ id: f.id, source: f.source, created_at: f.created_at, blob }));
+        return true;
+      });
+      if (added) { report.faces++; if (!faceUrls.has(f.id)) faceUrls.set(f.id, URL.createObjectURL(blob)); }
+    }
+    for (const r of b.records) {
+      let persona = r.persona;
+      if (persona.face && !(await tx("faces", "readonly", (s) => done(s.faces.getKey(persona.face.id))))) {
+        persona = J(engine(wasm.check, JSON.stringify({ ...persona, face: null })));
+        report.faces_missing++;
+      }
+      const outcome = await tx(["personas", "journal"], "readwrite", async (s) => {
+        const before = await done(s.personas.get(r.id));
+        if (before && !wasm.backup_should_replace(before.updated_at, r.updated_at)) return "skipped";
+        if (before) for (const k of await done(s.journal.index("persona").getAllKeys(r.id))) await done(s.journal.delete(k));
+        await done(s.personas.put({ id: r.id, status: r.status, created_at: r.created_at, updated_at: r.updated_at, persona }));
+        for (const j of r.journal) await done(s.journal.add({ persona_id: r.id, at: j.at, kind: j.kind, text: j.text }));
+        await addJournal(s.journal, r.id, "system", "imported from backup");
+        return before ? "updated" : "added";
+      });
+      report[outcome]++;
+    }
+    return report;
+  },
+
   faceUsers: async (id) => {
     if (!wasm.is_valid_face_id(String(id))) throw new ApiError(400, "bad face id");
     return (await allRecords()).filter((r) => r.persona.face?.id === id).map((r) => r.id);

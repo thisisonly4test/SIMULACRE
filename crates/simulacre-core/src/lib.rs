@@ -11,6 +11,7 @@
 // Nested `if let` reads closer to the checks they encode than let-chains.
 #![allow(clippy::collapsible_if)]
 
+pub mod backup;
 pub mod coherence;
 pub mod contamination;
 pub mod data;

@@ -53,6 +53,9 @@ impl AppState {
     }
 }
 
+/// Largest backup file accepted by a restore.
+pub const MAX_BACKUP: usize = 512 * 1024 * 1024;
+
 const CSP: &str = "default-src 'self'; img-src 'self' data: blob:; style-src 'self'; script-src 'self'; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'";
 
 /// Constant-time comparison so the token can't be guessed byte by byte.
@@ -123,6 +126,9 @@ pub fn app(state: AppState) -> Router {
         .route("/api/personas/{id}/quiz", get(vault_quiz))
         .route("/api/personas/{id}/export.md", get(vault_export_md))
         .route("/api/personas/{id}/export.json", get(vault_export_json))
+        .route("/api/vault/backup", get(vault_backup))
+        // A backup carries its faces, so it may be far bigger than one upload.
+        .route("/api/vault/restore", post(vault_restore).layer(DefaultBodyLimit::max(MAX_BACKUP)))
         .route("/api/faces/fetch", post(faces_fetch))
         .route("/api/faces/upload", post(faces_upload))
         .route("/api/faces/{id}/users", get(face_users))

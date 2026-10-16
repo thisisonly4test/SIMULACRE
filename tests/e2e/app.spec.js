@@ -150,6 +150,44 @@ test("the vault survives a reload", async ({ page }) => {
   await expect(page.locator(".pcard").first()).toBeVisible();
 });
 
+test("a vault backup restores into an empty browser", async ({ page, browser }, info) => {
+  const browserBuild = info.project.name.startsWith("browser");
+  await forge(page, "SIM-E2E-BACKUP");
+  const name = `${await page.locator(".pp-given").textContent()} ${await page.locator(".pp-surname").textContent()}`;
+  await page.getByRole("button", { name: /Enregistrer au coffre/ }).click();
+  await expect(page).toHaveURL(/#\/p\//);
+  await page.goto("/#/vault");
+  // Never backed up: the browser build warns, the server does not need to.
+  await expect(page.locator(".backup-bar")).toHaveClass(browserBuild ? /stale/ : /^backup-bar$/);
+  const [dl] = await Promise.all([page.waitForEvent("download"), page.locator("#backup-btn").click()]);
+  expect(dl.suggestedFilename()).toMatch(/^simulacre-vault-\d{4}-\d{2}-\d{2}\.json$/);
+  const file = await dl.path();
+  await expect(page.locator(".backup-bar")).not.toHaveClass(/stale/);
+  await expect(page.locator(".backup-when b")).toHaveText("aujourd'hui");
+
+  // A fresh browser profile: empty IndexedDB in the browser build.
+  const ctx = await browser.newContext({ baseURL: info.project.use.baseURL });
+  const fresh = await ctx.newPage();
+  const errs = [];
+  fresh.on("pageerror", (e) => errs.push(String(e)));
+  await fresh.addInitScript(() => { try { localStorage.setItem("simulacre.lang", "fr"); } catch {} });
+  await fresh.goto("/#/vault");
+  await expect(fresh.locator(".backup-bar")).toBeVisible();
+  await fresh.locator(".backup-bar input[type=file]").setInputFiles(file);
+  await expect(fresh.locator(".toast")).toContainText(browserBuild ? "1 ajoutée(s)" : "déjà présente(s)");
+  await expect(fresh.locator(".pcard", { hasText: name }).first()).toBeVisible();
+  await fresh.locator(".pcard", { hasText: name }).first().click();
+  // Skipped on the server: the legend is already in its (shared) vault.
+  if (browserBuild) await expect(fresh.locator(".journal")).toContainText("imported from backup");
+
+  // Garbage is refused with a message, and changes nothing.
+  await fresh.goto("/#/vault");
+  await fresh.locator(".backup-bar input[type=file]").setInputFiles({ name: "x.json", mimeType: "application/json", buffer: Buffer.from('{"format":"other"}') });
+  await expect(fresh.locator(".toast.err")).toContainText("Restauration refusée");
+  expect(errs).toEqual([]);
+  await ctx.close();
+});
+
 test("paper is the default theme even on a dark OS", async ({ page }) => {
   await page.emulateMedia({ colorScheme: "dark" });
   await page.goto("/#/doctrine");

@@ -322,3 +322,54 @@ async fn security_headers_and_spa_fallback() {
     let (s, _, _) = t.raw(Method::GET, "/missing.js", None, None).await;
     assert_eq!(s, StatusCode::NOT_FOUND);
 }
+
+#[tokio::test]
+async fn vault_backup_restores_into_an_empty_vault() {
+    let a = setup(None, None).await;
+    let (_, v) = a.json(Method::POST, "/api/faces/fetch?count=1", None).await;
+    let face = v["faces"][0].clone();
+    let (_, mut p) = a.json(Method::POST, "/api/forge", Some(json!({ "seed": "SIM-BACKUP" }))).await;
+    p["face"] = json!({ "id": face["id"], "source": "thispersondoesnotexist" });
+    let (_, rec) = a.json(Method::POST, "/api/personas", Some(p)).await;
+    let id = rec["id"].as_str().unwrap().to_string();
+    a.json(Method::PUT, &format!("/api/personas/{id}/status"), Some(json!({ "status": "active" }))).await;
+    a.json(Method::POST, &format!("/api/personas/{id}/journal"), Some(json!({ "text": "opened Mastodon" }))).await;
+
+    let (s, h, body) = a.raw(Method::GET, "/api/vault/backup", None, None).await;
+    assert_eq!(s, StatusCode::OK);
+    assert!(h[header::CONTENT_DISPOSITION].to_str().unwrap().contains("simulacre-vault-"));
+    let backup: Value = serde_json::from_slice(&body).unwrap();
+    assert_eq!(backup["format"], "simulacre-vault");
+    assert_eq!(backup["faces"].as_array().unwrap().len(), 1);
+
+    // Into another, empty vault: legend, status, journal and face all come back.
+    let b = setup(None, None).await;
+    let (s, report) = b.json(Method::POST, "/api/vault/restore", Some(backup.clone())).await;
+    assert_eq!(s, StatusCode::OK, "{report}");
+    assert_eq!(report, json!({ "added": 1, "updated": 0, "skipped": 0, "faces": 1, "faces_missing": 0 }));
+    let (_, got) = b.json(Method::GET, &format!("/api/personas/{id}"), None).await;
+    assert_eq!(got["status"], "active");
+    assert_eq!(got["persona"]["face"]["id"], face["id"]);
+    let (s, _, _) = b.raw(Method::GET, face["url"].as_str().unwrap(), None, None).await;
+    assert_eq!(s, StatusCode::OK);
+    let (_, journal) = b.json(Method::GET, &format!("/api/personas/{id}/journal"), None).await;
+    let texts: Vec<_> = journal.as_array().unwrap().iter().map(|j| j["text"].as_str().unwrap().to_string()).collect();
+    assert_eq!(texts[0], "imported from backup");
+    assert!(texts.contains(&"opened Mastodon".to_string()));
+
+    // A second restore of the same file changes nothing.
+    let (_, again) = b.json(Method::POST, "/api/vault/restore", Some(backup.clone())).await;
+    assert_eq!(again["skipped"], 1);
+
+    // A tampered face is refused as a whole.
+    let mut bad = backup;
+    bad["faces"][0]["data"] = json!("/9j/AAAA");
+    let (s, v) = b.json(Method::POST, "/api/vault/restore", Some(bad)).await;
+    assert_eq!(s, StatusCode::BAD_REQUEST);
+    assert!(v["error"].as_str().unwrap().contains("does not match"));
+
+    // Restores may exceed the 8 MB upload limit (a backup carries its faces).
+    let big = json!({ "format": "simulacre-vault", "version": 1, "exported_at": "x".repeat(9 << 20), "records": [] });
+    let (s, v) = b.json(Method::POST, "/api/vault/restore", Some(big)).await;
+    assert_eq!(s, StatusCode::OK, "{v}");
+}

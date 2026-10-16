@@ -1,4 +1,70 @@
 /**
+ * Format tag and version written into new backups.
+ * @returns {string}
+ */
+export function backup_header() {
+    let deferred2_0;
+    let deferred2_1;
+    try {
+        const ret = wasm.backup_header();
+        var ptr1 = ret[0];
+        var len1 = ret[1];
+        if (ret[3]) {
+            ptr1 = 0; len1 = 0;
+            throw takeFromExternrefTable0(ret[2]);
+        }
+        deferred2_0 = ptr1;
+        deferred2_1 = len1;
+        return getStringFromWasm0(ptr1, len1);
+    } finally {
+        wasm.__wbindgen_free(deferred2_0, deferred2_1, 1);
+    }
+}
+
+/**
+ * Checks a vault backup (or a single-legend export) before it is restored;
+ * returns it normalised (personas refreshed, faces verified).
+ * @param {string} json
+ * @returns {string}
+ */
+export function backup_parse(json) {
+    let deferred3_0;
+    let deferred3_1;
+    try {
+        const ptr0 = passStringToWasm0(json, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.backup_parse(ptr0, len0);
+        var ptr2 = ret[0];
+        var len2 = ret[1];
+        if (ret[3]) {
+            ptr2 = 0; len2 = 0;
+            throw takeFromExternrefTable0(ret[2]);
+        }
+        deferred3_0 = ptr2;
+        deferred3_1 = len2;
+        return getStringFromWasm0(ptr2, len2);
+    } finally {
+        wasm.__wbindgen_free(deferred3_0, deferred3_1, 1);
+    }
+}
+
+/**
+ * `true` when a legend already in the vault should be replaced by the copy
+ * from a backup (strictly newer).
+ * @param {string} existing_updated_at
+ * @param {string} incoming_updated_at
+ * @returns {boolean}
+ */
+export function backup_should_replace(existing_updated_at, incoming_updated_at) {
+    const ptr0 = passStringToWasm0(existing_updated_at, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ptr1 = passStringToWasm0(incoming_updated_at, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len1 = WASM_VECTOR_LEN;
+    const ret = wasm.backup_should_replace(ptr0, len0, ptr1, len1);
+    return ret !== 0;
+}
+
+/**
  * Re-runs story and coherence on an edited persona.
  * @param {string} persona
  * @returns {string}

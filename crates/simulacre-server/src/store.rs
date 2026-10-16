@@ -8,6 +8,7 @@ use chrono::Utc;
 use rusqlite::{Connection, OptionalExtension, params};
 use serde::{Deserialize, Serialize};
 use simulacre_core::Persona;
+use simulacre_core::backup::{BackupRecord, should_replace};
 
 pub use simulacre_core::service::STATUSES;
 
@@ -182,6 +183,43 @@ impl Store {
 
     pub fn face_exists(&self, id: &str) -> Result<bool, StoreError> {
         Ok(self.db().query_row("SELECT 1 FROM faces WHERE id = ?1", [id], |_| Ok(())).optional()?.is_some())
+    }
+
+    /// Every face in the library: (id, created_at, source).
+    pub fn face_list(&self) -> Result<Vec<(String, String, String)>, StoreError> {
+        let db = self.db();
+        let mut st = db.prepare("SELECT id, created_at, source FROM faces ORDER BY created_at")?;
+        let rows = st.query_map([], |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)))?;
+        Ok(rows.collect::<Result<_, _>>()?)
+    }
+
+    /// Restores one legend from a backup, in one transaction. A legend that
+    /// already exists is replaced only by a strictly newer copy. Returns
+    /// `Some(true)` when added, `Some(false)` when replaced, `None` when kept.
+    pub fn import(&self, r: &BackupRecord) -> Result<Option<bool>, StoreError> {
+        let mut db = self.db();
+        let tx = db.transaction()?;
+        let existing: Option<String> =
+            tx.query_row("SELECT updated_at FROM personas WHERE id = ?1", [&r.id], |row| row.get(0)).optional()?;
+        if let Some(at) = &existing {
+            if !should_replace(at, &r.updated_at) {
+                return Ok(None);
+            }
+            tx.execute("DELETE FROM journal WHERE persona_id = ?1", [&r.id])?;
+        }
+        tx.execute(
+            "INSERT OR REPLACE INTO personas (id, seed, status, created_at, updated_at, data) VALUES (?1, ?2, ?3, ?4, ?5, ?6)",
+            params![r.id, r.persona.recipe.seed, r.status, r.created_at, r.updated_at, serde_json::to_string(&r.persona)?],
+        )?;
+        for j in &r.journal {
+            tx.execute("INSERT INTO journal (persona_id, at, kind, text) VALUES (?1, ?2, ?3, ?4)", params![r.id, j.at, j.kind, j.text])?;
+        }
+        tx.execute(
+            "INSERT INTO journal (persona_id, at, kind, text) VALUES (?1, ?2, 'system', 'imported from backup')",
+            params![r.id, now()],
+        )?;
+        tx.commit()?;
+        Ok(Some(existing.is_none()))
     }
 
     /// Which saved legends use a face (a face shared by two legends links them).
