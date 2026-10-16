@@ -4,7 +4,7 @@
 import { faceUrl } from "./api.js";
 import { editable, facePicker, gauge, heatmap, oceanBars, quizModal, radar, section } from "./components.js";
 import { L, lab, t, yrs } from "./i18n.js";
-import { holo, mrz } from "./security.js";
+import { mrz } from "./security.js";
 import { clone, download, flag, h, initials, pbadge, PLATFORM_COLORS, scoreColor, setPath, silhouette, toast } from "./util.js";
 
 /**
@@ -21,11 +21,10 @@ export function dossier(p, o) {
   // ── Head: passport data page (SPECIMEN) + verdict ─────────────────────────
   const initialsTxt = initials(`${id.first_name} ${id.last_name}`);
   const portrait = () => (p.face ? h("img", { src: faceUrl(p.face.id), alt: id.first_name }) : silhouette(p.recipe.seed, initialsTxt));
-  const mug = holo(h("div", { class: "mug-wrap" },
+  const mug = h("div", { class: "mug-wrap" },
     portrait(),
-    h("span", { class: "foil", "aria-hidden": "true" }),
     h("span", { class: "mug-target" }, `${id.gender === "female" ? "♀" : "♂"} ${id.age}`),
-    o.setFace ? h("button", { class: "btn btn-sm mug-btn", onclick: () => facePicker(p, o.setFace, o.savedId) }, "◉ " + (p.face ? t("change_face") : t("pick_face"))) : null));
+    o.setFace ? h("button", { class: "btn btn-sm mug-btn", onclick: () => facePicker(p, o.setFace, o.savedId) }, "◉ " + (p.face ? t("change_face") : t("pick_face"))) : null);
 
   const phone = p.contact.phone
     ? h("span", {}, h("span", { class: "mono" }, p.contact.phone), h("span", { class: "fine" }, t("phone_fiction")))
