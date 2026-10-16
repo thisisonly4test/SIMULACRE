@@ -1,7 +1,7 @@
 /* ═══════════════════════════════════════════════════════════════════════════
    SIMULACRE — "Imprimerie nationale d'Utopie"
    Security-printing identity: cream security paper, engine-turned guilloché,
-   intaglio inks, a SPECIMEN passport data page with MRZ and holographic foil,
+   intaglio inks, a SPECIMEN passport data page with MRZ,
    rubber stamps. Flip the UV lamp and the paper turns black-light violet:
    invisible ink, fluorescent fibres and microtext light up.
    No web fonts on purpose: a sock-puppet workbench must not ping Google.
@@ -37,7 +37,6 @@
   --radius: 12px;
   --gutter: clamp(16px, 4vw, 44px);
   --maxw: 1260px;
-  --hx: .5; --hy: .5;
   --cur: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke-linecap='round'%3E%3Cpath d='M18.6 18.6 27.5 27.5' stroke='%23fffaf0' stroke-width='7'/%3E%3Ccircle cx='12' cy='12' r='8.6' fill='rgba%28255%2C250%2C240%2C.18%29' stroke='%23fffaf0' stroke-width='5'/%3E%3Cpath d='M18.6 18.6 27.5 27.5' stroke='%2316121a' stroke-width='4'/%3E%3Ccircle cx='12' cy='12' r='8.6' stroke='%2316121a' stroke-width='2.4'/%3E%3Cpath d='M7.6 10.4a5 5 0 0 1 3-3' stroke='%2316121a' stroke-width='1.4' opacity='.55'/%3E%3C/g%3E%3C/svg%3E") 12 12, auto;
   --cur-hot: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke-linecap='round'%3E%3Cpath d='M18.6 18.6 27.5 27.5' stroke='%23fffaf0' stroke-width='7'/%3E%3Ccircle cx='12' cy='12' r='8.6' fill='rgba%28200%2C30%2C40%2C.28%29' stroke='%23fffaf0' stroke-width='5'/%3E%3Cpath d='M18.6 18.6 27.5 27.5' stroke='%2316121a' stroke-width='4'/%3E%3Ccircle cx='12' cy='12' r='8.6' stroke='%2316121a' stroke-width='2.4'/%3E%3Cpath d='M7.6 10.4a5 5 0 0 1 3-3' stroke='%2316121a' stroke-width='1.4' opacity='.55'/%3E%3C/g%3E%3C/svg%3E") 12 12, pointer;
   color-scheme: light;
@@ -335,14 +334,6 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter) 90px; po
 .mug-wrap { position: relative; width: 100%; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 6px; background: #ddd5c2; box-shadow: 0 0 0 1px #0003, 0 8px 18px -10px #0007; }
 .mug-wrap img, .mug-wrap svg { width: 100%; height: 100%; display: block; object-fit: cover; }
 .mug-wrap img { filter: contrast(1.04) saturate(.88) sepia(.08); }
-.foil { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: color-dodge; opacity: .28;
-  background:
-    repeating-linear-gradient(calc(110deg + var(--hx) * 40deg), #ff6ad5 0, #c774e8 6%, #94d0ff 12%, #8affc1 18%, #fffb96 24%, #ff6ad5 30%),
-    repeating-radial-gradient(circle at calc(var(--hx) * 100%) calc(var(--hy) * 100%), #fff0 0 9px, #fff6 10px 11px);
-  background-size: 300% 300%, auto; background-position: calc(var(--hx) * 100%) calc(var(--hy) * 100%), 0 0; transition: opacity .3s; }
-.mug-wrap:hover .foil { opacity: .55; }
-.mug-wrap svg + .foil { opacity: .1; }
-:root[data-theme="uv"] .foil { opacity: .5; mix-blend-mode: screen; }
 .mug-target { position: absolute; left: 8px; top: 8px; z-index: 2; font: 800 .62rem var(--mono); background: #fffb; color: #15203a; border-radius: 3px; padding: 2px 6px; }
 .mug-wrap .mug-btn { position: absolute; left: 8px; right: 8px; bottom: 8px; z-index: 2; justify-content: center; background: #fbf8f0ee; color: #15203a; border-color: #15203a; }
 .codename { font: 800 .74rem/1.3 var(--mono); margin: .7rem 0 0; color: var(--red); letter-spacing: .2em; text-align: center; }

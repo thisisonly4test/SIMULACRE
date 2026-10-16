@@ -1,5 +1,5 @@
-// Security-printing toolkit: guilloché engraving, MRZ lines, UV lamp,
-// holographic foil. Everything is generated at runtime — no images shipped.
+// Security-printing toolkit: guilloché engraving, MRZ lines, UV lamp.
+// Everything is generated at runtime — no images shipped.
 
 // ── Guilloché ───────────────────────────────────────────────────────────────
 /** Wave-line banknote tile, as a data: URI for CSS backgrounds. */
@@ -62,7 +62,7 @@ export function mrz(p) {
   return [l1, l2];
 }
 
-// ── UV lamp & holographic foil ──────────────────────────────────────────────
+// ── UV lamp ──────────────────────────────────────────────
 const UV_KEY = "simulacre.uv";
 export function initUv() {
   let on;
@@ -84,12 +84,3 @@ export function setUv(on, persist = true) {
   if (persist) try { localStorage.setItem(UV_KEY, on ? "1" : "0"); } catch { /* private mode */ }
 }
 
-/** Iridescent foil that shifts as the pointer moves over the element. */
-export function holo(el) {
-  el.addEventListener("pointermove", (e) => {
-    const r = el.getBoundingClientRect();
-    el.style.setProperty("--hx", ((e.clientX - r.left) / r.width).toFixed(3));
-    el.style.setProperty("--hy", ((e.clientY - r.top) / r.height).toFixed(3));
-  });
-  return el;
-}
