@@ -65,6 +65,8 @@ const http = {
   savedQuiz: (id, round) => req("GET", `/api/personas/${encodeURIComponent(id)}/quiz?round=${round}`),
   savedMd: (id, lang) => req("GET", `/api/personas/${encodeURIComponent(id)}/export.md?lang=${lang}`, undefined, true),
   savedJson: (id) => req("GET", `/api/personas/${encodeURIComponent(id)}/export.json`, undefined, true),
+  backup: () => req("GET", "/api/vault/backup", undefined, true),
+  restore: (text) => req("POST", "/api/vault/restore", new Blob([text], { type: "application/json" })),
   facesFetch: (count) => req("POST", `/api/faces/fetch?count=${count}`),
   faceUpload: (blob) => req("POST", "/api/faces/upload", blob),
   faceUsers: (id) => req("GET", `/api/faces/${id}/users`),

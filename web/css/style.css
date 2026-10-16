@@ -549,6 +549,11 @@ body:has(#forge-btn:hover:not(:disabled))::after { opacity: .07; }
 .pcard .score { position: absolute; top: 12px; right: 12px; font: italic 700 1.05rem var(--serif); }
 .sentinel { height: 60px; display: grid; place-items: center; color: var(--muted); font: .76rem var(--mono); letter-spacing: .12em; text-transform: uppercase; }
 
+.backup-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; margin: 0 0 20px; padding: 10px 14px; border: 1px dashed var(--line-2); font: .74rem var(--mono); color: var(--muted); }
+.backup-bar b { color: var(--ink); }
+.backup-bar.stale { border: 1.5px solid var(--red); background: var(--red-soft); color: var(--red); }
+.backup-bar.stale b { color: var(--red); }
+.backup-actions { display: flex; flex-wrap: wrap; gap: 8px; }
 .stats { list-style: none; padding: 0; margin: 0 0 22px; display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); border: 2px solid var(--ink); background: var(--card); }
 .stats li { padding: 12px 14px; display: flex; flex-direction: column; border-right: 1px dotted var(--line-2); }
 .stats li:last-child { border-right: 0; }

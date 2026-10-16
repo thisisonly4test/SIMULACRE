@@ -110,3 +110,23 @@ pub fn is_valid_face_id(id: &str) -> bool {
 pub fn rules() -> Res {
     out(&json!({ "statuses": service::STATUSES, "journal_max": service::JOURNAL_MAX }))
 }
+
+/// Checks a vault backup (or a single-legend export) before it is restored;
+/// returns it normalised (personas refreshed, faces verified).
+#[wasm_bindgen]
+pub fn backup_parse(json: &str) -> Res {
+    out(&simulacre_core::backup::parse(json).map_err(|e| JsError::new(&e))?)
+}
+
+/// `true` when a legend already in the vault should be replaced by the copy
+/// from a backup (strictly newer).
+#[wasm_bindgen]
+pub fn backup_should_replace(existing_updated_at: &str, incoming_updated_at: &str) -> bool {
+    simulacre_core::backup::should_replace(existing_updated_at, incoming_updated_at)
+}
+
+/// Format tag and version written into new backups.
+#[wasm_bindgen]
+pub fn backup_header() -> Res {
+    out(&json!({ "format": simulacre_core::backup::FORMAT, "version": simulacre_core::backup::VERSION }))
+}

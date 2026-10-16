@@ -28,6 +28,21 @@ async function face() {
   return new Response(body, { headers: { "content-type": type, "cache-control": "no-store", "x-content-type-options": "nosniff" } });
 }
 
+/** Link-preview scrapers want absolute URLs: rewrite og:image (and add
+ *  og:url) on the HTML page, using the host the request came to. */
+function withAbsolutePreview(res, origin) {
+  if (!(res.headers.get("content-type") || "").includes("text/html")) return res;
+  return new HTMLRewriter()
+    .on('meta[property="og:image"]', {
+      element(el) {
+        const v = el.getAttribute("content") || "";
+        if (!/^https?:/.test(v)) el.setAttribute("content", new URL(v, `${origin}/`).href);
+        el.after(`<meta property="og:url" content="${origin}/">`, { html: true });
+      },
+    })
+    .transform(res);
+}
+
 export default {
   async fetch(request, env) {
     const { pathname } = new URL(request.url);
@@ -39,6 +54,7 @@ export default {
     // Every other /api route belongs to the Rust server, which does not run
     // here: answer 404 so the UI switches to its in-browser engine.
     if (pathname.startsWith("/api/")) return json(404, { error: "not found" });
-    return env.ASSETS.fetch(request);
+    const res = await env.ASSETS.fetch(request);
+    return pathname === "/" || pathname === "/index.html" ? withAbsolutePreview(res, new URL(request.url).origin) : res;
   },
 };

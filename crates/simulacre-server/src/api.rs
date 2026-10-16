@@ -10,6 +10,7 @@ use axum::response::{IntoResponse, Response};
 use chrono::NaiveDate;
 use serde::{Deserialize, Serialize};
 use serde_json::{Value, json};
+use simulacre_core::backup::{self, Backup, BackupEntry, BackupFace, BackupRecord, ImportReport};
 use simulacre_core::model::FaceRef;
 use simulacre_core::service::{self, PoolQuery, RecipeIn};
 use simulacre_core::{Persona, Summary, UiLang, contamination, export, generate, quiz, refresh, rng};
@@ -258,6 +259,71 @@ pub async fn vault_export_json(State(s): State<AppState>, Path(id): Path<String>
         body,
     )
         .into_response())
+}
+
+/// The whole vault in one file: every legend, its journal, and the faces.
+pub async fn vault_backup(State(s): State<AppState>) -> Result<Response, ApiError> {
+    let mut records = Vec::new();
+    for r in s.store.list()? {
+        let mut journal: Vec<BackupEntry> =
+            s.store.journal(&r.id)?.into_iter().map(|j| BackupEntry { at: j.at, kind: j.kind, text: j.text }).collect();
+        journal.reverse();
+        records.push(BackupRecord {
+            id: r.id,
+            status: r.status,
+            created_at: r.created_at,
+            updated_at: r.updated_at,
+            persona: r.persona,
+            journal,
+        });
+    }
+    let mut faces = Vec::new();
+    for (id, created_at, source) in s.store.face_list()? {
+        match tokio::fs::read(faces::path_for(&s.faces_dir, &id)).await {
+            Ok(bytes) => faces.push(BackupFace::new(&id, &source, &created_at, &bytes)),
+            Err(e) => tracing::warn!("backup: face {id} unreadable: {e}"),
+        }
+    }
+    let now = chrono::Utc::now().to_rfc3339_opts(chrono::SecondsFormat::Secs, true);
+    let b = Backup { format: backup::FORMAT.into(), version: backup::VERSION, exported_at: now.clone(), records, faces };
+    let body = serde_json::to_string(&b).map_err(|e| ApiError(StatusCode::INTERNAL_SERVER_ERROR, e.to_string()))?;
+    Ok((
+        [
+            (header::CONTENT_TYPE, "application/json".to_string()),
+            (header::CONTENT_DISPOSITION, format!("attachment; filename=\"simulacre-vault-{}.json\"", &now[..10])),
+        ],
+        body,
+    )
+        .into_response())
+}
+
+/// Restores a backup (or a single-legend export) into the vault.
+pub async fn vault_restore(State(s): State<AppState>, body: Bytes) -> ApiResult<ImportReport> {
+    let text = std::str::from_utf8(&body).map_err(|_| ApiError::bad("backup must be UTF-8 JSON"))?;
+    let mut b = backup::parse(text).map_err(ApiError::bad)?;
+    let mut report = ImportReport::default();
+    for f in &b.faces {
+        if !s.store.face_exists(&f.id)? {
+            faces::save(&s.faces_dir, &f.id, &f.bytes()).await?;
+            s.store.face_add(&f.id, &f.source)?;
+            report.faces += 1;
+        }
+    }
+    for r in &mut b.records {
+        if let Some(f) = &r.persona.face {
+            if !s.store.face_exists(&f.id)? {
+                r.persona.face = None;
+                refresh(&mut r.persona);
+                report.faces_missing += 1;
+            }
+        }
+        match s.store.import(r)? {
+            Some(true) => report.added += 1,
+            Some(false) => report.updated += 1,
+            None => report.skipped += 1,
+        }
+    }
+    Ok(Json(report))
 }
 
 pub async fn contamination_report(State(s): State<AppState>) -> ApiResult<Value> {

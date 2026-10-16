@@ -31,8 +31,22 @@ Si `SIMULACRE_TOKEN` est défini, chaque route `/api/*` et `/faces/*` exige `Aut
 | GET | `/api/personas/{id}/quiz?round=n` | — | questions |
 | GET | `/api/personas/{id}/export.md?lang=fr` | — | fiche avec journal |
 | GET | `/api/personas/{id}/export.json` | — | `{record, journal}` |
+| GET | `/api/vault/backup` | — | sauvegarde complète (voir plus bas), en pièce jointe `simulacre-vault-AAAA-MM-JJ.json` |
+| POST | `/api/vault/restore` | une sauvegarde complète, ou un export `{record, journal}` (512 Mo maximum) | `{added, updated, skipped, faces, faces_missing}` |
 | GET | `/api/stats` | — | `{total, by_status, avg_coherence}` |
 | GET | `/api/contamination` | — | `{pairs:[{a,b,risk,links}], names}` |
+
+### Sauvegarde du coffre
+
+Format commun au serveur et à la version navigateur : une sauvegarde prise dans l'une se restaure dans l'autre.
+
+```json
+{ "format": "simulacre-vault", "version": 1, "exported_at": "2026-10-16T12:00:00Z",
+  "records": [{ "id", "status", "created_at", "updated_at", "persona", "journal": [{ "at", "kind", "text" }] }],
+  "faces": [{ "id", "source", "created_at", "data": "<JPEG en base64>" }] }
+```
+
+Le journal est rangé du plus ancien au plus récent. À la restauration, tout est vérifié avant d'écrire quoi que ce soit : format et version, identifiants, statuts, dates RFC 3339, types et longueur des entrées du journal. Chaque visage doit être un JPEG dont le SHA-256 correspond à son identifiant. Chaque légende repasse par le moteur de cohérence. Une légende déjà présente n'est remplacée que par une copie strictement plus récente (`updated_at`). Sinon elle est comptée dans `skipped`. Une légende dont le visage ne se trouve ni dans le fichier ni dans le coffre perd ce visage (`faces_missing`). Chaque légende ajoutée ou remplacée reçoit l'entrée de journal `imported from backup`.
 
 ## Visages
 

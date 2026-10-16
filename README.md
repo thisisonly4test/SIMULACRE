@@ -74,10 +74,12 @@ Le serveur est un binaire unique : l'interface est embarquée dedans. Il n'y a p
 Le même site fonctionne sans le serveur Rust, par exemple sur Cloudflare Workers :
 
 - le moteur `simulacre-core` est compilé en WebAssembly (`crates/simulacre-wasm`, sortie dans `web/pkg/`, versionnée) et tourne dans le navigateur ;
-- le coffre, le journal et les visages sont stockés dans le navigateur (IndexedDB). Rien n'est envoyé en ligne, mais chaque visiteur a son propre coffre, et effacer les données du site le vide : exporte en JSON pour garder une copie ;
+- le coffre, le journal et les visages sont stockés dans le navigateur (IndexedDB). Rien n'est envoyé en ligne, mais chaque visiteur a son propre coffre, et effacer les données du site le vide. Le Coffre propose « Sauvegarder le coffre » (un seul fichier JSON avec légendes, journaux et visages) et « Restaurer une sauvegarde ». Il signale quand la dernière sauvegarde date de plus de 7 jours ou n'a jamais été faite. Le fichier se restaure aussi sur un serveur `simulacre`, et inversement ;
 - un petit Worker (`worker/index.js`) sert les fichiers de `web/` et relaie uniquement les visages de thispersondoesnotexist.com, que le navigateur ne peut pas récupérer seul (pas d'en-têtes CORS). Il ne stocke rien.
 
 L'interface choisit d'elle-même : si `/api/health` répond `backend: "server"`, elle utilise le serveur Rust ; sinon, le moteur du navigateur.
+
+Le Worker rend aussi absolue l'URL de l'image d'aperçu (`web/assets/og.jpg`, balises `og:` de `index.html`), pour les aperçus de lien sur Discord, Telegram ou Slack. L'image se régénère avec `scripts/og-image.mjs`.
 
 Déploiement : `wrangler.jsonc` est à la racine. Dans Cloudflare (Workers & Pages → le Worker → Settings → Build), la commande de déploiement doit être `npx wrangler deploy`, sans commande de build ni dossier de sortie. Pour tester en local : `npx wrangler dev`.
 
@@ -88,6 +90,8 @@ rustup target add wasm32-unknown-unknown
 cargo install wasm-bindgen-cli --version 0.2.129   # même version que la crate wasm-bindgen
 ./scripts/build-wasm.sh
 ```
+
+Le script passe ensuite le module dans `wasm-opt` (binaryen), local s'il est installé, sinon via `npx`. Avec le profil `wasm` (`opt-level = "z"`, LTO), le module pèse environ 300 Ko compressé en gzip.
 
 Pour une légende en ligne de commande :
 

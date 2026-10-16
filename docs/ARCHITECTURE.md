@@ -64,12 +64,12 @@ Pour ajouter un pays : écrire un fichier `locales/xx_XX.json`, puis l'enregistr
 
 ## Version sans serveur (`simulacre-wasm`, `web/js/local.js`, `worker/`)
 
-Les routes HTTP et la version WebAssembly partagent leur logique dans `simulacre_core::service` : recette reçue, vivier, catalogue, règles du journal, note d'édition, export avec journal, validation des identifiants de visage. Les deux répondent donc de la même façon.
+Les routes HTTP et la version WebAssembly partagent leur logique dans `simulacre_core::service` : recette reçue, vivier, catalogue, règles du journal, note d'édition, export avec journal, validation des identifiants de visage. `simulacre_core::backup` lit et vérifie les sauvegardes du coffre, pour les deux. Les deux répondent donc de la même façon.
 
 - `crates/simulacre-wasm` expose ces fonctions à JavaScript (`wasm-bindgen`, échanges en JSON). « Aujourd'hui » est passé par l'appelant, et l'aléa des graines vient de `crypto.getRandomValues` (`getrandom`, fonctionnalité `js`). La sortie de `scripts/build-wasm.sh` est versionnée dans `web/pkg/` : l'hébergement statique n'a pas besoin de Rust.
 - `web/js/api.js` choisit le moteur au premier appel : le serveur Rust s'il répond à `/api/health` avec `backend: "server"`, sinon `local.js`, chargé à la demande avec le WebAssembly. Le serveur Rust ne charge donc jamais le WebAssembly.
 - `local.js` reproduit l'API sur IndexedDB (magasins `personas`, `journal`, `faces`), avec les mêmes codes et messages d'erreur. Chaque écriture qui touche deux magasins (légende et journal) se fait dans une seule transaction. Les visages sont ré-encodés dans le navigateur comme sur le serveur : recadrage carré, 512 px, JPEG 0,88, identifiant égal aux 128 premiers bits du SHA-256. Ils sont affichés par des URL `blob:`.
-- `worker/index.js` sert `web/` et ne fait qu'une chose en plus : relayer `GET /api/face` depuis l'URL fixe de thispersondoesnotexist.com. Les autres routes `/api/*` répondent 404. `web/_headers` applique la même CSP que le serveur, plus `'wasm-unsafe-eval'`.
+- `worker/index.js` sert `web/` et fait deux choses en plus : relayer `GET /api/face` depuis l'URL fixe de thispersondoesnotexist.com, et rendre absolue l'URL de `og:image` sur la page d'accueil (`HTMLRewriter`, d'après l'hôte de la requête). Les autres routes `/api/*` répondent 404. `web/_headers` applique la même CSP que le serveur, plus `'wasm-unsafe-eval'`.
 - Les tests Playwright tournent sur les deux versions. `tests/e2e/static-server.mjs` imite le Worker.
 
 ## Interface (`web/`)

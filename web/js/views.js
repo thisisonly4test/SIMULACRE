@@ -360,9 +360,47 @@ export async function vaultView(root) {
         h("li", {}, h("b", {}, stats.total), h("span", {}, t("total"))),
         statuses.map((s) => h("li", {}, h("b", {}, stats.by_status[s] || 0), h("span", {}, t(`st_${s}`)))),
         h("li", {}, h("b", { vars: { color: scoreColor(stats.avg_coherence) } }, stats.avg_coherence), h("span", {}, t("avg_coherence")))),
+      backupBar(stats.total, () => { clear(root); ctx.refreshNav(); return vaultView(root); }),
       chips, grid),
   }));
   draw();
+}
+
+// Whole-vault backup. In the browser build the vault exists only in this
+// browser, so the bar nags gently when the last backup is old or missing.
+const BACKUP_KEY = "simulacre.lastBackup";
+const BACKUP_STALE_DAYS = 7;
+function backupBar(total, reload) {
+  let last = null;
+  try { last = localStorage.getItem(BACKUP_KEY); } catch { /* private mode */ }
+  const days = last ? Math.floor((Date.now() - Date.parse(last)) / 86400000) : null;
+  const stale = backendMode() === "browser" && total > 0 && (days === null || days >= BACKUP_STALE_DAYS);
+  const when = days === null ? t("backup_never") : days === 0 ? t("backup_today") : t("backup_days").replace("{n}", days);
+  const file = h("input", { type: "file", accept: "application/json,.json", hidden: true });
+  file.addEventListener("change", async () => {
+    const f = file.files[0];
+    file.value = "";
+    if (!f) return;
+    try {
+      const r = await api.restore(await f.text());
+      toast(t("restore_done").replace("{added}", r.added).replace("{updated}", r.updated).replace("{skipped}", r.skipped) + (r.faces_missing ? ` ${t("restore_faces_missing").replace("{n}", r.faces_missing)}` : ""));
+      await reload();
+    } catch (e) { toast(`${t("restore_fail")} ${e.message}`, true); }
+  });
+  return h("div", { class: `backup-bar${stale ? " stale" : ""}` },
+    h("span", { class: "backup-when" }, stale ? "⚠ " : "", `${t("backup_last")} : `, h("b", {}, when)),
+    h("div", { class: "backup-actions" },
+      h("button", { class: "btn btn-sm", id: "backup-btn", disabled: !total, onclick: async (e) => {
+        const b = e.currentTarget;
+        b.disabled = true;
+        try {
+          download(`simulacre-vault-${new Date().toISOString().slice(0, 10)}.json`, await api.backup(), "application/json");
+          try { localStorage.setItem(BACKUP_KEY, new Date().toISOString()); } catch { /* private mode */ }
+          await reload();
+        } catch (err) { toast(err.message, true); b.disabled = false; }
+      } }, "⇩ " + t("backup_btn")),
+      h("button", { class: "btn btn-sm btn-ghost", id: "restore-btn", onclick: () => file.click() }, "⇧ " + t("restore_btn")),
+      file));
 }
 
 // ═════════════════════════════════════ SAVED PERSONA ═════════════════════════
