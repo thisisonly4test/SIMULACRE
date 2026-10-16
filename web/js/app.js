@@ -77,6 +77,8 @@ async function route() {
 onAuthNeeded(async () => setToken(await tokenPrompt()));
 
 async function boot() {
+  // Always land at the top: the browser must not restore an old scroll offset.
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
   setLang(lang());
   initUv();
   try {

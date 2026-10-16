@@ -39,7 +39,7 @@ test("language switch re-renders everything", async ({ page }) => {
   await forge(page, "SIM-E2E-LANG");
   await page.getByRole("button", { name: "EN", exact: true }).click();
   await expect(page.locator(".nav")).toContainText("Pool");
-  await expect(page.locator(".tagline")).toContainText("believable fake profile");
+  await expect(page.locator(".tagline")).toContainText("never existed");
   await expect(page.locator(".stamp")).toHaveText("FICTIONAL");
   await expect(page.locator(".section-title").nth(1)).toContainText("Life path");
 });
