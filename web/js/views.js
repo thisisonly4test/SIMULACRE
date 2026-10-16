@@ -127,7 +127,10 @@ export function forgeView(root) {
       h("span", { class: "hist-pos mono" }, `${pos + 1} / ${entries.length}`),
       h("button", { class: "btn btn-sm", id: "hist-next", disabled: pos >= entries.length - 1, onclick: () => goTo(pos + 1), title: t("hist_next") }, t("hist_next") + " ▶"),
       chips);
-    chips.querySelector('[aria-current="true"]')?.scrollIntoView({ block: "nearest", inline: "center" });
+    // Centre the current chip by scrolling the strip only: scrollIntoView would
+    // also scroll the page down to the bar.
+    const cur = chips.querySelector('[aria-current="true"]');
+    if (cur) chips.scrollLeft = cur.offsetLeft - chips.offsetLeft - (chips.clientWidth - cur.offsetWidth) / 2;
   };
 
   const goTo = (i) => {
@@ -200,7 +203,7 @@ export function forgeView(root) {
 
   let busy = false;
   let seq = 0;
-  const doForge = async (keep = false) => {
+  const doForge = async (keep = false, reveal = true) => {
     if (busy) return;
     busy = true;
     const my = ++seq;
@@ -228,7 +231,7 @@ export function forgeView(root) {
       await line(`› ${t("log_check")} ……… ${p.coherence.score}/100 · ${errors} ${t("log_errors")}`, errors ? "hit" : p.coherence.score < 85 ? "warn" : "ok");
       await line(`✓ ${t("log_done")}: ${L(p.codename)}`, "hit");
       render();
-      out.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (reveal) out.scrollIntoView({ behavior: "smooth", block: "start" });
     } catch (e) {
       await line(`✗ ${e.message}`, "hit");
       toast(e.message, true);
@@ -251,21 +254,22 @@ export function forgeView(root) {
   form.addEventListener("keydown", (e) => { if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) { e.preventDefault(); doForge(false); } });
 
   root.append(
+    // The landing screen: title and form fill the first viewport, so the
+    // history bar and the dossier start below the fold.
+    h("div", { class: "landing" },
     h("section", { class: "hero" },
       h("div", { class: "hero-copy" },
         h("p", { class: "eyebrow" }, h("span", { class: "rec", "aria-hidden": "true" }), t("eyebrow")),
         h("h1", { class: "wordmark", "aria-label": "Simulacre" }, [..."SIMULACRE"].map((c, i) => h("span", { class: "wm-c", "aria-hidden": "true", vars: { "--i": i } }, c))),
-        h("p", { class: "tagline", html: t("tagline") }),
-        h("p", { class: "lede" }, t("lede")),
-        h("p", { class: "start" }, t("start"))),
+        h("p", { class: "tagline", html: t("tagline") })),
       h("div", { class: "hero-puppet" }, marionette())),
     h("div", { class: "forge-row" },
       form,
       h("div", { class: "terminal", role: "log", "aria-live": "polite" },
-        h("div", { class: "terminal-bar" }, h("b", {}, t("receipt")), h("span", { class: "mono" }, new Date().toISOString().slice(0, 10))), log)),
+        h("div", { class: "terminal-bar" }, h("b", {}, t("receipt")), h("span", { class: "mono" }, new Date().toISOString().slice(0, 10))), log))),
     histBar, out);
 
-  if (q.get("seed") || !forgeState.persona) doForge(false).then(() => { if (q.get("seed")) history.replaceState(null, "", "#/"); });
+  if (q.get("seed") || !forgeState.persona) doForge(false, !!q.get("seed")).then(() => { if (q.get("seed")) history.replaceState(null, "", "#/"); });
   else { render(); log.append(h("li", { class: "dim" }, `$ simulacre forge --seed ${forgeState.recipe.seed}`)); }
 }
 
