@@ -65,6 +65,25 @@ function historyAmend(p, dirty) {
   if (cur) Object.assign(forgeState, { persona: cur.p, recipe: cur.p.recipe, dirty: cur.dirty, lastSeed: cur.p.recipe.seed });
 }
 
+/** The print receipt for a legend: printed line by line after a forge, and
+ *  at once when a legend is restored, so the receipt is never blank. */
+function receipt(p) {
+  const errors = p.coherence.checks.filter((c) => c.severity === "error").length;
+  return [
+    [`$ simulacre forge --seed ${p.recipe.seed} --locale ${p.locale.code} --archetype ${p.archetype}`, "dim"],
+    [`› ${t("log_identity")} ……… ${p.identity.first_name} ${p.identity.last_name}, ${p.identity.age} — ${p.residence.place.city}`, "ok"],
+    [`› ${t("log_life")} ……… ${p.education.length} + ${p.career.length} ${t("log_jobs")}`, "ok"],
+    [`› ${t("log_family")} ……… ${lab("relationship", p.family.relationship)}, ${p.family.children.length + p.family.siblings.length + p.family.pets.length} +`, "ok"],
+    [`› ${t("log_mind")} ……… ${lab("ptype", p.personality.type_key)} [${p.personality.ocean.join(" ")}]`, "ok"],
+    [`› ${t("log_rhythm")} ……… ${lab("chronotype", p.behavior.chronotype)} ${p.behavior.wake}→${p.behavior.sleep}`, "ok"],
+    [`› ${t("log_digital")} ……… ${p.accounts.length} ${t("log_accounts")}: ${p.accounts.map((a) => a.platform).join(", ")}`, "ok"],
+    [`› ${t("log_voice")} ……… ${p.voice.length} ${t("log_posts")}`, "ok"],
+    [`› ${t("log_check")} ……… ${p.coherence.score}/100 · ${errors} ${t("log_errors")}`, errors ? "hit" : p.coherence.score < 85 ? "warn" : "ok"],
+    [`✓ ${t("log_done")}: ${L(p.codename)}`, "hit"],
+  ];
+}
+const receiptLines = (p) => receipt(p).map(([text, cls]) => h("li", { class: cls }, text));
+
 export function forgeView(root) {
   const q = routeParams();
   const meta = ctx.meta;
@@ -143,7 +162,7 @@ export function forgeView(root) {
     Object.assign(forgeState, { persona: p, recipe: p.recipe, dirty, lastSeed: p.recipe.seed });
     fillForm(p.recipe);
     seedTouched = false;
-    clear(log).append(h("li", { class: "dim" }, `↺ ${t("hist_restored")} ${i + 1}/${h0.entries.length} — ${p.recipe.seed}`), h("li", { class: "ok" }, `✓ ${L(p.codename)} · ${p.identity.first_name} ${p.identity.last_name}`));
+    clear(log).append(h("li", { class: "dim" }, `↺ ${t("hist_restored")} ${i + 1}/${h0.entries.length}`), ...receiptLines(p));
     render();
   };
 
@@ -219,17 +238,7 @@ export function forgeView(root) {
       seedIn.value = p.recipe.seed;
       seedTouched = false;
       historyPush(p);
-      const errors = p.coherence.checks.filter((c) => c.severity === "error").length;
-      await line(`$ simulacre forge --seed ${p.recipe.seed} --locale ${p.locale.code} --archetype ${p.archetype}`, "dim");
-      await line(`› ${t("log_identity")} ……… ${p.identity.first_name} ${p.identity.last_name}, ${p.identity.age} — ${p.residence.place.city}`, "ok");
-      await line(`› ${t("log_life")} ……… ${p.education.length} + ${p.career.length} ${t("log_jobs")}`, "ok");
-      await line(`› ${t("log_family")} ……… ${lab("relationship", p.family.relationship)}, ${p.family.children.length + p.family.siblings.length + p.family.pets.length} +`, "ok");
-      await line(`› ${t("log_mind")} ……… ${lab("ptype", p.personality.type_key)} [${p.personality.ocean.join(" ")}]`, "ok");
-      await line(`› ${t("log_rhythm")} ……… ${lab("chronotype", p.behavior.chronotype)} ${p.behavior.wake}→${p.behavior.sleep}`, "ok");
-      await line(`› ${t("log_digital")} ……… ${p.accounts.length} ${t("log_accounts")}: ${p.accounts.map((a) => a.platform).join(", ")}`, "ok");
-      await line(`› ${t("log_voice")} ……… ${p.voice.length} ${t("log_posts")}`, "ok");
-      await line(`› ${t("log_check")} ……… ${p.coherence.score}/100 · ${errors} ${t("log_errors")}`, errors ? "hit" : p.coherence.score < 85 ? "warn" : "ok");
-      await line(`✓ ${t("log_done")}: ${L(p.codename)}`, "hit");
+      for (const [text, cls] of receipt(p)) await line(text, cls);
       render();
       if (reveal) out.scrollIntoView({ behavior: "smooth", block: "start" });
     } catch (e) {
@@ -270,7 +279,7 @@ export function forgeView(root) {
     histBar, out);
 
   if (q.get("seed") || !forgeState.persona) doForge(false, !!q.get("seed")).then(() => { if (q.get("seed")) history.replaceState(null, "", "#/"); });
-  else { render(); log.append(h("li", { class: "dim" }, `$ simulacre forge --seed ${forgeState.recipe.seed}`)); }
+  else { render(); log.append(...receiptLines(forgeState.persona)); }
 }
 
 // ═════════════════════════════════════ POOL ══════════════════════════════════
