@@ -52,7 +52,7 @@ pub(crate) fn interests(ctx: &Ctx, id: &Identity) -> Vec<Interest> {
             Interest {
                 key: h.key.clone(),
                 label: h.l10n(),
-                native_label: h.label_in(ctx.lang).to_string(),
+                native_label: ctx.spell(h.label_in(ctx.lang).to_string()),
                 category: h.cat.clone(),
                 depth: depth.into(),
                 since_year: (by + start_age).min(ctx.year),
@@ -111,8 +111,8 @@ pub(crate) fn appearance(ctx: &Ctx, id: &Identity, interests: &[Interest]) -> Ap
     let mut rng = ctx.rng("appearance");
     let female = id.gender.is_female();
     let (mean, sd) = match (ctx.locale.country_code.as_str(), female) {
-        ("DE", false) => (180.0, 7.0),
-        ("DE", true) => (166.0, 6.5),
+        ("DE" | "AT" | "CH", false) => (179.0, 7.0),
+        ("DE" | "AT" | "CH", true) => (166.0, 6.5),
         (_, false) => (176.0, 7.0),
         (_, true) => (163.0, 6.5),
     };
@@ -124,7 +124,7 @@ pub(crate) fn appearance(ctx: &Ctx, id: &Identity, interests: &[Interest]) -> Ap
         *rng.pick_weighted(&[("slim", 22.0), ("average", 45.0), ("stocky", 15.0), ("heavy", 13.0 + id.age as f64 / 10.0)])
     };
     let eyes = rng.pick_weighted(match ctx.locale.country_code.as_str() {
-        "DE" | "GB" => &[("blue", 35.0), ("brown", 30.0), ("hazel", 12.0), ("green", 13.0), ("grey", 10.0)],
+        "DE" | "GB" | "AT" | "CH" | "IE" | "BE" => &[("blue", 35.0), ("brown", 30.0), ("hazel", 12.0), ("green", 13.0), ("grey", 10.0)],
         _ => &[("brown", 48.0), ("blue", 22.0), ("hazel", 14.0), ("green", 11.0), ("grey", 5.0)],
     });
     let p_grey = ((id.age as f64 - 35.0) / 30.0).clamp(0.0, 0.95);
@@ -277,8 +277,10 @@ pub(crate) fn behavior(ctx: &Ctx, id: &Identity, occ: &Occupation, p: &Personali
     } else {
         let p_iphone = match cc {
             "US" => 0.58,
-            "GB" => 0.5,
-            "DE" => 0.32,
+            "CA" | "AU" => 0.55,
+            "GB" | "IE" | "CH" => 0.5,
+            "DE" | "AT" => 0.32,
+            "BE" => 0.38,
             _ => 0.33,
         } + income as f64 * 0.04
             + if age < 30 { 0.1 } else { 0.0 };

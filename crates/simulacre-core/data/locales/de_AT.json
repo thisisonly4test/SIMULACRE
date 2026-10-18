@@ -1,0 +1,620 @@
+{
+  "code": "de_AT",
+  "language": "de",
+  "country": {
+    "fr": "Autriche",
+    "en": "Austria"
+  },
+  "country_code": "AT",
+  "phone": {
+    "mobile": null,
+    "landline": null,
+    "fiction_reserved": false
+  },
+  "first_names": {
+    "male": [
+      [
+        "Franz",
+        1945
+      ],
+      [
+        "Johann",
+        1948
+      ],
+      [
+        "Josef",
+        1950
+      ],
+      [
+        "Karl",
+        1950
+      ],
+      [
+        "Gerhard",
+        1955
+      ],
+      [
+        "Helmut",
+        1958
+      ],
+      [
+        "Manfred",
+        1960
+      ],
+      [
+        "Wolfgang",
+        1962
+      ],
+      [
+        "Andreas",
+        1970
+      ],
+      [
+        "Thomas",
+        1972
+      ],
+      [
+        "Christian",
+        1975
+      ],
+      [
+        "Martin",
+        1975
+      ],
+      [
+        "Stefan",
+        1978
+      ],
+      [
+        "Markus",
+        1980
+      ],
+      [
+        "Michael",
+        1982
+      ],
+      [
+        "Daniel",
+        1985
+      ],
+      [
+        "Florian",
+        1990
+      ],
+      [
+        "Lukas",
+        1995
+      ],
+      [
+        "David",
+        1995
+      ],
+      [
+        "Emir",
+        1995
+      ],
+      [
+        "Tobias",
+        1998
+      ],
+      [
+        "Maximilian",
+        2005
+      ],
+      [
+        "Luca",
+        2008
+      ],
+      [
+        "Jakob",
+        2010
+      ],
+      [
+        "Felix",
+        2010
+      ],
+      [
+        "Paul",
+        2012
+      ],
+      [
+        "Elias",
+        2015
+      ]
+    ],
+    "female": [
+      [
+        "Theresia",
+        1945
+      ],
+      [
+        "Gertraud",
+        1950
+      ],
+      [
+        "Elisabeth",
+        1955
+      ],
+      [
+        "Brigitte",
+        1958
+      ],
+      [
+        "Monika",
+        1960
+      ],
+      [
+        "Karin",
+        1968
+      ],
+      [
+        "Andrea",
+        1970
+      ],
+      [
+        "Sabine",
+        1972
+      ],
+      [
+        "Claudia",
+        1972
+      ],
+      [
+        "Barbara",
+        1975
+      ],
+      [
+        "Katharina",
+        1985
+      ],
+      [
+        "Julia",
+        1990
+      ],
+      [
+        "Lisa",
+        1992
+      ],
+      [
+        "Sarah",
+        1993
+      ],
+      [
+        "Elif",
+        1995
+      ],
+      [
+        "Anna",
+        1997
+      ],
+      [
+        "Laura",
+        1998
+      ],
+      [
+        "Lena",
+        2003
+      ],
+      [
+        "Hannah",
+        2005
+      ],
+      [
+        "Sophie",
+        2008
+      ],
+      [
+        "Valentina",
+        2010
+      ],
+      [
+        "Emma",
+        2012
+      ],
+      [
+        "Marie",
+        2014
+      ]
+    ]
+  },
+  "last_names": [
+    "Gruber",
+    "Huber",
+    "Bauer",
+    "Wagner",
+    "Müller",
+    "Pichler",
+    "Steiner",
+    "Moser",
+    "Mayer",
+    "Hofer",
+    "Leitner",
+    "Berger",
+    "Fuchs",
+    "Eder",
+    "Fischer",
+    "Schmid",
+    "Winkler",
+    "Weber",
+    "Schwarz",
+    "Maier",
+    "Schneider",
+    "Reiter",
+    "Mayr",
+    "Schmidt",
+    "Wimmer",
+    "Egger",
+    "Brunner",
+    "Lang",
+    "Baumgartner",
+    "Auer",
+    "Binder",
+    "Lechner",
+    "Wolf",
+    "Wallner",
+    "Aigner",
+    "Ebner",
+    "Koller",
+    "Lehner",
+    "Haas",
+    "Schuster",
+    "Horvath",
+    "Novak",
+    "Yılmaz",
+    "Kovačević",
+    "Petrović"
+  ],
+  "cities": [
+    {
+      "name": "Wien",
+      "region": "Wien",
+      "postcode": "1070",
+      "lat": 48.21,
+      "lon": 16.37,
+      "tz": "Europe/Vienna",
+      "pop": 1980000,
+      "demonym": "Wiener|Wienerin",
+      "team": "der SK Rapid",
+      "landmark": "der Stephansdom",
+      "specialty": "ein Wiener Schnitzel",
+      "districts": [
+        "Neubau",
+        "Ottakring",
+        "Favoriten",
+        "die Leopoldstadt",
+        "Margareten"
+      ],
+      "university": "die Universität Wien",
+      "weather": "windig, heiße Sommer"
+    },
+    {
+      "name": "Graz",
+      "region": "Steiermark",
+      "postcode": "8010",
+      "lat": 47.07,
+      "lon": 15.44,
+      "tz": "Europe/Vienna",
+      "pop": 300000,
+      "demonym": "Grazer|Grazerin",
+      "team": "der SK Sturm",
+      "landmark": "der Uhrturm",
+      "specialty": "ein steirisches Backhendl",
+      "districts": [
+        "Lend",
+        "Gries",
+        "St. Leonhard",
+        "Geidorf",
+        "Jakomini"
+      ],
+      "university": "die Karl-Franzens-Universität",
+      "weather": "mild, oft neblig"
+    },
+    {
+      "name": "Linz",
+      "region": "Oberösterreich",
+      "postcode": "4020",
+      "lat": 48.31,
+      "lon": 14.29,
+      "tz": "Europe/Vienna",
+      "pop": 210000,
+      "demonym": "Linzer|Linzerin",
+      "team": "der LASK",
+      "landmark": "das Ars Electronica Center",
+      "specialty": "eine Linzer Torte",
+      "districts": [
+        "Urfahr",
+        "das Franckviertel",
+        "Kleinmünchen",
+        "Ebelsberg",
+        "die Altstadt"
+      ],
+      "university": "die Johannes Kepler Universität",
+      "weather": "kühl und windig"
+    },
+    {
+      "name": "Salzburg",
+      "region": "Salzburg",
+      "postcode": "5020",
+      "lat": 47.8,
+      "lon": 13.04,
+      "tz": "Europe/Vienna",
+      "pop": 155000,
+      "demonym": "Salzburger|Salzburgerin",
+      "team": "Red Bull Salzburg",
+      "landmark": "die Festung Hohensalzburg",
+      "specialty": "ein Salzburger Nockerl",
+      "districts": [
+        "Lehen",
+        "Maxglan",
+        "Gnigl",
+        "Parsch",
+        "Itzling"
+      ],
+      "university": "die Universität Salzburg",
+      "weather": "Schnürlregen"
+    },
+    {
+      "name": "Innsbruck",
+      "region": "Tirol",
+      "postcode": "6020",
+      "lat": 47.27,
+      "lon": 11.39,
+      "tz": "Europe/Vienna",
+      "pop": 132000,
+      "demonym": "Innsbrucker|Innsbruckerin",
+      "team": "der FC Wacker Innsbruck",
+      "landmark": "die Nordkette",
+      "specialty": "ein Tiroler Gröstl",
+      "districts": [
+        "Wilten",
+        "Pradl",
+        "Hötting",
+        "Reichenau",
+        "die Altstadt"
+      ],
+      "university": "die Universität Innsbruck",
+      "weather": "Föhn und viel Schnee"
+    },
+    {
+      "name": "Klagenfurt",
+      "region": "Kärnten",
+      "postcode": "9020",
+      "lat": 46.62,
+      "lon": 14.31,
+      "tz": "Europe/Vienna",
+      "pop": 102000,
+      "demonym": "Klagenfurter|Klagenfurterin",
+      "team": "der KAC",
+      "landmark": "der Lindwurmbrunnen",
+      "specialty": "Kärntner Kasnudeln",
+      "districts": [
+        "Annabichl",
+        "St. Ruprecht",
+        "Welzenegg",
+        "Waidmannsdorf",
+        "St. Peter"
+      ],
+      "university": "die Universität Klagenfurt",
+      "weather": "sonnig, warme Seen"
+    },
+    {
+      "name": "Villach",
+      "region": "Kärnten",
+      "postcode": "9500",
+      "lat": 46.61,
+      "lon": 13.85,
+      "tz": "Europe/Vienna",
+      "pop": 64000,
+      "demonym": "Villacher|Villacherin",
+      "team": "der VSV",
+      "landmark": "die Stadtpfarrkirche St. Jakob",
+      "specialty": "ein Kärntner Reindling",
+      "districts": [
+        "Lind",
+        "Völkendorf",
+        "Auen",
+        "Landskron",
+        "Warmbad"
+      ],
+      "university": "die FH Kärnten",
+      "weather": "sonnig, kalte Winter"
+    },
+    {
+      "name": "Wels",
+      "region": "Oberösterreich",
+      "postcode": "4600",
+      "lat": 48.16,
+      "lon": 14.03,
+      "tz": "Europe/Vienna",
+      "pop": 63000,
+      "demonym": "Welser|Welserin",
+      "team": "der FC Wels",
+      "landmark": "der Stadtplatz",
+      "specialty": "ein Bratl in der Rein",
+      "districts": [
+        "Vogelweide",
+        "Lichtenegg",
+        "Pernau",
+        "Neustadt",
+        "Puchberg"
+      ],
+      "university": "die FH Oberösterreich",
+      "weather": "neblige Winter"
+    },
+    {
+      "name": "St. Pölten",
+      "region": "Niederösterreich",
+      "postcode": "3100",
+      "lat": 48.2,
+      "lon": 15.62,
+      "tz": "Europe/Vienna",
+      "pop": 56000,
+      "demonym": "St. Pöltner|St. Pöltnerin",
+      "team": "der SKN St. Pölten",
+      "landmark": "der Dom",
+      "specialty": "eine Wachauer Marille",
+      "districts": [
+        "Spratzern",
+        "Wagram",
+        "Viehofen",
+        "Harland",
+        "die Altstadt"
+      ],
+      "university": "die FH St. Pölten",
+      "weather": "windig"
+    },
+    {
+      "name": "Bregenz",
+      "region": "Vorarlberg",
+      "postcode": "6900",
+      "lat": 47.5,
+      "lon": 9.75,
+      "tz": "Europe/Vienna",
+      "pop": 30000,
+      "demonym": "Bregenzer|Bregenzerin",
+      "team": "der SW Bregenz",
+      "landmark": "die Seebühne",
+      "specialty": "Käsknöpfle",
+      "districts": [
+        "Vorkloster",
+        "Rieden",
+        "Fluh",
+        "die Oberstadt",
+        "Weidach"
+      ],
+      "university": "die FH Vorarlberg",
+      "weather": "Regen vom Bodensee"
+    }
+  ],
+  "education": {
+    "secondary": {
+      "degree": "Matura",
+      "institution": "{school}-Gymnasium"
+    },
+    "vocational": {
+      "degree": "Lehrabschluss ({field})",
+      "institution": "Berufsschule {city}"
+    },
+    "bachelor": {
+      "degree": "Bachelor {field}",
+      "institution": "{university}"
+    },
+    "master": {
+      "degree": "Master {field}",
+      "institution": "{university}"
+    },
+    "doctorate": {
+      "degree": "Doktorat ({field})",
+      "institution": "{university}"
+    }
+  },
+  "schools": [
+    "Stifter",
+    "Mozart",
+    "Grillparzer",
+    "Bertha-von-Suttner",
+    "Maria-Theresia",
+    "Mendel",
+    "Rosegger",
+    "Kepler",
+    "Lise-Meitner",
+    "Ingeborg-Bachmann",
+    "Schubert",
+    "Theodor-Kramer"
+  ],
+  "fields": {
+    "tech": "Informatik",
+    "health": "Pflegewissenschaft",
+    "education": "Lehramt",
+    "retail": "Betriebswirtschaft",
+    "hospitality": "Hotelmanagement",
+    "trades": "Bauingenieurwesen",
+    "logistics": "Logistik",
+    "office": "Betriebswirtschaft",
+    "creative": "Kommunikationsdesign",
+    "public": "Verwaltungswissenschaft",
+    "industry": "Maschinenbau",
+    "agri": "Agrarwissenschaft"
+  },
+  "employers": {
+    "default": [
+      "{surname} & Söhne GmbH",
+      "{word} Gruppe",
+      "{word} Service GmbH",
+      "{surname} Technik",
+      "{word} {city}"
+    ],
+    "health": [
+      "LKH {city}",
+      "Ordination {surname}",
+      "{word}-Apotheke",
+      "Pensionistenheim {word}"
+    ],
+    "education": [
+      "Volksschule {school}",
+      "{school}-Gymnasium",
+      "Volkshochschule {city}",
+      "{word} Akademie"
+    ],
+    "public": [
+      "Magistrat {city}",
+      "Stadtbibliothek {city}",
+      "Österreichische Post — {city}",
+      "Stadtwerke {city}"
+    ],
+    "hospitality": [
+      "Gasthaus {word}",
+      "Hotel {word}",
+      "Café {surname}",
+      "Heuriger {surname}"
+    ],
+    "retail": [
+      "{word} Markt",
+      "Boutique {word}",
+      "{surname} Moden"
+    ]
+  },
+  "words": [
+    "Alpenblick",
+    "Donau",
+    "Edelweiß",
+    "Lindenhof",
+    "Adler",
+    "Sonnenhof",
+    "Tauern",
+    "Kaiserhof",
+    "Bergland",
+    "Wienerwald",
+    "Horizont",
+    "Seeblick",
+    "Panorama",
+    "Enzian",
+    "Austria"
+  ],
+  "pet_names": {
+    "dog": [
+      "Bello",
+      "Rex",
+      "Luna",
+      "Balu",
+      "Sammy",
+      "Lucky",
+      "Nala",
+      "Struppi"
+    ],
+    "cat": [
+      "Mimi",
+      "Felix",
+      "Minka",
+      "Garfield",
+      "Luna",
+      "Tiger",
+      "Mausi",
+      "Leo"
+    ]
+  },
+  "housing": {
+    "apartment": "Wohnung",
+    "house": "Haus"
+  }
+}

@@ -1,0 +1,612 @@
+{
+  "code": "de_CH",
+  "language": "de",
+  "country": {
+    "fr": "Suisse (alémanique)",
+    "en": "Switzerland (German-speaking)"
+  },
+  "country_code": "CH",
+  "phone": {
+    "mobile": null,
+    "landline": null,
+    "fiction_reserved": false
+  },
+  "first_names": {
+    "male": [
+      [
+        "Hans",
+        1945
+      ],
+      [
+        "Walter",
+        1948
+      ],
+      [
+        "Peter",
+        1950
+      ],
+      [
+        "Urs",
+        1958
+      ],
+      [
+        "Beat",
+        1962
+      ],
+      [
+        "Daniel",
+        1968
+      ],
+      [
+        "Thomas",
+        1968
+      ],
+      [
+        "Reto",
+        1972
+      ],
+      [
+        "Marco",
+        1975
+      ],
+      [
+        "Patrick",
+        1978
+      ],
+      [
+        "Simon",
+        1985
+      ],
+      [
+        "Lukas",
+        1988
+      ],
+      [
+        "Fabian",
+        1990
+      ],
+      [
+        "Mehmet",
+        1990
+      ],
+      [
+        "Nicolas",
+        1992
+      ],
+      [
+        "Luca",
+        1995
+      ],
+      [
+        "Dario",
+        1995
+      ],
+      [
+        "Jonas",
+        2005
+      ],
+      [
+        "Arian",
+        2005
+      ],
+      [
+        "Leon",
+        2008
+      ],
+      [
+        "Noah",
+        2010
+      ],
+      [
+        "Elias",
+        2012
+      ],
+      [
+        "Matteo",
+        2012
+      ],
+      [
+        "Liam",
+        2015
+      ]
+    ],
+    "female": [
+      [
+        "Ruth",
+        1945
+      ],
+      [
+        "Elisabeth",
+        1948
+      ],
+      [
+        "Verena",
+        1955
+      ],
+      [
+        "Ursula",
+        1955
+      ],
+      [
+        "Barbara",
+        1965
+      ],
+      [
+        "Monika",
+        1965
+      ],
+      [
+        "Sandra",
+        1975
+      ],
+      [
+        "Corinne",
+        1975
+      ],
+      [
+        "Andrea",
+        1975
+      ],
+      [
+        "Nicole",
+        1978
+      ],
+      [
+        "Sarah",
+        1988
+      ],
+      [
+        "Laura",
+        1990
+      ],
+      [
+        "Jasmin",
+        1990
+      ],
+      [
+        "Céline",
+        1993
+      ],
+      [
+        "Nina",
+        1995
+      ],
+      [
+        "Lea",
+        1997
+      ],
+      [
+        "Anna",
+        2000
+      ],
+      [
+        "Alina",
+        2005
+      ],
+      [
+        "Elena",
+        2008
+      ],
+      [
+        "Mia",
+        2012
+      ],
+      [
+        "Emma",
+        2012
+      ],
+      [
+        "Sofia",
+        2012
+      ],
+      [
+        "Lina",
+        2014
+      ]
+    ]
+  },
+  "last_names": [
+    "Müller",
+    "Meier",
+    "Schmid",
+    "Keller",
+    "Weber",
+    "Huber",
+    "Schneider",
+    "Meyer",
+    "Steiner",
+    "Fischer",
+    "Gerber",
+    "Brunner",
+    "Baumann",
+    "Frei",
+    "Zimmermann",
+    "Moser",
+    "Widmer",
+    "Wyss",
+    "Graf",
+    "Roth",
+    "Suter",
+    "Baumgartner",
+    "Kälin",
+    "Bachmann",
+    "Hofer",
+    "Lüthi",
+    "Bühler",
+    "Ammann",
+    "Bösch",
+    "Egli",
+    "Studer",
+    "Bieri",
+    "Hug",
+    "Marti",
+    "Sutter",
+    "Zürcher",
+    "Wenger",
+    "Gashi",
+    "Krasniqi",
+    "Rossi",
+    "Ferrari",
+    "Da Silva",
+    "Yilmaz",
+    "Nguyen"
+  ],
+  "cities": [
+    {
+      "name": "Zürich",
+      "region": "Zürich",
+      "postcode": "8004",
+      "lat": 47.37,
+      "lon": 8.54,
+      "tz": "Europe/Zurich",
+      "pop": 421000,
+      "demonym": "Zürcher|Zürcherin",
+      "team": "der FCZ",
+      "landmark": "das Grossmünster",
+      "specialty": "ein Zürcher Geschnetzeltes",
+      "districts": [
+        "Wiedikon",
+        "Oerlikon",
+        "Altstetten",
+        "Wipkingen",
+        "das Seefeld"
+      ],
+      "university": "die ETH Zürich",
+      "weather": "Hochnebel im Winter"
+    },
+    {
+      "name": "Basel",
+      "region": "Basel-Stadt",
+      "postcode": "4057",
+      "lat": 47.56,
+      "lon": 7.59,
+      "tz": "Europe/Zurich",
+      "pop": 173000,
+      "demonym": "Basler|Baslerin",
+      "team": "der FCB",
+      "landmark": "das Münster",
+      "specialty": "ein Basler Läckerli",
+      "districts": [
+        "Kleinbasel",
+        "das Gundeli",
+        "St. Johann",
+        "Bachletten",
+        "Breite"
+      ],
+      "university": "die Universität Basel",
+      "weather": "mild, oft grau"
+    },
+    {
+      "name": "Bern",
+      "region": "Bern",
+      "postcode": "3011",
+      "lat": 46.95,
+      "lon": 7.45,
+      "tz": "Europe/Zurich",
+      "pop": 134000,
+      "demonym": "Berner|Bernerin",
+      "team": "die Young Boys",
+      "landmark": "der Zytglogge",
+      "specialty": "eine Berner Platte",
+      "districts": [
+        "die Länggasse",
+        "die Lorraine",
+        "Breitenrain",
+        "Bümpliz",
+        "Kirchenfeld"
+      ],
+      "university": "die Universität Bern",
+      "weather": "kalte Bise"
+    },
+    {
+      "name": "Luzern",
+      "region": "Luzern",
+      "postcode": "6003",
+      "lat": 47.05,
+      "lon": 8.31,
+      "tz": "Europe/Zurich",
+      "pop": 82000,
+      "demonym": "Luzerner|Luzernerin",
+      "team": "der FC Luzern",
+      "landmark": "die Kapellbrücke",
+      "specialty": "eine Luzerner Chügelipastete",
+      "districts": [
+        "Tribschen",
+        "Maihof",
+        "Littau",
+        "das Hirschmattquartier",
+        "Wesemlin"
+      ],
+      "university": "die Universität Luzern",
+      "weather": "Föhn und Seenebel"
+    },
+    {
+      "name": "St. Gallen",
+      "region": "St. Gallen",
+      "postcode": "9000",
+      "lat": 47.42,
+      "lon": 9.37,
+      "tz": "Europe/Zurich",
+      "pop": 76000,
+      "demonym": "St. Galler|St. Gallerin",
+      "team": "der FC St. Gallen",
+      "landmark": "die Stiftsbibliothek",
+      "specialty": "eine St. Galler Bratwurst",
+      "districts": [
+        "St. Fiden",
+        "Lachen",
+        "St. Georgen",
+        "Rotmonten",
+        "Neudorf"
+      ],
+      "university": "die Universität St. Gallen",
+      "weather": "viel Regen"
+    },
+    {
+      "name": "Winterthur",
+      "region": "Zürich",
+      "postcode": "8400",
+      "lat": 47.5,
+      "lon": 8.72,
+      "tz": "Europe/Zurich",
+      "pop": 120000,
+      "demonym": "Winterthurer|Winterthurerin",
+      "team": "der FC Winterthur",
+      "landmark": "das Technorama",
+      "specialty": "ein Cervelat vom Grill",
+      "districts": [
+        "Töss",
+        "Veltheim",
+        "Oberwinterthur",
+        "Seen",
+        "Wülflingen"
+      ],
+      "university": "die ZHAW",
+      "weather": "kühl und neblig"
+    },
+    {
+      "name": "Zug",
+      "region": "Zug",
+      "postcode": "6300",
+      "lat": 47.17,
+      "lon": 8.52,
+      "tz": "Europe/Zurich",
+      "pop": 31000,
+      "demonym": "Zuger|Zugerin",
+      "team": "der EV Zug",
+      "landmark": "der Zytturm",
+      "specialty": "eine Zuger Kirschtorte",
+      "districts": [
+        "Oberwil",
+        "Herti",
+        "Guthirt",
+        "die Altstadt",
+        "Lorzen"
+      ],
+      "university": "die Hochschule Luzern",
+      "weather": "Seenebel"
+    },
+    {
+      "name": "Biel",
+      "region": "Bern",
+      "postcode": "2502",
+      "lat": 47.14,
+      "lon": 7.25,
+      "tz": "Europe/Zurich",
+      "pop": 56000,
+      "demonym": "Bieler|Bielerin",
+      "team": "der EHC Biel",
+      "landmark": "die Altstadt",
+      "specialty": "ein Glas Twanner",
+      "districts": [
+        "Mett",
+        "Madretsch",
+        "Bözingen",
+        "Vingelz",
+        "die Neustadt"
+      ],
+      "university": "die Berner Fachhochschule",
+      "weather": "Bise vom See"
+    },
+    {
+      "name": "Thun",
+      "region": "Bern",
+      "postcode": "3600",
+      "lat": 46.76,
+      "lon": 7.63,
+      "tz": "Europe/Zurich",
+      "pop": 44000,
+      "demonym": "Thuner|Thunerin",
+      "team": "der FC Thun",
+      "landmark": "das Schloss Thun",
+      "specialty": "eine Meringue mit Rahm",
+      "districts": [
+        "Lerchenfeld",
+        "Strättligen",
+        "Gwatt",
+        "Dürrenast",
+        "Goldiwil"
+      ],
+      "university": "die Berner Fachhochschule",
+      "weather": "Föhn und Seeluft"
+    },
+    {
+      "name": "Chur",
+      "region": "Graubünden",
+      "postcode": "7000",
+      "lat": 46.85,
+      "lon": 9.53,
+      "tz": "Europe/Zurich",
+      "pop": 38000,
+      "demonym": "Churer|Churerin",
+      "team": "die Nati",
+      "landmark": "die Altstadt",
+      "specialty": "eine Bündner Gerstensuppe",
+      "districts": [
+        "Masans",
+        "Lürlibad",
+        "Welschdörfli",
+        "Kalchbühl",
+        "die Altstadt"
+      ],
+      "university": "die FH Graubünden",
+      "weather": "trocken, kalte Winter"
+    }
+  ],
+  "education": {
+    "secondary": {
+      "degree": "Matura",
+      "institution": "Kantonsschule {school}"
+    },
+    "vocational": {
+      "degree": "EFZ ({field})",
+      "institution": "Berufsschule {city}"
+    },
+    "bachelor": {
+      "degree": "Bachelor {field}",
+      "institution": "{university}"
+    },
+    "master": {
+      "degree": "Master {field}",
+      "institution": "{university}"
+    },
+    "doctorate": {
+      "degree": "Doktorat ({field})",
+      "institution": "{university}"
+    }
+  },
+  "schools": [
+    "Rämibühl",
+    "Hohe Promenade",
+    "Enge",
+    "Freudenberg",
+    "Kirchenfeld",
+    "Neufeld",
+    "Alpenquai",
+    "Musegg",
+    "Burggraben",
+    "Wiedikon",
+    "Zürich Nord",
+    "Oerlikon"
+  ],
+  "fields": {
+    "tech": "Informatik",
+    "health": "Pflegewissenschaft",
+    "education": "Lehramt",
+    "retail": "Betriebswirtschaft",
+    "hospitality": "Hotelmanagement",
+    "trades": "Bauingenieurwesen",
+    "logistics": "Logistik",
+    "office": "Betriebswirtschaft",
+    "creative": "Kommunikationsdesign",
+    "public": "Verwaltungswissenschaft",
+    "industry": "Maschinenbau",
+    "agri": "Agrarwissenschaft"
+  },
+  "employers": {
+    "default": [
+      "{surname} AG",
+      "{word} Gruppe",
+      "{word} Services GmbH",
+      "{surname} Technik AG",
+      "{word} {city}"
+    ],
+    "health": [
+      "Kantonsspital {city}",
+      "Praxis {surname}",
+      "{word} Apotheke",
+      "Alterszentrum {word}"
+    ],
+    "education": [
+      "Primarschule {school}",
+      "Kantonsschule {school}",
+      "Volkshochschule {city}",
+      "{word} Akademie"
+    ],
+    "public": [
+      "Stadt {city}",
+      "Stadtbibliothek {city}",
+      "Die Post — {city}",
+      "SBB — {city}"
+    ],
+    "hospitality": [
+      "Restaurant {word}",
+      "Hotel {word}",
+      "Café {surname}",
+      "Beizli {word}"
+    ],
+    "retail": [
+      "{word} Markt",
+      "Boutique {word}",
+      "{surname} Mode"
+    ]
+  },
+  "words": [
+    "Helvetia",
+    "Alpina",
+    "Edelweiss",
+    "Rigi",
+    "Pilatus",
+    "Säntis",
+    "Matterhorn",
+    "Lindenhof",
+    "Seeblick",
+    "Horizont",
+    "Gotthard",
+    "Rheinblick",
+    "Panorama",
+    "Aare",
+    "Sonnenberg"
+  ],
+  "pet_names": {
+    "dog": [
+      "Bello",
+      "Luna",
+      "Rocky",
+      "Balu",
+      "Sammy",
+      "Kira",
+      "Nala",
+      "Bäri"
+    ],
+    "cat": [
+      "Mimi",
+      "Felix",
+      "Minka",
+      "Garfield",
+      "Luna",
+      "Tiger",
+      "Leo",
+      "Simba"
+    ]
+  },
+  "housing": {
+    "apartment": "Wohnung",
+    "house": "Haus"
+  },
+  "spelling": "ch",
+  "second_languages": [
+    "fr",
+    "it"
+  ]
+}

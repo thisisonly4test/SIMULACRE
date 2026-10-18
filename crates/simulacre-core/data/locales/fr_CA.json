@@ -1,0 +1,610 @@
+{
+  "code": "fr_CA",
+  "language": "fr",
+  "country": {
+    "fr": "Canada (Québec)",
+    "en": "Canada (Quebec)"
+  },
+  "country_code": "CA",
+  "phone": {
+    "mobile": "+1 ({area}) 555-01##",
+    "landline": "+1 ({area}) 555-01##",
+    "fiction_reserved": true
+  },
+  "first_names": {
+    "male": [
+      [
+        "Gilles",
+        1945
+      ],
+      [
+        "Réjean",
+        1950
+      ],
+      [
+        "Yves",
+        1955
+      ],
+      [
+        "Benoît",
+        1965
+      ],
+      [
+        "Sylvain",
+        1965
+      ],
+      [
+        "Éric",
+        1970
+      ],
+      [
+        "Stéphane",
+        1970
+      ],
+      [
+        "Martin",
+        1972
+      ],
+      [
+        "Patrick",
+        1972
+      ],
+      [
+        "Mathieu",
+        1985
+      ],
+      [
+        "Jonathan",
+        1987
+      ],
+      [
+        "Alexandre",
+        1988
+      ],
+      [
+        "Maxime",
+        1990
+      ],
+      [
+        "Samuel",
+        1995
+      ],
+      [
+        "Olivier",
+        1998
+      ],
+      [
+        "Gabriel",
+        2000
+      ],
+      [
+        "Thomas",
+        2002
+      ],
+      [
+        "William",
+        2005
+      ],
+      [
+        "Félix",
+        2005
+      ],
+      [
+        "Jacob",
+        2008
+      ],
+      [
+        "Liam",
+        2012
+      ],
+      [
+        "Noah",
+        2015
+      ]
+    ],
+    "female": [
+      [
+        "Ginette",
+        1945
+      ],
+      [
+        "Lise",
+        1950
+      ],
+      [
+        "Diane",
+        1955
+      ],
+      [
+        "Johanne",
+        1960
+      ],
+      [
+        "Chantal",
+        1960
+      ],
+      [
+        "Nathalie",
+        1970
+      ],
+      [
+        "Isabelle",
+        1972
+      ],
+      [
+        "Annie",
+        1975
+      ],
+      [
+        "Julie",
+        1978
+      ],
+      [
+        "Mélanie",
+        1980
+      ],
+      [
+        "Catherine",
+        1985
+      ],
+      [
+        "Marie-Ève",
+        1985
+      ],
+      [
+        "Audrey",
+        1988
+      ],
+      [
+        "Émilie",
+        1990
+      ],
+      [
+        "Camille",
+        1995
+      ],
+      [
+        "Sarah",
+        1995
+      ],
+      [
+        "Léa",
+        2000
+      ],
+      [
+        "Rosalie",
+        2002
+      ],
+      [
+        "Florence",
+        2005
+      ],
+      [
+        "Emma",
+        2010
+      ],
+      [
+        "Alice",
+        2012
+      ],
+      [
+        "Charlotte",
+        2014
+      ]
+    ]
+  },
+  "last_names": [
+    "Tremblay",
+    "Gagnon",
+    "Roy",
+    "Côté",
+    "Bouchard",
+    "Gauthier",
+    "Morin",
+    "Lavoie",
+    "Fortin",
+    "Gagné",
+    "Ouellet",
+    "Pelletier",
+    "Bélanger",
+    "Lévesque",
+    "Bergeron",
+    "Leblanc",
+    "Paquette",
+    "Girard",
+    "Simard",
+    "Boucher",
+    "Caron",
+    "Beaulieu",
+    "Cloutier",
+    "Dubé",
+    "Poirier",
+    "Fournier",
+    "Lapointe",
+    "Leclerc",
+    "Lefebvre",
+    "Poulin",
+    "Thibault",
+    "St-Pierre",
+    "Nadeau",
+    "Martin",
+    "Landry",
+    "Martel",
+    "Bédard",
+    "Grenier",
+    "Lessard",
+    "Bernier",
+    "Richard",
+    "Michaud",
+    "Hébert",
+    "Desjardins",
+    "Nguyen",
+    "Joseph",
+    "Jean-Baptiste"
+  ],
+  "cities": [
+    {
+      "name": "Montréal",
+      "region": "Québec",
+      "postcode": "H2J 1X5",
+      "area": "514",
+      "lat": 45.5,
+      "lon": -73.57,
+      "tz": "America/Toronto",
+      "pop": 1760000,
+      "demonym": "Montréalais|Montréalaise",
+      "team": "le Canadien",
+      "landmark": "le mont Royal",
+      "specialty": "une poutine",
+      "districts": [
+        "le Plateau-Mont-Royal",
+        "Rosemont",
+        "Villeray",
+        "Hochelaga",
+        "le Mile End"
+      ],
+      "university": "l'Université de Montréal",
+      "weather": "hivers glaciaux, étés humides"
+    },
+    {
+      "name": "Québec",
+      "region": "Québec",
+      "postcode": "G1R 2J6",
+      "area": "418",
+      "lat": 46.81,
+      "lon": -71.21,
+      "tz": "America/Toronto",
+      "pop": 550000,
+      "demonym": "Québécois|Québécoise",
+      "team": "les Remparts",
+      "landmark": "le Château Frontenac",
+      "specialty": "une tourtière",
+      "districts": [
+        "Saint-Roch",
+        "Limoilou",
+        "le Vieux-Québec",
+        "Saint-Sauveur",
+        "Montcalm"
+      ],
+      "university": "l'Université Laval",
+      "weather": "de la neige à n'en plus finir"
+    },
+    {
+      "name": "Gatineau",
+      "region": "Québec",
+      "postcode": "J8X 3X7",
+      "area": "819",
+      "lat": 45.48,
+      "lon": -75.7,
+      "tz": "America/Toronto",
+      "pop": 291000,
+      "demonym": "Gatinois|Gatinoise",
+      "team": "les Olympiques",
+      "landmark": "le parc de la Gatineau",
+      "specialty": "une queue de castor",
+      "districts": [
+        "Hull",
+        "Aylmer",
+        "le Plateau",
+        "Buckingham",
+        "Masson-Angers"
+      ],
+      "university": "l'Université du Québec en Outaouais",
+      "weather": "froid sec l'hiver"
+    },
+    {
+      "name": "Sherbrooke",
+      "region": "Québec",
+      "postcode": "J1H 1A1",
+      "area": "819",
+      "lat": 45.4,
+      "lon": -71.89,
+      "tz": "America/Toronto",
+      "pop": 172000,
+      "demonym": "Sherbrookois|Sherbrookoise",
+      "team": "le Phoenix",
+      "landmark": "le lac des Nations",
+      "specialty": "un pouding chômeur",
+      "districts": [
+        "Fleurimont",
+        "Lennoxville",
+        "le Vieux-Nord",
+        "Jacques-Cartier",
+        "Rock Forest"
+      ],
+      "university": "l'Université de Sherbrooke",
+      "weather": "neige abondante"
+    },
+    {
+      "name": "Trois-Rivières",
+      "region": "Québec",
+      "postcode": "G9A 5H3",
+      "area": "819",
+      "lat": 46.34,
+      "lon": -72.54,
+      "tz": "America/Toronto",
+      "pop": 140000,
+      "demonym": "Trifluvien|Trifluvienne",
+      "team": "les Lions",
+      "landmark": "le parc portuaire",
+      "specialty": "une guédille",
+      "districts": [
+        "Cap-de-la-Madeleine",
+        "Sainte-Marthe",
+        "Pointe-du-Lac",
+        "Saint-Louis-de-France",
+        "le centre-ville"
+      ],
+      "university": "l'Université du Québec à Trois-Rivières",
+      "weather": "humide l'été"
+    },
+    {
+      "name": "Laval",
+      "region": "Québec",
+      "postcode": "H7N 5H9",
+      "area": "450",
+      "lat": 45.57,
+      "lon": -73.69,
+      "tz": "America/Toronto",
+      "pop": 440000,
+      "demonym": "Lavallois|Lavalloise",
+      "team": "le Rocket",
+      "landmark": "le Centropolis",
+      "specialty": "une poutine",
+      "districts": [
+        "Chomedey",
+        "Vimont",
+        "Sainte-Rose",
+        "Pont-Viau",
+        "Laval-des-Rapides"
+      ],
+      "university": "l'Université de Montréal",
+      "weather": "hivers longs"
+    },
+    {
+      "name": "Saguenay",
+      "region": "Québec",
+      "postcode": "G7H 4B1",
+      "area": "418",
+      "lat": 48.43,
+      "lon": -71.07,
+      "tz": "America/Toronto",
+      "pop": 145000,
+      "demonym": "Saguenéen|Saguenéenne",
+      "team": "les Saguenéens",
+      "landmark": "le fjord du Saguenay",
+      "specialty": "une tourtière du Lac",
+      "districts": [
+        "Chicoutimi",
+        "Jonquière",
+        "La Baie",
+        "Laterrière",
+        "Shipshaw"
+      ],
+      "university": "l'Université du Québec à Chicoutimi",
+      "weather": "hivers très longs"
+    },
+    {
+      "name": "Longueuil",
+      "region": "Québec",
+      "postcode": "J4K 2T6",
+      "area": "450",
+      "lat": 45.53,
+      "lon": -73.52,
+      "tz": "America/Toronto",
+      "pop": 255000,
+      "demonym": "Longueuillois|Longueuilloise",
+      "team": "le Canadien",
+      "landmark": "la place Charles-Le Moyne",
+      "specialty": "une poutine",
+      "districts": [
+        "le Vieux-Longueuil",
+        "Greenfield Park",
+        "Saint-Hubert",
+        "LeMoyne"
+      ],
+      "university": "l'Université de Sherbrooke",
+      "weather": "hivers glaciaux"
+    },
+    {
+      "name": "Lévis",
+      "region": "Québec",
+      "postcode": "G6V 6N7",
+      "area": "418",
+      "lat": 46.8,
+      "lon": -71.18,
+      "tz": "America/Toronto",
+      "pop": 150000,
+      "demonym": "Lévisien|Lévisienne",
+      "team": "les Remparts",
+      "landmark": "la traverse Québec-Lévis",
+      "specialty": "une tourtière",
+      "districts": [
+        "le Vieux-Lévis",
+        "Saint-Romuald",
+        "Charny",
+        "Saint-Nicolas",
+        "Lauzon"
+      ],
+      "university": "l'Université du Québec à Rimouski",
+      "weather": "neige et vent du fleuve"
+    },
+    {
+      "name": "Rimouski",
+      "region": "Québec",
+      "postcode": "G5L 1A1",
+      "area": "418",
+      "lat": 48.45,
+      "lon": -68.52,
+      "tz": "America/Toronto",
+      "pop": 49000,
+      "demonym": "Rimouskois|Rimouskoise",
+      "team": "l'Océanic",
+      "landmark": "le phare de Pointe-au-Père",
+      "specialty": "des crevettes de Matane",
+      "districts": [
+        "Pointe-au-Père",
+        "Sacré-Cœur",
+        "Saint-Germain",
+        "Nazareth",
+        "Le Bic"
+      ],
+      "university": "l'Université du Québec à Rimouski",
+      "weather": "vent du large"
+    }
+  ],
+  "education": {
+    "secondary": {
+      "degree": "Diplôme d'études secondaires",
+      "institution": "École secondaire {school}"
+    },
+    "vocational": {
+      "degree": "DEC en {field}",
+      "institution": "Cégep de {city}"
+    },
+    "bachelor": {
+      "degree": "Baccalauréat en {field}",
+      "institution": "{university}"
+    },
+    "master": {
+      "degree": "Maîtrise en {field}",
+      "institution": "{university}"
+    },
+    "doctorate": {
+      "degree": "Doctorat en {field}",
+      "institution": "{university}"
+    }
+  },
+  "schools": [
+    "Jean-de-Brébeuf",
+    "Pierre-Laporte",
+    "Joseph-François-Perrault",
+    "Louis-Joseph-Papineau",
+    "Gabrielle-Roy",
+    "Félix-Leclerc",
+    "Émile-Nelligan",
+    "Henri-Bourassa",
+    "Saint-Laurent",
+    "Mont-Royal",
+    "Marguerite-Bourgeoys",
+    "Antoine-de-Saint-Exupéry"
+  ],
+  "fields": {
+    "tech": "informatique",
+    "health": "sciences de la santé",
+    "education": "sciences de l'éducation",
+    "retail": "commerce",
+    "hospitality": "hôtellerie-restauration",
+    "trades": "génie civil",
+    "logistics": "transport et logistique",
+    "office": "gestion",
+    "creative": "arts appliqués",
+    "public": "administration publique",
+    "industry": "génie industriel",
+    "agri": "agronomie"
+  },
+  "employers": {
+    "default": [
+      "{surname} et Fils inc.",
+      "Groupe {word}",
+      "{word} Solutions",
+      "Les Entreprises {surname}",
+      "{word} {city}"
+    ],
+    "health": [
+      "Hôpital de {city}",
+      "Clinique médicale {word}",
+      "Pharmacie {surname}",
+      "CHSLD {word}"
+    ],
+    "education": [
+      "École primaire {school}",
+      "École secondaire {school}",
+      "Cégep de {city}",
+      "Centre de formation {word}"
+    ],
+    "public": [
+      "Ville de {city}",
+      "Bibliothèque de {city}",
+      "Postes Canada — {city}",
+      "Hydro-Québec — {city}"
+    ],
+    "hospitality": [
+      "Casse-croûte {word}",
+      "Hôtel {word}",
+      "Café {surname}",
+      "Restaurant {word}"
+    ],
+    "retail": [
+      "Dépanneur {surname}",
+      "Boutique {word}",
+      "Marché {word}"
+    ]
+  },
+  "words": [
+    "Boréal",
+    "Laurentide",
+    "Horizon",
+    "Érable",
+    "Saint-Laurent",
+    "Nordik",
+    "Atlas",
+    "Pionnier",
+    "Aurore",
+    "Les Pins",
+    "Belvédère",
+    "Outaouais",
+    "Frontenac",
+    "Cartier",
+    "Le Phare"
+  ],
+  "pet_names": {
+    "dog": [
+      "Rocky",
+      "Max",
+      "Charlie",
+      "Nala",
+      "Bella",
+      "Ti-Loup",
+      "Oscar",
+      "Moka"
+    ],
+    "cat": [
+      "Minou",
+      "Simba",
+      "Pacha",
+      "Luna",
+      "Caramel",
+      "Grisou",
+      "Félix",
+      "Mimi"
+    ]
+  },
+  "housing": {
+    "apartment": "appartement",
+    "house": "maison"
+  },
+  "second_languages": [
+    "en"
+  ]
+}

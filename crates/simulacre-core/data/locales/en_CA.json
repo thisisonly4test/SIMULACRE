@@ -1,0 +1,619 @@
+{
+  "code": "en_CA",
+  "language": "en",
+  "country": {
+    "fr": "Canada",
+    "en": "Canada"
+  },
+  "country_code": "CA",
+  "phone": {
+    "mobile": "+1 ({area}) 555-01##",
+    "landline": "+1 ({area}) 555-01##",
+    "fiction_reserved": true
+  },
+  "first_names": {
+    "male": [
+      [
+        "Robert",
+        1945
+      ],
+      [
+        "Gary",
+        1950
+      ],
+      [
+        "Ronald",
+        1950
+      ],
+      [
+        "Brian",
+        1958
+      ],
+      [
+        "Kevin",
+        1965
+      ],
+      [
+        "Darren",
+        1968
+      ],
+      [
+        "David",
+        1970
+      ],
+      [
+        "Jason",
+        1975
+      ],
+      [
+        "Michael",
+        1975
+      ],
+      [
+        "Ryan",
+        1982
+      ],
+      [
+        "Matthew",
+        1985
+      ],
+      [
+        "Raj",
+        1985
+      ],
+      [
+        "Daniel",
+        1988
+      ],
+      [
+        "Tyler",
+        1990
+      ],
+      [
+        "Justin",
+        1990
+      ],
+      [
+        "Wei",
+        1990
+      ],
+      [
+        "Brandon",
+        1992
+      ],
+      [
+        "Connor",
+        1995
+      ],
+      [
+        "Ethan",
+        2002
+      ],
+      [
+        "Liam",
+        2008
+      ],
+      [
+        "Noah",
+        2010
+      ],
+      [
+        "Owen",
+        2010
+      ],
+      [
+        "Lucas",
+        2012
+      ],
+      [
+        "Jack",
+        2015
+      ]
+    ],
+    "female": [
+      [
+        "Barbara",
+        1945
+      ],
+      [
+        "Linda",
+        1950
+      ],
+      [
+        "Susan",
+        1955
+      ],
+      [
+        "Karen",
+        1960
+      ],
+      [
+        "Lisa",
+        1967
+      ],
+      [
+        "Jennifer",
+        1975
+      ],
+      [
+        "Michelle",
+        1975
+      ],
+      [
+        "Amanda",
+        1985
+      ],
+      [
+        "Sarah",
+        1985
+      ],
+      [
+        "Jessica",
+        1988
+      ],
+      [
+        "Ashley",
+        1990
+      ],
+      [
+        "Megan",
+        1990
+      ],
+      [
+        "Priya",
+        1990
+      ],
+      [
+        "Mei",
+        1992
+      ],
+      [
+        "Emily",
+        1995
+      ],
+      [
+        "Hannah",
+        1997
+      ],
+      [
+        "Madison",
+        2000
+      ],
+      [
+        "Olivia",
+        2005
+      ],
+      [
+        "Emma",
+        2008
+      ],
+      [
+        "Ava",
+        2010
+      ],
+      [
+        "Charlotte",
+        2014
+      ],
+      [
+        "Amelia",
+        2015
+      ]
+    ]
+  },
+  "last_names": [
+    "Smith",
+    "Brown",
+    "Tremblay",
+    "Martin",
+    "Roy",
+    "Wilson",
+    "MacDonald",
+    "Taylor",
+    "Campbell",
+    "Anderson",
+    "Jones",
+    "Leblanc",
+    "Johnson",
+    "Thompson",
+    "White",
+    "Williams",
+    "Lee",
+    "Wong",
+    "Chen",
+    "Li",
+    "Singh",
+    "Patel",
+    "Gill",
+    "Nguyen",
+    "Ryan",
+    "Murphy",
+    "Clarke",
+    "Fraser",
+    "Stewart",
+    "Robertson",
+    "Scott",
+    "Reid",
+    "Ross",
+    "Morrison",
+    "Young",
+    "Walker",
+    "Hall",
+    "Mitchell",
+    "Bell",
+    "Kelly",
+    "Wright",
+    "Moore",
+    "King",
+    "Gagnon",
+    "Ahmed",
+    "Khan",
+    "Kim"
+  ],
+  "cities": [
+    {
+      "name": "Toronto",
+      "region": "Ontario",
+      "postcode": "M6J 1H4",
+      "area": "416",
+      "lat": 43.65,
+      "lon": -79.38,
+      "tz": "America/Toronto",
+      "pop": 2790000,
+      "demonym": "Torontonian",
+      "team": "the Leafs",
+      "landmark": "the CN Tower",
+      "specialty": "a peameal bacon sandwich",
+      "districts": [
+        "Leslieville",
+        "the Annex",
+        "Kensington Market",
+        "Liberty Village",
+        "the Danforth"
+      ],
+      "university": "the University of Toronto",
+      "weather": "humid summers, slushy winters"
+    },
+    {
+      "name": "Vancouver",
+      "region": "British Columbia",
+      "postcode": "V5L 3X2",
+      "area": "604",
+      "lat": 49.28,
+      "lon": -123.12,
+      "tz": "America/Vancouver",
+      "pop": 662000,
+      "demonym": "Vancouverite",
+      "team": "the Canucks",
+      "landmark": "Stanley Park",
+      "specialty": "a JapaDog",
+      "districts": [
+        "Kitsilano",
+        "Mount Pleasant",
+        "Commercial Drive",
+        "Gastown",
+        "the West End"
+      ],
+      "university": "the University of British Columbia",
+      "weather": "rain from October to April"
+    },
+    {
+      "name": "Calgary",
+      "region": "Alberta",
+      "postcode": "T2S 0H6",
+      "area": "403",
+      "lat": 51.05,
+      "lon": -114.07,
+      "tz": "America/Edmonton",
+      "pop": 1300000,
+      "demonym": "Calgarian",
+      "team": "the Flames",
+      "landmark": "the Calgary Tower",
+      "specialty": "a Caesar with extra spice",
+      "districts": [
+        "Kensington",
+        "Inglewood",
+        "Mission",
+        "Bridgeland",
+        "Bowness"
+      ],
+      "university": "the University of Calgary",
+      "weather": "chinooks and surprise snow in May"
+    },
+    {
+      "name": "Ottawa",
+      "region": "Ontario",
+      "postcode": "K1S 3X7",
+      "area": "613",
+      "lat": 45.42,
+      "lon": -75.7,
+      "tz": "America/Toronto",
+      "pop": 1017000,
+      "demonym": "Ottawan",
+      "team": "the Senators",
+      "landmark": "Parliament Hill",
+      "specialty": "a BeaverTail",
+      "districts": [
+        "the Glebe",
+        "Westboro",
+        "Centretown",
+        "Hintonburg",
+        "Old Ottawa South"
+      ],
+      "university": "the University of Ottawa",
+      "weather": "skating on the canal, then mosquitoes"
+    },
+    {
+      "name": "Edmonton",
+      "region": "Alberta",
+      "postcode": "T6E 2H3",
+      "area": "780",
+      "lat": 53.55,
+      "lon": -113.49,
+      "tz": "America/Edmonton",
+      "pop": 1010000,
+      "demonym": "Edmontonian",
+      "team": "the Oilers",
+      "landmark": "the river valley",
+      "specialty": "a green onion cake",
+      "districts": [
+        "Old Strathcona",
+        "Garneau",
+        "Highlands",
+        "Ritchie",
+        "Oliver"
+      ],
+      "university": "the University of Alberta",
+      "weather": "minus thirty and sunny"
+    },
+    {
+      "name": "Winnipeg",
+      "region": "Manitoba",
+      "postcode": "R3L 0V9",
+      "area": "204",
+      "lat": 49.9,
+      "lon": -97.14,
+      "tz": "America/Winnipeg",
+      "pop": 750000,
+      "demonym": "Winnipegger",
+      "team": "the Jets",
+      "landmark": "the Forks",
+      "specialty": "a fat boy burger",
+      "districts": [
+        "Osborne Village",
+        "Wolseley",
+        "St. Boniface",
+        "River Heights",
+        "the Exchange District"
+      ],
+      "university": "the University of Manitoba",
+      "weather": "mosquitoes in summer, frostbite in winter"
+    },
+    {
+      "name": "Halifax",
+      "region": "Nova Scotia",
+      "postcode": "B3H 2Y4",
+      "area": "902",
+      "lat": 44.65,
+      "lon": -63.57,
+      "tz": "America/Halifax",
+      "pop": 440000,
+      "demonym": "Haligonian",
+      "team": "the Mooseheads",
+      "landmark": "the Citadel",
+      "specialty": "a donair",
+      "districts": [
+        "the North End",
+        "the South End",
+        "Dartmouth",
+        "Clayton Park",
+        "Fairview"
+      ],
+      "university": "Dalhousie University",
+      "weather": "fog, wind, and more fog"
+    },
+    {
+      "name": "Hamilton",
+      "region": "Ontario",
+      "postcode": "L8P 4R5",
+      "area": "905",
+      "lat": 43.26,
+      "lon": -79.87,
+      "tz": "America/Toronto",
+      "pop": 570000,
+      "demonym": "Hamiltonian",
+      "team": "the Tiger-Cats",
+      "landmark": "the waterfalls on the escarpment",
+      "specialty": "a peameal bacon sandwich",
+      "districts": [
+        "Locke Street",
+        "Westdale",
+        "Dundas",
+        "the Durand",
+        "Crown Point"
+      ],
+      "university": "McMaster University",
+      "weather": "humid, lake-effect snow"
+    },
+    {
+      "name": "Victoria",
+      "region": "British Columbia",
+      "postcode": "V8V 3K4",
+      "area": "250",
+      "lat": 48.43,
+      "lon": -123.37,
+      "tz": "America/Vancouver",
+      "pop": 92000,
+      "demonym": "Victorian",
+      "team": "the Royals",
+      "landmark": "the Inner Harbour",
+      "specialty": "a Nanaimo bar",
+      "districts": [
+        "Fernwood",
+        "James Bay",
+        "Oak Bay",
+        "Fairfield",
+        "Cook Street Village"
+      ],
+      "university": "the University of Victoria",
+      "weather": "mild and damp all year"
+    },
+    {
+      "name": "Saskatoon",
+      "region": "Saskatchewan",
+      "postcode": "S7N 0W8",
+      "area": "306",
+      "lat": 52.13,
+      "lon": -106.67,
+      "tz": "America/Regina",
+      "pop": 270000,
+      "demonym": "Saskatonian",
+      "team": "the Roughriders",
+      "landmark": "the Bessborough",
+      "specialty": "a saskatoon berry pie",
+      "districts": [
+        "Nutana",
+        "Broadway",
+        "Riversdale",
+        "City Park",
+        "Sutherland"
+      ],
+      "university": "the University of Saskatchewan",
+      "weather": "cold, dry, and windy"
+    }
+  ],
+  "education": {
+    "secondary": {
+      "degree": "High school diploma",
+      "institution": "{school} Secondary School"
+    },
+    "vocational": {
+      "degree": "College diploma in {field}",
+      "institution": "{city} College"
+    },
+    "bachelor": {
+      "degree": "Bachelor's degree in {field}",
+      "institution": "{university}"
+    },
+    "master": {
+      "degree": "Master's degree in {field}",
+      "institution": "{university}"
+    },
+    "doctorate": {
+      "degree": "PhD in {field}",
+      "institution": "{university}"
+    }
+  },
+  "schools": [
+    "Northern",
+    "Central",
+    "Riverdale",
+    "Lord Byng",
+    "Kitsilano",
+    "Jarvis",
+    "Sir John A. Macdonald",
+    "Lester B. Pearson",
+    "Laura Secord",
+    "Tommy Douglas",
+    "Emily Carr",
+    "Banting"
+  ],
+  "fields": {
+    "tech": "Computer Science",
+    "health": "Health Sciences",
+    "education": "Education",
+    "retail": "Business",
+    "hospitality": "Hospitality Management",
+    "trades": "Construction Technology",
+    "logistics": "Supply Chain Management",
+    "office": "Accounting",
+    "creative": "Graphic Design",
+    "public": "Public Administration",
+    "industry": "Industrial Engineering",
+    "agri": "Agricultural Science"
+  },
+  "employers": {
+    "default": [
+      "{surname} & Sons Ltd.",
+      "{word} Group",
+      "{word} Solutions Inc.",
+      "{surname} Industries",
+      "{word} {city}"
+    ],
+    "health": [
+      "{city} General Hospital",
+      "{word} Medical Clinic",
+      "{surname} Pharmacy",
+      "{word} Retirement Residence"
+    ],
+    "education": [
+      "{school} Public School",
+      "{school} Secondary School",
+      "{word} College",
+      "{city} Learning Centre"
+    ],
+    "public": [
+      "City of {city}",
+      "{city} Public Library",
+      "Canada Post — {city}",
+      "{city} Transit"
+    ],
+    "hospitality": [
+      "The {word} Diner",
+      "{word} Hotel",
+      "{surname}'s Café",
+      "The {word} Pub"
+    ],
+    "retail": [
+      "{word} Market",
+      "{surname}'s Hardware",
+      "{word} Outfitters"
+    ]
+  },
+  "words": [
+    "Maple",
+    "Northern",
+    "Summit",
+    "Pioneer",
+    "Glacier",
+    "Prairie",
+    "Cedar",
+    "Harbour",
+    "Aurora",
+    "Timber",
+    "Polar",
+    "Lakeshore",
+    "Frontier",
+    "Laurentian",
+    "Pacific"
+  ],
+  "pet_names": {
+    "dog": [
+      "Bailey",
+      "Max",
+      "Charlie",
+      "Cooper",
+      "Daisy",
+      "Molly",
+      "Bear",
+      "Lucy"
+    ],
+    "cat": [
+      "Oliver",
+      "Leo",
+      "Luna",
+      "Milo",
+      "Chloe",
+      "Smokey",
+      "Tiger",
+      "Mittens"
+    ]
+  },
+  "housing": {
+    "apartment": "apartment",
+    "house": "house"
+  },
+  "second_languages": [
+    "fr"
+  ]
+}

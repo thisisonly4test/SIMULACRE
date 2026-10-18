@@ -46,6 +46,13 @@ pub(crate) struct Ctx<'a> {
 }
 
 impl Ctx<'_> {
+    /// Applies the locale's spelling variant to persona-language text.
+    pub fn spell(&self, text: String) -> String {
+        match self.locale.spelling.as_deref() {
+            Some("ch") if text.contains('ß') => text.replace('ß', "ss"),
+            _ => text,
+        }
+    }
     pub fn rng(&self, section: &str) -> SectionRng {
         section_rng(&self.recipe.seed, section, self.recipe.reroll_count(section))
     }

@@ -9,7 +9,10 @@ use simulacre_core::labels;
 use simulacre_core::model::{Gender, Recipe, SECTIONS};
 use simulacre_core::{GenError, UiLang, contamination, export, generate, quiz, refresh, rng};
 
-const LOCALES: [&str; 4] = ["fr_FR", "en_US", "en_GB", "de_DE"];
+/// Every embedded locale.
+fn locales() -> Vec<&'static str> {
+    data().locales.iter().map(|l| l.code.as_str()).collect()
+}
 
 fn as_of() -> NaiveDate {
     NaiveDate::from_ymd_opt(2026, 10, 15).unwrap()
@@ -24,8 +27,9 @@ fn recipe(seed: &str, locale: &str) -> Recipe {
 fn corpus() -> impl Iterator<Item = Recipe> {
     let archetypes: Vec<Option<String>> =
         std::iter::once(None).chain(data().common.archetypes.iter().map(|a| Some(a.key.clone()))).collect();
-    (0..600u64).map(move |i| {
-        let mut r = recipe(&rng::seed_from_u64(i * 7919 + 13), LOCALES[i as usize % LOCALES.len()]);
+    let locales = locales();
+    (0..1200u64).map(move |i| {
+        let mut r = recipe(&rng::seed_from_u64(i * 7919 + 13), locales[i as usize % locales.len()]);
         r.archetype = archetypes[i as usize % archetypes.len()].clone();
         r
     })
@@ -130,7 +134,7 @@ fn adults_only_and_age_range_respected() {
 #[test]
 fn explicit_gender_is_kept() {
     for i in 0..50 {
-        let mut r = recipe(&format!("SIM-G{i}"), LOCALES[i % 4]);
+        let mut r = recipe(&format!("SIM-G{i}"), locales()[i % locales().len()]);
         r.gender = Some(Gender::Female);
         assert_eq!(generate(&r).unwrap().identity.gender, Gender::Female);
     }
@@ -335,4 +339,42 @@ fn locale_flavour_shows() {
     assert!(data().locale("fr_FR").unwrap().cities.iter().any(|c| c.name == fr.residence.place.city));
     assert!(data().locale("de_DE").unwrap().cities.iter().any(|c| c.name == de.residence.place.city));
     assert_eq!(de.behavior.timezone, "Europe/Berlin");
+}
+
+#[test]
+fn every_locale_forges_and_keeps_its_rules() {
+    for code in locales() {
+        let loc = data().locale(code).unwrap();
+        for i in 0..40 {
+            let p = generate(&recipe(&format!("SIM-LOC-{code}-{i}"), code)).unwrap();
+            assert_eq!(p.locale.code, code);
+            assert!(loc.cities.iter().any(|c| c.name == p.residence.place.city), "{code}: city {}", p.residence.place.city);
+            // Phones only from ranges reserved for fiction, or none at all.
+            match &p.contact.phone {
+                Some(n) => {
+                    assert!(loc.phone.fiction_reserved, "{code} has no fiction range but produced {n}");
+                    if loc.country_code == "CA" {
+                        assert!(n.contains(" 555-01"), "{code}: {n}");
+                    }
+                }
+                None => assert!(loc.phone.mobile.is_none(), "{code}: phone plan present but no phone"),
+            }
+            // Swiss German has no ß.
+            if loc.spelling.as_deref() == Some("ch") {
+                let text = serde_json::to_string(&p).unwrap();
+                let generated: String = text.chars().filter(|&c| c == 'ß').collect();
+                assert!(generated.is_empty(), "{code}: ß in {}", p.recipe.seed);
+            }
+        }
+    }
+}
+
+#[test]
+fn multilingual_countries_speak_their_other_languages() {
+    for (code, other) in [("fr_BE", "nl"), ("en_CA", "fr"), ("fr_CA", "en"), ("de_CH", "fr"), ("en_IE", "ga")] {
+        let speakers = (0..60)
+            .filter(|i| generate(&recipe(&format!("SIM-ML-{code}-{i}"), code)).unwrap().identity.languages.iter().any(|l| l.code == other))
+            .count();
+        assert!(speakers >= 15, "{code}: only {speakers}/60 speak {other}");
+    }
 }

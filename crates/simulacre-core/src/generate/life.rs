@@ -53,7 +53,7 @@ fn employer(ctx: &Ctx, rng: &mut impl Rng, sector: &str, city: &City) -> String 
     slots.insert("word", rng.pick(&loc.words).clone());
     slots.insert("city", city.name.clone());
     slots.insert("school", rng.pick(&loc.schools).clone());
-    fill(rng.pick(patterns), &slots)
+    ctx.spell(fill(rng.pick(patterns), &slots))
 }
 
 fn institution(ctx: &Ctx, rng: &mut impl Rng, level: EduLevel, city: &City) -> String {
@@ -62,13 +62,13 @@ fn institution(ctx: &Ctx, rng: &mut impl Rng, level: EduLevel, city: &City) -> S
     slots.insert("school", rng.pick(&ctx.locale.schools).clone());
     slots.insert("city", city.name.clone());
     slots.insert("university", crate::text::capitalize(crate::text::strip_article(&city.university)));
-    fill(&def.institution, &slots)
+    ctx.spell(fill(&def.institution, &slots))
 }
 
 fn degree(ctx: &Ctx, level: EduLevel, sector: &str) -> String {
     let mut slots = HashMap::new();
     slots.insert("field", ctx.locale.fields.get(sector).cloned().unwrap_or_default());
-    fill(&ctx.locale.education[&level].degree, &slots)
+    ctx.spell(fill(&ctx.locale.education[&level].degree, &slots))
 }
 
 /// Stages walked to reach `target` (vocational is an alternative track, not a
@@ -178,7 +178,7 @@ pub(crate) fn generate(ctx: &Ctx, id: &Identity) -> Life {
         let entry: Vec<&JobDef> = s.jobs.iter().filter(|j| j.edu == EduLevel::Secondary).collect();
         let j = *RngExt::pick(rng, &entry);
         Job {
-            title: j.title(ctx.lang, female),
+            title: ctx.spell(j.title(ctx.lang, female)),
             employer: employer(ctx, rng, key, city),
             sector: key.into(),
             city: city.name.clone(),
@@ -201,10 +201,13 @@ pub(crate) fn generate(ctx: &Ctx, id: &Identity) -> Life {
             career.push(student_job(&mut rng, from.min(ctx.year), None, home));
         }
     } else {
-        if education.iter().any(|e| e.level >= EduLevel::Bachelor) && rng.chance(0.35) {
-            let b = education.iter().find(|e| e.level >= EduLevel::Bachelor).expect("bachelor");
-            let from = b.start_year + 1;
-            career.push(student_job(&mut rng, from, Some((from + 1).min(b.end_year)), study_city));
+        // A side job during the second year of study — only if that year has
+        // already begun (a degree started this year has no past side job).
+        if let Some(b) = education.iter().find(|e| e.level >= EduLevel::Bachelor && e.start_year < ctx.year) {
+            if rng.chance(0.35) {
+                let from = b.start_year + 1;
+                career.push(student_job(&mut rng, from, Some((from + 1).min(b.end_year).min(ctx.year)), study_city));
+            }
         }
         let start = (edu_end + rng.gen_range(0..=1)).max(birth_year + 17).min(ctx.year);
         let stop = career_end.unwrap_or(ctx.year);
@@ -231,7 +234,7 @@ pub(crate) fn generate(ctx: &Ctx, id: &Identity) -> Life {
                 emp = employer(ctx, &mut rng, &sector.key, city);
             }
             career.push(Job {
-                title: def.title(ctx.lang, female),
+                title: ctx.spell(def.title(ctx.lang, female)),
                 employer: emp,
                 sector: sector.key.clone(),
                 city: city.name.clone(),

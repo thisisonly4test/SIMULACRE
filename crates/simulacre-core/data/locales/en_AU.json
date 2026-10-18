@@ -1,0 +1,592 @@
+{
+  "code": "en_AU",
+  "language": "en",
+  "country": {
+    "fr": "Australie",
+    "en": "Australia"
+  },
+  "country_code": "AU",
+  "phone": {
+    "mobile": null,
+    "landline": null,
+    "fiction_reserved": false
+  },
+  "first_names": {
+    "male": [
+      [
+        "Graham",
+        1945
+      ],
+      [
+        "Peter",
+        1950
+      ],
+      [
+        "Ross",
+        1950
+      ],
+      [
+        "Craig",
+        1965
+      ],
+      [
+        "Shane",
+        1968
+      ],
+      [
+        "Darren",
+        1968
+      ],
+      [
+        "Scott",
+        1972
+      ],
+      [
+        "Matthew",
+        1980
+      ],
+      [
+        "Nathan",
+        1985
+      ],
+      [
+        "Luke",
+        1987
+      ],
+      [
+        "Joshua",
+        1990
+      ],
+      [
+        "Wei",
+        1990
+      ],
+      [
+        "Rahul",
+        1992
+      ],
+      [
+        "Jake",
+        1993
+      ],
+      [
+        "Hamish",
+        1995
+      ],
+      [
+        "Lachlan",
+        1997
+      ],
+      [
+        "Jack",
+        2000
+      ],
+      [
+        "Cooper",
+        2005
+      ],
+      [
+        "William",
+        2008
+      ],
+      [
+        "Oliver",
+        2010
+      ],
+      [
+        "Noah",
+        2012
+      ],
+      [
+        "Henry",
+        2015
+      ]
+    ],
+    "female": [
+      [
+        "Margaret",
+        1945
+      ],
+      [
+        "Dianne",
+        1950
+      ],
+      [
+        "Kerry",
+        1958
+      ],
+      [
+        "Kylie",
+        1972
+      ],
+      [
+        "Michelle",
+        1972
+      ],
+      [
+        "Melissa",
+        1978
+      ],
+      [
+        "Rebecca",
+        1982
+      ],
+      [
+        "Sarah",
+        1985
+      ],
+      [
+        "Jessica",
+        1988
+      ],
+      [
+        "Emma",
+        1990
+      ],
+      [
+        "Lauren",
+        1990
+      ],
+      [
+        "Priya",
+        1990
+      ],
+      [
+        "Mei",
+        1993
+      ],
+      [
+        "Chloe",
+        1995
+      ],
+      [
+        "Sophie",
+        1997
+      ],
+      [
+        "Georgia",
+        1998
+      ],
+      [
+        "Olivia",
+        2005
+      ],
+      [
+        "Charlotte",
+        2010
+      ],
+      [
+        "Amelia",
+        2012
+      ],
+      [
+        "Mia",
+        2012
+      ],
+      [
+        "Isla",
+        2015
+      ]
+    ]
+  },
+  "last_names": [
+    "Smith",
+    "Jones",
+    "Williams",
+    "Brown",
+    "Wilson",
+    "Taylor",
+    "Johnson",
+    "White",
+    "Martin",
+    "Anderson",
+    "Thompson",
+    "Nguyen",
+    "Thomas",
+    "Walker",
+    "Harris",
+    "Lee",
+    "Ryan",
+    "Robinson",
+    "Kelly",
+    "King",
+    "Davis",
+    "Wright",
+    "Evans",
+    "Roberts",
+    "Green",
+    "Hall",
+    "Wood",
+    "Jackson",
+    "Clarke",
+    "Patel",
+    "Khan",
+    "Lewis",
+    "James",
+    "Phillips",
+    "Mitchell",
+    "Murphy",
+    "Wong",
+    "Chen",
+    "Singh",
+    "Papadopoulos",
+    "Rossi",
+    "Russo",
+    "Campbell",
+    "Scott",
+    "Young"
+  ],
+  "cities": [
+    {
+      "name": "Sydney",
+      "region": "New South Wales",
+      "postcode": "2042",
+      "lat": -33.87,
+      "lon": 151.21,
+      "tz": "Australia/Sydney",
+      "pop": 5300000,
+      "demonym": "Sydneysider",
+      "team": "the Swans",
+      "landmark": "the Opera House",
+      "specialty": "a meat pie at the footy",
+      "districts": [
+        "Newtown",
+        "Marrickville",
+        "Bondi",
+        "Surry Hills",
+        "Parramatta"
+      ],
+      "university": "the University of Sydney",
+      "weather": "humid summers, sudden storms"
+    },
+    {
+      "name": "Melbourne",
+      "region": "Victoria",
+      "postcode": "3065",
+      "lat": -37.81,
+      "lon": 144.96,
+      "tz": "Australia/Melbourne",
+      "pop": 5100000,
+      "demonym": "Melburnian",
+      "team": "the Pies",
+      "landmark": "the laneways",
+      "specialty": "a flat white",
+      "districts": [
+        "Fitzroy",
+        "Brunswick",
+        "St Kilda",
+        "Footscray",
+        "Collingwood"
+      ],
+      "university": "the University of Melbourne",
+      "weather": "four seasons in one day"
+    },
+    {
+      "name": "Brisbane",
+      "region": "Queensland",
+      "postcode": "4101",
+      "lat": -27.47,
+      "lon": 153.03,
+      "tz": "Australia/Brisbane",
+      "pop": 2600000,
+      "demonym": "Brisbanite",
+      "team": "the Broncos",
+      "landmark": "South Bank",
+      "specialty": "a Bundaberg ginger beer",
+      "districts": [
+        "West End",
+        "Paddington",
+        "New Farm",
+        "Fortitude Valley",
+        "Woolloongabba"
+      ],
+      "university": "the University of Queensland",
+      "weather": "hot, humid, afternoon storms"
+    },
+    {
+      "name": "Perth",
+      "region": "Western Australia",
+      "postcode": "6050",
+      "lat": -31.95,
+      "lon": 115.86,
+      "tz": "Australia/Perth",
+      "pop": 2200000,
+      "demonym": "Perthite",
+      "team": "the Eagles",
+      "landmark": "Kings Park",
+      "specialty": "fish and chips by the beach",
+      "districts": [
+        "Fremantle",
+        "Leederville",
+        "Mount Lawley",
+        "Subiaco",
+        "Scarborough"
+      ],
+      "university": "the University of Western Australia",
+      "weather": "dry heat and the Fremantle Doctor"
+    },
+    {
+      "name": "Adelaide",
+      "region": "South Australia",
+      "postcode": "5006",
+      "lat": -34.93,
+      "lon": 138.6,
+      "tz": "Australia/Adelaide",
+      "pop": 1400000,
+      "demonym": "Adelaidean",
+      "team": "the Crows",
+      "landmark": "the Central Market",
+      "specialty": "a pie floater",
+      "districts": [
+        "Norwood",
+        "Glenelg",
+        "Prospect",
+        "Unley",
+        "North Adelaide"
+      ],
+      "university": "the University of Adelaide",
+      "weather": "dry summers, cool winters"
+    },
+    {
+      "name": "Hobart",
+      "region": "Tasmania",
+      "postcode": "7000",
+      "lat": -42.88,
+      "lon": 147.33,
+      "tz": "Australia/Hobart",
+      "pop": 250000,
+      "demonym": "Hobartian",
+      "team": "the JackJumpers",
+      "landmark": "kunanyi / Mount Wellington",
+      "specialty": "a scallop pie",
+      "districts": [
+        "Sandy Bay",
+        "North Hobart",
+        "Battery Point",
+        "New Town",
+        "Bellerive"
+      ],
+      "university": "the University of Tasmania",
+      "weather": "cold and crisp"
+    },
+    {
+      "name": "Canberra",
+      "region": "Australian Capital Territory",
+      "postcode": "2601",
+      "lat": -35.28,
+      "lon": 149.13,
+      "tz": "Australia/Sydney",
+      "pop": 460000,
+      "demonym": "Canberran",
+      "team": "the Raiders",
+      "landmark": "Lake Burley Griffin",
+      "specialty": "a coffee in Braddon",
+      "districts": [
+        "Braddon",
+        "Dickson",
+        "Kingston",
+        "Belconnen",
+        "Woden"
+      ],
+      "university": "the Australian National University",
+      "weather": "frosty winters"
+    },
+    {
+      "name": "Gold Coast",
+      "region": "Queensland",
+      "postcode": "4217",
+      "lat": -28.0,
+      "lon": 153.43,
+      "tz": "Australia/Brisbane",
+      "pop": 640000,
+      "demonym": "Gold Coaster",
+      "team": "the Titans",
+      "landmark": "Surfers Paradise",
+      "specialty": "a mango smoothie",
+      "districts": [
+        "Burleigh Heads",
+        "Southport",
+        "Broadbeach",
+        "Coolangatta",
+        "Robina"
+      ],
+      "university": "Griffith University",
+      "weather": "sunny, then stormy"
+    },
+    {
+      "name": "Newcastle",
+      "region": "New South Wales",
+      "postcode": "2300",
+      "lat": -32.93,
+      "lon": 151.78,
+      "tz": "Australia/Sydney",
+      "pop": 330000,
+      "demonym": "Novocastrian",
+      "team": "the Knights",
+      "landmark": "Nobbys Beach",
+      "specialty": "a pie from the beach kiosk",
+      "districts": [
+        "Merewether",
+        "Hamilton",
+        "Cooks Hill",
+        "Mayfield",
+        "The Junction"
+      ],
+      "university": "the University of Newcastle",
+      "weather": "warm and windy"
+    },
+    {
+      "name": "Darwin",
+      "region": "Northern Territory",
+      "postcode": "0800",
+      "lat": -12.46,
+      "lon": 130.84,
+      "tz": "Australia/Darwin",
+      "pop": 150000,
+      "demonym": "Territorian",
+      "team": "the Socceroos",
+      "landmark": "Mindil Beach",
+      "specialty": "a laksa from the Parap markets",
+      "districts": [
+        "Parap",
+        "Nightcliff",
+        "Fannie Bay",
+        "Stuart Park",
+        "Casuarina"
+      ],
+      "university": "Charles Darwin University",
+      "weather": "wet season, then dry season"
+    }
+  ],
+  "education": {
+    "secondary": {
+      "degree": "Year 12 certificate",
+      "institution": "{school} High School"
+    },
+    "vocational": {
+      "degree": "Certificate IV in {field}",
+      "institution": "TAFE {city}"
+    },
+    "bachelor": {
+      "degree": "Bachelor's degree in {field}",
+      "institution": "{university}"
+    },
+    "master": {
+      "degree": "Master's degree in {field}",
+      "institution": "{university}"
+    },
+    "doctorate": {
+      "degree": "PhD in {field}",
+      "institution": "{university}"
+    }
+  },
+  "schools": [
+    "Newtown",
+    "Fort Street",
+    "Balmain",
+    "Brunswick",
+    "Kelvin Grove",
+    "Fremantle",
+    "Marryatville",
+    "Narrabundah",
+    "Burleigh",
+    "Mansfield",
+    "Glen Waverley",
+    "Sandy Bay"
+  ],
+  "fields": {
+    "tech": "Computer Science",
+    "health": "Nursing",
+    "education": "Education Studies",
+    "retail": "Business Management",
+    "hospitality": "Hospitality",
+    "trades": "Construction",
+    "logistics": "Logistics",
+    "office": "Accounting and Finance",
+    "creative": "Graphic Design",
+    "public": "Public Policy",
+    "industry": "Mechanical Engineering",
+    "agri": "Agriculture"
+  },
+  "employers": {
+    "default": [
+      "{surname} & Sons Pty Ltd",
+      "{word} Group",
+      "{word} Solutions Pty Ltd",
+      "{surname} Industries",
+      "{word} {city}"
+    ],
+    "health": [
+      "{city} Hospital",
+      "{word} Medical Centre",
+      "{surname} Chemist",
+      "{word} Aged Care"
+    ],
+    "education": [
+      "{school} Primary School",
+      "{school} High School",
+      "TAFE {city}",
+      "{word} College"
+    ],
+    "public": [
+      "City of {city}",
+      "{city} Library",
+      "Australia Post — {city}",
+      "{city} Council"
+    ],
+    "hospitality": [
+      "The {word} Hotel",
+      "{word} Café",
+      "{surname}'s Bakery",
+      "The {word} Tavern"
+    ],
+    "retail": [
+      "{word} Store",
+      "{surname}'s Hardware",
+      "{word} Market"
+    ]
+  },
+  "words": [
+    "Southern",
+    "Coral",
+    "Eucalypt",
+    "Outback",
+    "Banksia",
+    "Harbour",
+    "Coastal",
+    "Wattle",
+    "Summit",
+    "Pacific",
+    "Kookaburra",
+    "Red Gum",
+    "Ironbark",
+    "Oceanic",
+    "Sunrise"
+  ],
+  "pet_names": {
+    "dog": [
+      "Bella",
+      "Max",
+      "Charlie",
+      "Coco",
+      "Ruby",
+      "Molly",
+      "Buddy",
+      "Teddy"
+    ],
+    "cat": [
+      "Luna",
+      "Milo",
+      "Oliver",
+      "Leo",
+      "Chloe",
+      "Simba",
+      "Tiger",
+      "Nala"
+    ]
+  },
+  "housing": {
+    "apartment": "apartment",
+    "house": "house"
+  }
+}

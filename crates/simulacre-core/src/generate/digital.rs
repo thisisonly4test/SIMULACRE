@@ -341,7 +341,7 @@ pub(crate) fn accounts(ctx: &Ctx, id: &Identity, life: &Life, interests: &[Inter
         let bio = if (key == "reddit" || key == "discord") && rng.chance(0.5) {
             String::new()
         } else {
-            let mut t = fill(rng.pick(&lang.bios[bio_key]), &slots);
+            let mut t = ctx.spell(fill(rng.pick(&lang.bios[bio_key]), &slots));
             if b.writing.casing == "lowercase" && !real {
                 t = t.to_lowercase();
             }
@@ -568,7 +568,7 @@ pub(crate) fn voice(
         slots.insert("specialty", loc.specialty.clone());
         slots.insert("team", loc.team.clone());
         slots.insert("pet", family.pets.first().map(|p| p.name.clone()).unwrap_or_default());
-        let text = capitalize(&fill(template, &slots));
+        let text = ctx.spell(capitalize(&fill(template, &slots)));
         let posting: Vec<(&Account, f64)> = accounts
             .iter()
             .filter(|a| fits(&a.platform, topic, interest.map(|i| i.category.as_str())))

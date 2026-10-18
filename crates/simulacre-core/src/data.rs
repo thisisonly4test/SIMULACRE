@@ -100,11 +100,12 @@ impl EduLevel {
     pub fn duration(self, country: &str) -> i32 {
         match (self, country) {
             (Self::Secondary, _) => 3,
-            (Self::Vocational, "DE") => 3,
+            // Dual apprenticeships (Ausbildung, Lehre, EFZ / CFC).
+            (Self::Vocational, "DE" | "AT" | "CH") => 3,
             (Self::Vocational, _) => 2,
-            (Self::Bachelor, "US") => 4,
+            (Self::Bachelor, "US" | "IE") => 4,
             (Self::Bachelor, _) => 3,
-            (Self::Master, "GB") => 1,
+            (Self::Master, "GB" | "IE" | "AU") => 1,
             (Self::Master, _) => 2,
             (Self::Doctorate, _) => 3,
         }
@@ -267,6 +268,13 @@ pub struct Locale {
     pub words: Vec<String>,
     pub pet_names: BTreeMap<String, Vec<String>>,
     pub housing: BTreeMap<String, String>,
+    /// Spelling variant of the persona language: `"ch"` writes German the
+    /// Swiss way (no ß).
+    #[serde(default)]
+    pub spelling: Option<String>,
+    /// Other languages commonly spoken in the country, most likely first.
+    #[serde(default)]
+    pub second_languages: Vec<String>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -352,11 +360,20 @@ fn parse<T: serde::de::DeserializeOwned>(name: &str, raw: &str) -> T {
 pub fn data() -> &'static Data {
     static DATA: OnceLock<Data> = OnceLock::new();
     DATA.get_or_init(|| {
+        // Grouped by persona language, in the order the UI lists them.
         let locales = vec![
             parse("fr_FR", include_str!("../data/locales/fr_FR.json")),
+            parse("fr_BE", include_str!("../data/locales/fr_BE.json")),
+            parse("fr_CH", include_str!("../data/locales/fr_CH.json")),
+            parse("fr_CA", include_str!("../data/locales/fr_CA.json")),
             parse("en_US", include_str!("../data/locales/en_US.json")),
             parse("en_GB", include_str!("../data/locales/en_GB.json")),
+            parse("en_CA", include_str!("../data/locales/en_CA.json")),
+            parse("en_IE", include_str!("../data/locales/en_IE.json")),
+            parse("en_AU", include_str!("../data/locales/en_AU.json")),
             parse("de_DE", include_str!("../data/locales/de_DE.json")),
+            parse("de_AT", include_str!("../data/locales/de_AT.json")),
+            parse("de_CH", include_str!("../data/locales/de_CH.json")),
         ];
         let mut langs = BTreeMap::new();
         langs.insert("fr".to_string(), parse("lang/fr", include_str!("../data/lang/fr.json")));

@@ -6,7 +6,7 @@ Chaque contrôle correspond à une question qu'un interlocuteur attentif, ou l'�
 
 `score = 100 − 25 × erreurs − 8 × attentions − 2 × infos`, borné entre 0 et 100.
 
-Sur 600 légendes générées (4 pays × 13 archétypes), le test `corpus_has_no_coherence_errors` exige **zéro erreur**, et le test `corpus_scores_are_high` exige un score moyen d'au moins 80.
+Sur 1 200 légendes générées (12 pays × 12 archétypes, plus le hasard), le test `corpus_has_no_coherence_errors` exige **zéro erreur**, et le test `corpus_scores_are_high` exige un score moyen d'au moins 80.
 
 ## Contrôles
 

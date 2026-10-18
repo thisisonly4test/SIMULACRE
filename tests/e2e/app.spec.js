@@ -171,7 +171,9 @@ test("a vault backup restores into an empty browser", async ({ page, browser }, 
   await expect(page.locator(".backup-bar")).toHaveClass(browserBuild ? /stale/ : /^backup-bar$/);
   const download = page.waitForEvent("download");
   await page.locator("#backup-btn").click();
-  // The backup is sealed with a passphrase first (answered by the handler).
+  // The backup is sealed with a passphrase first: wait for the prompt (without
+  // an action, so the handler does not fire early), then let the handler answer.
+  await page.waitForFunction(() => document.querySelector("dialog .pass-form"));
   await expect(page.locator("dialog")).toHaveCount(0);
   const dl = await download;
   expect(JSON.parse(await (await import("node:fs/promises")).readFile(await dl.path(), "utf8")).format).toBe("simulacre-vault-sealed");

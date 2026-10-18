@@ -29,6 +29,7 @@ Les générateurs habituels donnent un nom, une ville et une date de naissance. 
 - **Moteur de cohérence.** On modifie la date de naissance, un pseudo ou un poste, puis le moteur revérifie tout et explique ce qui casse. Exemples : « @Not Valid!! invalide sur X (caractère ' ' interdit). Suggestion : @Not_Valid », « Compte Instagram ouvert à 11 ans ».
 - **Contamination.** Deux légendes du même opérateur ne doivent rien partager : visage (identifiant par hash du contenu), pseudo (plus longue sous-chaîne commune), numéro, quartier, employeur, bio, et même **les heures de connexion** (corrélation de Pearson des cartes 7×24).
 - **Exposition.** Les vraies personnes réutilisent leurs pseudos. SIMULACRE reproduit cette habitude, puis mesure à quel point un pseudo mène aux autres comptes.
+- **12 pays.** France, Belgique, Suisse romande, Québec ; États-Unis, Royaume-Uni, Canada anglophone, Irlande, Australie ; Allemagne, Autriche, Suisse alémanique. Chacun a ses prénoms par génération, ses noms, dix villes au moins (quartiers, club, spécialité, université, météo), son système scolaire (CESS, maturité, DEC, Matura, EFZ, Leaving Cert, TAFE…) et ses employeurs types. Les pays multilingues ont leurs langues secondes (néerlandais en Belgique, français au Canada, irlandais en Irlande…). En Suisse alémanique, l'allemand s'écrit sans ß.
 - **Interrogatoire.** Dix questions qu'un contact curieux poserait, avec des réponses fausses plausibles tirées du même pays. Le temps de réponse moyen est mesuré, parce que l'hésitation se voit.
 - **Points faibles.** La légende liste ce qui peut la trahir : « X affiche la date de création alors que la légende dit "depuis 2014" », « La légende parle allemand couramment : évite les échanges dans cette langue si ce n'est pas ton cas ».
 
@@ -43,7 +44,7 @@ L'interface reprend les codes de l'impression de papiers d'identité : papier cr
 - **18 ans minimum**, imposé par le moteur (`InvalidAgeRange`).
 - **Pas d'adresse postale** : seulement la ville et le quartier.
 - **Pas** de numéro de sécurité sociale, de carte d'identité, d'IBAN ni de carte bancaire.
-- **Téléphones** uniquement dans des plages réservées à la fiction : ARCEP (décision n° 2018-0881 : `06 39 98`), Ofcom (`07700 900xxx`), NANP (`555-01xx`). Pour l'Allemagne, qui n'a pas de plage officielle : aucun numéro.
+- **Téléphones** uniquement dans des plages réservées à la fiction : ARCEP (décision n° 2018-0881 : `06 39 98`), Ofcom (`07700 900xxx`), NANP (`555-01xx`, États-Unis et Canada). Pour les pays sans plage officielle réservée à la fiction (Allemagne, Autriche, Suisse, Belgique, Irlande, Australie) : aucun numéro.
 - **Aucune automatisation des comptes** : pas de création de compte, pas de contournement de captcha. La plateforme prépare, un humain agit et en répond.
 - Visages générés uniquement. Les métadonnées sont supprimées au ré-encodage.
 
@@ -103,14 +104,14 @@ cargo run -p simulacre-core --example forge -- SIM-DEMO-0001 fr_FR parent fr
 ## Tests
 
 ```bash
-cargo test                     # 63 tests : moteur (600 graines × 4 pays) + API HTTP
+cargo test                     # moteur (1 200 graines sur les 12 pays) + API HTTP
 cargo clippy --all-targets     # 0 avertissement
 npm install && npx playwright test   # 40 tests navigateur : serveur Rust et version sans serveur, bureau + mobile, hors ligne
 ```
 
 Ce que couvrent les tests :
 
-- **Moteur** : déterminisme, indépendance des retirages, aucune erreur de cohérence sur 600 légendes, pseudos conformes aux règles des plateformes, téléphones dans les plages fictives, aucun gabarit non rempli, libellés présents pour chaque clé, intégrité des données.
+- **Moteur** : déterminisme, indépendance des retirages, aucune erreur de cohérence sur 1 200 légendes, règles propres à chaque pays, pseudos conformes aux règles des plateformes, téléphones dans les plages fictives, aucun gabarit non rempli, libellés présents pour chaque clé, intégrité des données.
 - **API** : cycle de vie complet, jeton (en-tête et cookie), en-têtes de sécurité, traversée de chemin sur `/faces`, visages dédupliqués, source de visages hors ligne.
 - **E2E** : forge, langue, édition et recontrôle, retirage, visage, coffre, journal, contamination, vivier infini, interrogatoire, absence de débordement sur mobile, aucune erreur console ni violation CSP.
 
@@ -120,7 +121,7 @@ Si Playwright ne trouve pas son Chromium : `CHROMIUM_PATH=/chemin/vers/chrome np
 
 ```
 crates/simulacre-core/    moteur pur (aucune E/S) : données, génération, cohérence, contamination, quiz, export
-  data/                pays (fr_FR, en_US, en_GB, de_DE), langues (fr, en, de), catalogue commun
+  data/                12 pays (fr_FR/BE/CH/CA, en_US/GB/CA/IE/AU, de_DE/AT/CH), langues (fr, en, de), catalogue commun
 crates/simulacre-server/  axum + SQLite + forge de visages + UI embarquée
 crates/simulacre-wasm/    le moteur pour le navigateur (version sans serveur)
 web/                   interface (HTML/CSS/JS sans build, identité « imprimerie de sécurité ») ; web/pkg/ = moteur WebAssembly

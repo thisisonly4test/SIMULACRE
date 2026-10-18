@@ -81,7 +81,7 @@ async fn meta_lists_catalog() {
     let t = setup(None, None).await;
     let (s, v) = t.json(Method::GET, "/api/meta", None).await;
     assert_eq!(s, StatusCode::OK);
-    assert_eq!(v["locales"].as_array().unwrap().len(), 4);
+    assert_eq!(v["locales"].as_array().unwrap().len(), 12);
     assert!(v["archetypes"].as_array().unwrap().len() >= 10);
     assert!(v["labels"]["status"]["working"]["fr"].is_string());
     assert_eq!(v["limits"]["min_age"], 18);

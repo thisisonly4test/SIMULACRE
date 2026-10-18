@@ -150,6 +150,23 @@ const HERITAGE: &[(&str, &str)] = &[
     ("Kowalski", "pl"),
     ("Nowak", "pl"),
     ("Patel", "gu"),
+    ("Elif", "tr"),
+    ("Da Silva", "pt"),
+    ("Ferreira", "pt"),
+    ("Pereira", "pt"),
+    ("Rossi", "it"),
+    ("Russo", "it"),
+    ("Ferrari", "it"),
+    ("Bianchi", "it"),
+    ("Berisha", "sq"),
+    ("Krasniqi", "sq"),
+    ("Gashi", "sq"),
+    ("Arben", "sq"),
+    ("Kovačević", "hr"),
+    ("Petrović", "sr"),
+    ("Wong", "zh"),
+    ("Chen", "zh"),
+    ("Li", "zh"),
 ];
 
 fn languages(ctx: &Ctx, rng: &mut impl Rng, first: &str, last: &str, age: u8) -> Vec<LangSkill> {
@@ -174,6 +191,13 @@ fn languages(ctx: &Ctx, rng: &mut impl Rng, first: &str, last: &str, age: u8) ->
         if rng.chance(p) {
             let level = if age < 35 && rng.chance(0.5) { "fluent" } else { *rng.pick(&["intermediate", "basic"]) };
             out.push(LangSkill { code: "en".into(), level: level.into() });
+        }
+    }
+    // Multilingual countries first: Dutch in Belgium, French in Canada…
+    for (i, code) in ctx.locale.second_languages.iter().enumerate() {
+        let p = if i == 0 { 0.5 } else { 0.25 };
+        if !out.iter().any(|l| &l.code == code) && rng.chance(p) {
+            out.push(LangSkill { code: code.clone(), level: (*rng.pick(&["fluent", "intermediate", "basic"])).into() });
         }
     }
     let extra: &[&str] = match native.as_str() {

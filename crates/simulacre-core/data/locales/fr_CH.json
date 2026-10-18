@@ -1,0 +1,613 @@
+{
+  "code": "fr_CH",
+  "language": "fr",
+  "country": {
+    "fr": "Suisse (romande)",
+    "en": "Switzerland (French-speaking)"
+  },
+  "country_code": "CH",
+  "phone": {
+    "mobile": null,
+    "landline": null,
+    "fiction_reserved": false
+  },
+  "first_names": {
+    "male": [
+      [
+        "Pierre",
+        1945
+      ],
+      [
+        "Jean-Pierre",
+        1948
+      ],
+      [
+        "Jean-Claude",
+        1950
+      ],
+      [
+        "Alain",
+        1958
+      ],
+      [
+        "Yves",
+        1960
+      ],
+      [
+        "Daniel",
+        1960
+      ],
+      [
+        "Christian",
+        1965
+      ],
+      [
+        "Patrick",
+        1965
+      ],
+      [
+        "Laurent",
+        1970
+      ],
+      [
+        "Stéphane",
+        1972
+      ],
+      [
+        "Olivier",
+        1975
+      ],
+      [
+        "David",
+        1978
+      ],
+      [
+        "Nicolas",
+        1982
+      ],
+      [
+        "Julien",
+        1985
+      ],
+      [
+        "Samuel",
+        1988
+      ],
+      [
+        "Kevin",
+        1990
+      ],
+      [
+        "Mathieu",
+        1990
+      ],
+      [
+        "Arben",
+        1992
+      ],
+      [
+        "Loïc",
+        1992
+      ],
+      [
+        "Luca",
+        1995
+      ],
+      [
+        "Diego",
+        1995
+      ],
+      [
+        "Gabriel",
+        2005
+      ],
+      [
+        "Léo",
+        2010
+      ],
+      [
+        "Noah",
+        2010
+      ],
+      [
+        "Liam",
+        2012
+      ]
+    ],
+    "female": [
+      [
+        "Monique",
+        1945
+      ],
+      [
+        "Françoise",
+        1950
+      ],
+      [
+        "Anne",
+        1960
+      ],
+      [
+        "Catherine",
+        1960
+      ],
+      [
+        "Christine",
+        1965
+      ],
+      [
+        "Sylvie",
+        1968
+      ],
+      [
+        "Isabelle",
+        1970
+      ],
+      [
+        "Valérie",
+        1972
+      ],
+      [
+        "Sandra",
+        1975
+      ],
+      [
+        "Céline",
+        1980
+      ],
+      [
+        "Mélanie",
+        1985
+      ],
+      [
+        "Sophie",
+        1985
+      ],
+      [
+        "Julie",
+        1988
+      ],
+      [
+        "Laura",
+        1992
+      ],
+      [
+        "Sarah",
+        1993
+      ],
+      [
+        "Ana",
+        1995
+      ],
+      [
+        "Marine",
+        1995
+      ],
+      [
+        "Léa",
+        2000
+      ],
+      [
+        "Lara",
+        2000
+      ],
+      [
+        "Chloé",
+        2002
+      ],
+      [
+        "Emma",
+        2008
+      ],
+      [
+        "Mia",
+        2012
+      ],
+      [
+        "Alice",
+        2015
+      ]
+    ]
+  },
+  "last_names": [
+    "Favre",
+    "Rochat",
+    "Bovet",
+    "Perrin",
+    "Morel",
+    "Jaquet",
+    "Bonvin",
+    "Fournier",
+    "Gay",
+    "Rey",
+    "Chappuis",
+    "Mottier",
+    "Clerc",
+    "Dubois",
+    "Monnier",
+    "Roulin",
+    "Pittet",
+    "Cuche",
+    "Vuilleumier",
+    "Python",
+    "Gilliéron",
+    "Rossier",
+    "Bersier",
+    "Joye",
+    "Golay",
+    "Reymond",
+    "Ducret",
+    "Berset",
+    "Aebischer",
+    "Matthey",
+    "Girard",
+    "Martin",
+    "Schneider",
+    "Müller",
+    "Meyer",
+    "Da Silva",
+    "Ferreira",
+    "Pereira",
+    "Rossi",
+    "Bianchi",
+    "Berisha",
+    "Krasniqi"
+  ],
+  "cities": [
+    {
+      "name": "Genève",
+      "region": "Genève",
+      "postcode": "1205",
+      "lat": 46.2,
+      "lon": 6.15,
+      "tz": "Europe/Zurich",
+      "pop": 203000,
+      "demonym": "Genevois|Genevoise",
+      "team": "le Servette FC",
+      "landmark": "le jet d'eau",
+      "specialty": "une longeole",
+      "districts": [
+        "Plainpalais",
+        "les Pâquis",
+        "Carouge",
+        "les Eaux-Vives",
+        "la Jonction"
+      ],
+      "university": "l'Université de Genève",
+      "weather": "bise glaciale l'hiver"
+    },
+    {
+      "name": "Lausanne",
+      "region": "Vaud",
+      "postcode": "1003",
+      "lat": 46.52,
+      "lon": 6.63,
+      "tz": "Europe/Zurich",
+      "pop": 140000,
+      "demonym": "Lausannois|Lausannoise",
+      "team": "le Lausanne-Sport",
+      "landmark": "la cathédrale",
+      "specialty": "un papet vaudois",
+      "districts": [
+        "Ouchy",
+        "le Flon",
+        "Sous-Gare",
+        "Chailly",
+        "la Pontaise"
+      ],
+      "university": "l'Université de Lausanne",
+      "weather": "brouillard sur le lac, puis grand soleil"
+    },
+    {
+      "name": "Fribourg",
+      "region": "Fribourg",
+      "postcode": "1700",
+      "lat": 46.8,
+      "lon": 7.15,
+      "tz": "Europe/Zurich",
+      "pop": 38000,
+      "demonym": "Fribourgeois|Fribourgeoise",
+      "team": "le HC Fribourg-Gottéron",
+      "landmark": "la cathédrale Saint-Nicolas",
+      "specialty": "une fondue moitié-moitié",
+      "districts": [
+        "la Basse-Ville",
+        "le Bourg",
+        "Pérolles",
+        "Beauregard",
+        "le Schoenberg"
+      ],
+      "university": "l'Université de Fribourg",
+      "weather": "hivers frais"
+    },
+    {
+      "name": "Neuchâtel",
+      "region": "Neuchâtel",
+      "postcode": "2000",
+      "lat": 46.99,
+      "lon": 6.93,
+      "tz": "Europe/Zurich",
+      "pop": 44000,
+      "demonym": "Neuchâtelois|Neuchâteloise",
+      "team": "Neuchâtel Xamax",
+      "landmark": "le château",
+      "specialty": "une absinthe du Val-de-Travers",
+      "districts": [
+        "la Coudre",
+        "Serrières",
+        "la Maladière",
+        "Peseux",
+        "le centre-ville"
+      ],
+      "university": "l'Université de Neuchâtel",
+      "weather": "doux au bord du lac"
+    },
+    {
+      "name": "Sion",
+      "region": "Valais",
+      "postcode": "1950",
+      "lat": 46.23,
+      "lon": 7.36,
+      "tz": "Europe/Zurich",
+      "pop": 35000,
+      "demonym": "Sédunois|Sédunoise",
+      "team": "le FC Sion",
+      "landmark": "les châteaux de Valère et Tourbillon",
+      "specialty": "une raclette",
+      "districts": [
+        "Champsec",
+        "Platta",
+        "Uvrier",
+        "Vissigen",
+        "la vieille ville"
+      ],
+      "university": "la HES-SO Valais",
+      "weather": "sec et ensoleillé"
+    },
+    {
+      "name": "La Chaux-de-Fonds",
+      "region": "Neuchâtel",
+      "postcode": "2300",
+      "lat": 47.1,
+      "lon": 6.83,
+      "tz": "Europe/Zurich",
+      "pop": 37000,
+      "demonym": "Chaux-de-Fonnier|Chaux-de-Fonnière",
+      "team": "le HC La Chaux-de-Fonds",
+      "landmark": "le musée international d'horlogerie",
+      "specialty": "une taillaule",
+      "districts": [
+        "les Éplatures",
+        "le Grand-Pont",
+        "la Charrière",
+        "les Forges",
+        "le Crêt-du-Locle"
+      ],
+      "university": "la HE-Arc",
+      "weather": "rude, de la neige jusqu'en avril"
+    },
+    {
+      "name": "Montreux",
+      "region": "Vaud",
+      "postcode": "1820",
+      "lat": 46.43,
+      "lon": 6.91,
+      "tz": "Europe/Zurich",
+      "pop": 26000,
+      "demonym": "Montreusien|Montreusienne",
+      "team": "la Nati",
+      "landmark": "le château de Chillon",
+      "specialty": "un filet de perche",
+      "districts": [
+        "Clarens",
+        "Territet",
+        "Chernex",
+        "Brent",
+        "Glion"
+      ],
+      "university": "l'Université de Lausanne",
+      "weather": "doux, presque méditerranéen"
+    },
+    {
+      "name": "Yverdon-les-Bains",
+      "region": "Vaud",
+      "postcode": "1400",
+      "lat": 46.78,
+      "lon": 6.64,
+      "tz": "Europe/Zurich",
+      "pop": 30000,
+      "demonym": "Yverdonnois|Yverdonnoise",
+      "team": "Yverdon-Sport",
+      "landmark": "le château",
+      "specialty": "une saucisse aux choux",
+      "districts": [
+        "Clendy",
+        "les Moulins",
+        "Pierre-de-Savoie",
+        "Floreyres",
+        "la Villette"
+      ],
+      "university": "la HEIG-VD",
+      "weather": "brouillard en novembre"
+    },
+    {
+      "name": "Nyon",
+      "region": "Vaud",
+      "postcode": "1260",
+      "lat": 46.38,
+      "lon": 6.24,
+      "tz": "Europe/Zurich",
+      "pop": 22000,
+      "demonym": "Nyonnais|Nyonnaise",
+      "team": "le Stade Nyonnais",
+      "landmark": "le château",
+      "specialty": "un filet de perche",
+      "districts": [
+        "Rive",
+        "la Levratte",
+        "Marens",
+        "le Couchant",
+        "Clémenty"
+      ],
+      "university": "l'Université de Genève",
+      "weather": "venteux au bord du lac"
+    },
+    {
+      "name": "Delémont",
+      "region": "Jura",
+      "postcode": "2800",
+      "lat": 47.36,
+      "lon": 7.35,
+      "tz": "Europe/Zurich",
+      "pop": 13000,
+      "demonym": "Delémontain|Delémontaine",
+      "team": "les SR Delémont",
+      "landmark": "la vieille ville",
+      "specialty": "une tête de moine",
+      "districts": [
+        "la Communance",
+        "le Righi",
+        "les Prés-Roses",
+        "le Gros-Seuc",
+        "la Blancherie"
+      ],
+      "university": "la HE-Arc",
+      "weather": "hivers froids"
+    }
+  ],
+  "education": {
+    "secondary": {
+      "degree": "Maturité gymnasiale",
+      "institution": "Collège {school}"
+    },
+    "vocational": {
+      "degree": "CFC ({field})",
+      "institution": "École professionnelle de {city}"
+    },
+    "bachelor": {
+      "degree": "Bachelor en {field}",
+      "institution": "{university}"
+    },
+    "master": {
+      "degree": "Master en {field}",
+      "institution": "{university}"
+    },
+    "doctorate": {
+      "degree": "Doctorat en {field}",
+      "institution": "{university}"
+    }
+  },
+  "schools": [
+    "Calvin",
+    "Rousseau",
+    "Voltaire",
+    "Sismondi",
+    "de Candolle",
+    "de Staël",
+    "Émilie-Gourd",
+    "Henry-Dunant",
+    "de Beaulieu",
+    "de Chamblandes",
+    "Auguste-Piccard",
+    "Ella-Maillart"
+  ],
+  "fields": {
+    "tech": "informatique",
+    "health": "sciences de la santé",
+    "education": "sciences de l'éducation",
+    "retail": "commerce",
+    "hospitality": "hôtellerie-restauration",
+    "trades": "génie civil",
+    "logistics": "transport et logistique",
+    "office": "gestion",
+    "creative": "arts appliqués",
+    "public": "administration publique",
+    "industry": "génie industriel",
+    "agri": "agronomie"
+  },
+  "employers": {
+    "default": [
+      "{surname} SA",
+      "{word} Group",
+      "{word} Services Sàrl",
+      "Ateliers {surname}",
+      "{word} {city}"
+    ],
+    "health": [
+      "Hôpital de {city}",
+      "Clinique {word}",
+      "Pharmacie {surname}",
+      "EMS Les {word}"
+    ],
+    "education": [
+      "École primaire {school}",
+      "Collège {school}",
+      "Gymnase {school}",
+      "Centre de formation {word}"
+    ],
+    "public": [
+      "Ville de {city}",
+      "Bibliothèque municipale de {city}",
+      "La Poste — {city}",
+      "Services industriels de {city}"
+    ],
+    "hospitality": [
+      "Café {word}",
+      "Hôtel {word}",
+      "Brasserie {surname}",
+      "Auberge {word}"
+    ],
+    "retail": [
+      "{word} Shop",
+      "Boutique {word}",
+      "Maison {surname}"
+    ]
+  },
+  "words": [
+    "Léman",
+    "Jura",
+    "Salève",
+    "Lavaux",
+    "Helvetia",
+    "Alpina",
+    "Bellevue",
+    "Rhône",
+    "Mont-Blanc",
+    "Edelweiss",
+    "Horizon",
+    "Atlas",
+    "Riviera",
+    "Belvédère",
+    "Les Tilleuls"
+  ],
+  "pet_names": {
+    "dog": [
+      "Filou",
+      "Rex",
+      "Oscar",
+      "Nala",
+      "Moka",
+      "Rocky",
+      "Balou",
+      "Tango"
+    ],
+    "cat": [
+      "Minou",
+      "Simba",
+      "Pistache",
+      "Luna",
+      "Caramel",
+      "Mimi",
+      "Félix",
+      "Fripouille"
+    ]
+  },
+  "housing": {
+    "apartment": "appartement",
+    "house": "maison"
+  },
+  "second_languages": [
+    "de",
+    "it"
+  ]
+}

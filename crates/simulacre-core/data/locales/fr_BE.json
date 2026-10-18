@@ -1,0 +1,640 @@
+{
+  "code": "fr_BE",
+  "language": "fr",
+  "country": {
+    "fr": "Belgique",
+    "en": "Belgium"
+  },
+  "country_code": "BE",
+  "phone": {
+    "mobile": null,
+    "landline": null,
+    "fiction_reserved": false
+  },
+  "first_names": {
+    "male": [
+      [
+        "Marcel",
+        1942
+      ],
+      [
+        "Jean",
+        1945
+      ],
+      [
+        "Jacques",
+        1948
+      ],
+      [
+        "Michel",
+        1950
+      ],
+      [
+        "Luc",
+        1958
+      ],
+      [
+        "Philippe",
+        1960
+      ],
+      [
+        "Patrick",
+        1962
+      ],
+      [
+        "Marc",
+        1963
+      ],
+      [
+        "Didier",
+        1965
+      ],
+      [
+        "Pascal",
+        1966
+      ],
+      [
+        "Olivier",
+        1972
+      ],
+      [
+        "Christophe",
+        1973
+      ],
+      [
+        "Frédéric",
+        1975
+      ],
+      [
+        "Sébastien",
+        1978
+      ],
+      [
+        "Nicolas",
+        1980
+      ],
+      [
+        "Julien",
+        1985
+      ],
+      [
+        "Kevin",
+        1988
+      ],
+      [
+        "Maxime",
+        1990
+      ],
+      [
+        "Mohamed",
+        1990
+      ],
+      [
+        "Mehdi",
+        1992
+      ],
+      [
+        "Thomas",
+        1992
+      ],
+      [
+        "Antoine",
+        1995
+      ],
+      [
+        "Hugo",
+        2000
+      ],
+      [
+        "Nathan",
+        2002
+      ],
+      [
+        "Louis",
+        2005
+      ],
+      [
+        "Noah",
+        2010
+      ],
+      [
+        "Jules",
+        2014
+      ],
+      [
+        "Arthur",
+        2015
+      ]
+    ],
+    "female": [
+      [
+        "Monique",
+        1945
+      ],
+      [
+        "Josiane",
+        1948
+      ],
+      [
+        "Martine",
+        1955
+      ],
+      [
+        "Christine",
+        1960
+      ],
+      [
+        "Véronique",
+        1966
+      ],
+      [
+        "Isabelle",
+        1966
+      ],
+      [
+        "Nathalie",
+        1970
+      ],
+      [
+        "Valérie",
+        1970
+      ],
+      [
+        "Sandrine",
+        1975
+      ],
+      [
+        "Stéphanie",
+        1978
+      ],
+      [
+        "Céline",
+        1980
+      ],
+      [
+        "Julie",
+        1985
+      ],
+      [
+        "Aurélie",
+        1985
+      ],
+      [
+        "Fatima",
+        1985
+      ],
+      [
+        "Laura",
+        1990
+      ],
+      [
+        "Marie",
+        1990
+      ],
+      [
+        "Sarah",
+        1992
+      ],
+      [
+        "Camille",
+        1995
+      ],
+      [
+        "Manon",
+        1997
+      ],
+      [
+        "Chloé",
+        1998
+      ],
+      [
+        "Inès",
+        2000
+      ],
+      [
+        "Emma",
+        2005
+      ],
+      [
+        "Louise",
+        2010
+      ],
+      [
+        "Lina",
+        2012
+      ],
+      [
+        "Olivia",
+        2015
+      ]
+    ]
+  },
+  "last_names": [
+    "Peeters",
+    "Janssens",
+    "Maes",
+    "Jacobs",
+    "Mertens",
+    "Willems",
+    "Claes",
+    "Goossens",
+    "Wouters",
+    "De Smet",
+    "Dubois",
+    "Lambert",
+    "Dupont",
+    "Martin",
+    "Simon",
+    "Leclercq",
+    "Laurent",
+    "Lejeune",
+    "Renard",
+    "Lemaire",
+    "Gilson",
+    "Collard",
+    "Henrard",
+    "Leroy",
+    "Denis",
+    "Hermans",
+    "Mathieu",
+    "François",
+    "Dumont",
+    "Lefebvre",
+    "Michel",
+    "Fontaine",
+    "Charlier",
+    "Bodart",
+    "Delvaux",
+    "Thiry",
+    "Piron",
+    "Hubert",
+    "Martens",
+    "Vandenberghe",
+    "Van Damme",
+    "Gérard",
+    "Masson",
+    "Marchal",
+    "El Amrani",
+    "Benali",
+    "Yilmaz",
+    "Rossi",
+    "Russo"
+  ],
+  "cities": [
+    {
+      "name": "Bruxelles",
+      "region": "Région de Bruxelles-Capitale",
+      "postcode": "1050",
+      "lat": 50.85,
+      "lon": 4.35,
+      "tz": "Europe/Brussels",
+      "pop": 1220000,
+      "demonym": "Bruxellois|Bruxelloise",
+      "team": "le Sporting d'Anderlecht",
+      "landmark": "la Grand-Place",
+      "specialty": "une gaufre de Bruxelles",
+      "districts": [
+        "Ixelles",
+        "Saint-Gilles",
+        "Etterbeek",
+        "Schaerbeek",
+        "le quartier du Châtelain"
+      ],
+      "university": "l'ULB",
+      "weather": "gris, pluie fine, puis soleil surprise"
+    },
+    {
+      "name": "Liège",
+      "region": "Wallonie",
+      "postcode": "4000",
+      "lat": 50.63,
+      "lon": 5.57,
+      "tz": "Europe/Brussels",
+      "pop": 197000,
+      "demonym": "Liégeois|Liégeoise",
+      "team": "le Standard",
+      "landmark": "la montagne de Bueren",
+      "specialty": "des boulets à la liégeoise",
+      "districts": [
+        "Outremeuse",
+        "le Carré",
+        "Sainte-Marguerite",
+        "Angleur",
+        "Saint-Laurent"
+      ],
+      "university": "l'Université de Liège",
+      "weather": "humide, brumeux l'hiver"
+    },
+    {
+      "name": "Charleroi",
+      "region": "Wallonie",
+      "postcode": "6000",
+      "lat": 50.41,
+      "lon": 4.44,
+      "tz": "Europe/Brussels",
+      "pop": 202000,
+      "demonym": "Carolorégien|Carolorégienne",
+      "team": "le Sporting de Charleroi",
+      "landmark": "le beffroi de l'hôtel de ville",
+      "specialty": "une mitraillette",
+      "districts": [
+        "la Ville-Haute",
+        "la Ville-Basse",
+        "Marcinelle",
+        "Gilly",
+        "Montignies-sur-Sambre"
+      ],
+      "university": "l'UMONS",
+      "weather": "gris, venteux"
+    },
+    {
+      "name": "Namur",
+      "region": "Wallonie",
+      "postcode": "5000",
+      "lat": 50.47,
+      "lon": 4.87,
+      "tz": "Europe/Brussels",
+      "pop": 112000,
+      "demonym": "Namurois|Namuroise",
+      "team": "les Diables rouges",
+      "landmark": "la citadelle",
+      "specialty": "un péket",
+      "districts": [
+        "Jambes",
+        "Salzinnes",
+        "Bouge",
+        "Saint-Servais",
+        "la Corbeille"
+      ],
+      "university": "l'Université de Namur",
+      "weather": "doux, souvent couvert"
+    },
+    {
+      "name": "Mons",
+      "region": "Wallonie",
+      "postcode": "7000",
+      "lat": 50.45,
+      "lon": 3.95,
+      "tz": "Europe/Brussels",
+      "pop": 96000,
+      "demonym": "Montois|Montoise",
+      "team": "le RAEC Mons",
+      "landmark": "le beffroi",
+      "specialty": "une mitraillette",
+      "districts": [
+        "Jemappes",
+        "Cuesmes",
+        "Hyon",
+        "Nimy",
+        "Havré"
+      ],
+      "university": "l'UMONS",
+      "weather": "pluie fine et ducasse en juin"
+    },
+    {
+      "name": "Tournai",
+      "region": "Wallonie",
+      "postcode": "7500",
+      "lat": 50.61,
+      "lon": 3.39,
+      "tz": "Europe/Brussels",
+      "pop": 69000,
+      "demonym": "Tournaisien|Tournaisienne",
+      "team": "les Diables rouges",
+      "landmark": "la cathédrale Notre-Dame",
+      "specialty": "une tarte au sucre",
+      "districts": [
+        "Kain",
+        "Froyennes",
+        "Marquain",
+        "Gaurain",
+        "Saint-Piat"
+      ],
+      "university": "l'UCLouvain",
+      "weather": "doux et humide"
+    },
+    {
+      "name": "Louvain-la-Neuve",
+      "region": "Wallonie",
+      "postcode": "1348",
+      "lat": 50.67,
+      "lon": 4.61,
+      "tz": "Europe/Brussels",
+      "pop": 32000,
+      "demonym": "Néolouvaniste|Néolouvaniste",
+      "team": "les Diables rouges",
+      "landmark": "le lac de Louvain-la-Neuve",
+      "specialty": "un croque au kot",
+      "districts": [
+        "le Biéreau",
+        "l'Hocaille",
+        "Lauzelle",
+        "les Bruyères",
+        "la Baraque"
+      ],
+      "university": "l'UCLouvain",
+      "weather": "venteux sur la dalle"
+    },
+    {
+      "name": "Verviers",
+      "region": "Wallonie",
+      "postcode": "4800",
+      "lat": 50.59,
+      "lon": 5.86,
+      "tz": "Europe/Brussels",
+      "pop": 55000,
+      "demonym": "Verviétois|Verviétoise",
+      "team": "le Standard",
+      "landmark": "le barrage de la Gileppe",
+      "specialty": "une tarte au riz",
+      "districts": [
+        "Hodimont",
+        "Ensival",
+        "Heusy",
+        "Lambermont",
+        "Stembert"
+      ],
+      "university": "l'Université de Liège",
+      "weather": "pluie, souvent"
+    },
+    {
+      "name": "Waterloo",
+      "region": "Wallonie",
+      "postcode": "1410",
+      "lat": 50.72,
+      "lon": 4.4,
+      "tz": "Europe/Brussels",
+      "pop": 30000,
+      "demonym": "Waterlootois|Waterlootoise",
+      "team": "les Waterloo Ducks",
+      "landmark": "la Butte du Lion",
+      "specialty": "une gaufre de Liège",
+      "districts": [
+        "Mont-Saint-Jean",
+        "Joli-Bois",
+        "le Chenois",
+        "le Faubourg",
+        "le centre"
+      ],
+      "university": "l'UCLouvain",
+      "weather": "doux et venteux"
+    },
+    {
+      "name": "La Louvière",
+      "region": "Wallonie",
+      "postcode": "7100",
+      "lat": 50.48,
+      "lon": 4.19,
+      "tz": "Europe/Brussels",
+      "pop": 81000,
+      "demonym": "Louviérois|Louviéroise",
+      "team": "la RAAL",
+      "landmark": "les ascenseurs du canal du Centre",
+      "specialty": "une mitraillette",
+      "districts": [
+        "Haine-Saint-Pierre",
+        "Houdeng",
+        "Strépy-Bracquegnies",
+        "Trivières",
+        "Maurage"
+      ],
+      "university": "l'UMONS",
+      "weather": "gris et humide"
+    }
+  ],
+  "education": {
+    "secondary": {
+      "degree": "CESS",
+      "institution": "Athénée royal {school}"
+    },
+    "vocational": {
+      "degree": "Bachelier en {field}",
+      "institution": "Haute École {school}"
+    },
+    "bachelor": {
+      "degree": "Bachelier en {field}",
+      "institution": "{university}"
+    },
+    "master": {
+      "degree": "Master en {field}",
+      "institution": "{university}"
+    },
+    "doctorate": {
+      "degree": "Doctorat en {field}",
+      "institution": "{university}"
+    }
+  },
+  "schools": [
+    "Adolphe Max",
+    "Victor Horta",
+    "Jules Bordet",
+    "Paul Delvaux",
+    "René Magritte",
+    "Marguerite Yourcenar",
+    "Émile Verhaeren",
+    "Fernand Blum",
+    "Léon Lepage",
+    "Charles Janssens",
+    "Robert Catteau",
+    "Jean Absil"
+  ],
+  "fields": {
+    "tech": "informatique",
+    "health": "sciences de la santé",
+    "education": "sciences de l'éducation",
+    "retail": "commerce",
+    "hospitality": "hôtellerie-restauration",
+    "trades": "génie civil",
+    "logistics": "transport et logistique",
+    "office": "gestion",
+    "creative": "arts appliqués",
+    "public": "administration publique",
+    "industry": "génie industriel",
+    "agri": "agronomie"
+  },
+  "employers": {
+    "default": [
+      "{surname} & Fils",
+      "Groupe {word}",
+      "{word} Services",
+      "Ets {surname}",
+      "{word} {city}"
+    ],
+    "health": [
+      "CHU de {city}",
+      "Clinique {word}",
+      "Pharmacie {surname}",
+      "Maison de repos {word}"
+    ],
+    "education": [
+      "École communale {school}",
+      "Athénée royal {school}",
+      "Haute École {word}",
+      "Centre de formation {word}"
+    ],
+    "public": [
+      "Ville de {city}",
+      "Bibliothèque communale de {city}",
+      "bpost — {city}",
+      "CPAS de {city}"
+    ],
+    "hospitality": [
+      "Brasserie {word}",
+      "Hôtel {word}",
+      "Friterie {surname}",
+      "Le Comptoir {word}"
+    ],
+    "retail": [
+      "{word} Market",
+      "Boutique {word}",
+      "Maison {surname}"
+    ]
+  },
+  "words": [
+    "Horizon",
+    "Atlas",
+    "Meuse",
+    "Ardenne",
+    "Brabant",
+    "Les Hêtres",
+    "Saint-Lambert",
+    "Bellevue",
+    "Le Phare",
+    "Sambre",
+    "Mosane",
+    "Les Tilleuls",
+    "Équinoxe",
+    "Optima",
+    "Hainaut"
+  ],
+  "pet_names": {
+    "dog": [
+      "Milou",
+      "Filou",
+      "Rex",
+      "Oscar",
+      "Nala",
+      "Moka",
+      "Rocky",
+      "Diesel"
+    ],
+    "cat": [
+      "Minou",
+      "Simba",
+      "Pistache",
+      "Luna",
+      "Caramel",
+      "Mimi",
+      "Félix",
+      "Grisou"
+    ]
+  },
+  "housing": {
+    "apartment": "appartement",
+    "house": "maison"
+  },
+  "second_languages": [
+    "nl",
+    "de"
+  ]
+}
