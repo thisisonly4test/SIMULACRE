@@ -9,6 +9,16 @@ test.beforeEach(async ({ page }) => {
 });
 test.afterEach(() => expect(errors, "no console errors / CSP violations").toEqual([]));
 
+// The browser build asks for the vault passphrase (to create it, unlock the
+// vault, or seal / open a backup): answer every prompt with the same one.
+const PASS = "correct horse battery staple";
+const answerPassphrase = (page) => page.addLocatorHandler(page.locator("dialog .pass-form"), async (form) => {
+  await form.locator("#pass").fill(PASS);
+  if (await form.locator("#pass2").count()) await form.locator("#pass2").fill(PASS);
+  await form.locator("#pass-ok").click();
+});
+test.beforeEach(async ({ page }) => { await answerPassphrase(page); });
+
 const forge = async (page, seed, locale = "fr_FR") => {
   await page.goto(`/#/?seed=${seed}&locale=${locale}`);
   await expect(page.locator("#log")).toContainText("légende prête");
@@ -159,7 +169,12 @@ test("a vault backup restores into an empty browser", async ({ page, browser }, 
   await page.goto("/#/vault");
   // Never backed up: the browser build warns, the server does not need to.
   await expect(page.locator(".backup-bar")).toHaveClass(browserBuild ? /stale/ : /^backup-bar$/);
-  const [dl] = await Promise.all([page.waitForEvent("download"), page.locator("#backup-btn").click()]);
+  const download = page.waitForEvent("download");
+  await page.locator("#backup-btn").click();
+  // The backup is sealed with a passphrase first (answered by the handler).
+  await expect(page.locator("dialog")).toHaveCount(0);
+  const dl = await download;
+  expect(JSON.parse(await (await import("node:fs/promises")).readFile(await dl.path(), "utf8")).format).toBe("simulacre-vault-sealed");
   expect(dl.suggestedFilename()).toMatch(/^simulacre-vault-\d{4}-\d{2}-\d{2}\.json$/);
   const file = await dl.path();
   await expect(page.locator(".backup-bar")).not.toHaveClass(/stale/);
@@ -168,6 +183,7 @@ test("a vault backup restores into an empty browser", async ({ page, browser }, 
   // A fresh browser profile: empty IndexedDB in the browser build.
   const ctx = await browser.newContext({ baseURL: info.project.use.baseURL });
   const fresh = await ctx.newPage();
+  await answerPassphrase(fresh);
   const errs = [];
   fresh.on("pageerror", (e) => errs.push(String(e)));
   await fresh.addInitScript(() => { try { localStorage.setItem("simulacre.lang", "fr"); } catch {} });
@@ -186,6 +202,46 @@ test("a vault backup restores into an empty browser", async ({ page, browser }, 
   await expect(fresh.locator(".toast.err")).toContainText("Restauration refusée");
   expect(errs).toEqual([]);
   await ctx.close();
+});
+
+test("the browser vault is encrypted at rest and locks", async ({ page }, info) => {
+  test.skip(!info.project.name.startsWith("browser"), "browser build only");
+  await forge(page, "SIM-E2E-CRYPT");
+  const surname = await page.locator(".pp-surname").textContent();
+  await page.getByRole("button", { name: /Enregistrer au coffre/ }).click();
+  await expect(page).toHaveURL(/#\/p\//);
+  // What IndexedDB holds: ids in clear, everything else sealed.
+  const raw = await page.evaluate(() => new Promise((resolve, reject) => {
+    const req = indexedDB.open("simulacre");
+    req.onsuccess = () => {
+      const t = req.result.transaction(["personas", "journal", "meta"]);
+      const out = {};
+      t.objectStore("personas").getAll().onsuccess = (e) => { out.personas = e.target.result; };
+      t.objectStore("journal").getAll().onsuccess = (e) => { out.journal = e.target.result; };
+      t.objectStore("meta").get("crypto").onsuccess = (e) => { out.meta = e.target.result; };
+      t.oncomplete = () => resolve(JSON.stringify(out, (k, v) => (v instanceof Uint8Array ? `<${v.length} bytes>` : v)));
+    };
+    req.onerror = () => reject(req.error);
+  }));
+  expect(raw).not.toContain(surname);
+  expect(raw).not.toContain("SIM-E2E-CRYPT");
+  expect(raw).not.toContain("created");
+  expect(raw).toMatch(/"iterations":600000/);
+
+  // Lock: the vault asks again; a wrong passphrase is refused.
+  await page.goto("/#/vault");
+  await page.locator("#lock-btn").click();
+  await expect(page.locator(".toast", { hasText: "Coffre verrouillé" })).toBeVisible();
+  await page.removeLocatorHandler(page.locator("dialog .pass-form"));
+  await page.reload();
+  const form = page.locator("dialog .pass-form");
+  await form.locator("#pass").fill("not the passphrase");
+  await form.locator("#pass-ok").click();
+  await expect(form.locator(".pass-error")).toHaveText("Mot de passe incorrect.");
+  await form.locator("#pass").fill(PASS);
+  await form.locator("#pass-ok").click();
+  await expect(page.locator(".pcard")).toHaveCount(1);
+  await expect(page.locator(".vault-enc")).toBeVisible();
 });
 
 test("paper is the default theme even on a dark OS", async ({ page }) => {

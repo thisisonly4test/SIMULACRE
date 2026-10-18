@@ -1,9 +1,10 @@
 import { api, backendMode, faceUrl } from "./api.js";
-import { section } from "./components.js";
+import { passphrasePrompt, section } from "./components.js";
 import { marionette } from "./puppet.js";
 import { applyEdit, commonActions, dossier } from "./dossier.js";
 import { L, lab, lang, t } from "./i18n.js";
 import { clear, download, flag, h, initials, pbadge, scoreColor, silhouette, sleep, toast } from "./util.js";
+import { isSealed, openBackup, sealBackup } from "./vaultcrypto.js";
 
 export const ctx = { meta: null, refreshNav: () => {} };
 
@@ -340,7 +341,9 @@ export function poolView(root) {
 // ═════════════════════════════════════ VAULT ═════════════════════════════════
 let vaultFilter = "";
 export async function vaultView(root) {
-  const [list, stats] = await Promise.all([api.list(), api.stats()]);
+  // The list first: in the browser build it is what asks for the passphrase.
+  const list = await api.list();
+  const [stats, vault] = await Promise.all([api.stats(), api.vaultState()]);
   const statuses = ctx.meta.statuses;
   const grid = h("div", { class: "cards" });
   const draw = () => {
@@ -360,7 +363,7 @@ export async function vaultView(root) {
         h("li", {}, h("b", {}, stats.total), h("span", {}, t("total"))),
         statuses.map((s) => h("li", {}, h("b", {}, stats.by_status[s] || 0), h("span", {}, t(`st_${s}`)))),
         h("li", {}, h("b", { vars: { color: scoreColor(stats.avg_coherence) } }, stats.avg_coherence), h("span", {}, t("avg_coherence")))),
-      backupBar(stats.total, () => { clear(root); ctx.refreshNav(); return vaultView(root); }),
+      backupBar(stats.total, vault, () => { clear(root); ctx.refreshNav(); return vaultView(root); }),
       chips, grid),
   }));
   draw();
@@ -370,7 +373,7 @@ export async function vaultView(root) {
 // browser, so the bar nags gently when the last backup is old or missing.
 const BACKUP_KEY = "simulacre.lastBackup";
 const BACKUP_STALE_DAYS = 7;
-function backupBar(total, reload) {
+function backupBar(total, vault, reload) {
   let last = null;
   try { last = localStorage.getItem(BACKUP_KEY); } catch { /* private mode */ }
   const days = last ? Math.floor((Date.now() - Date.parse(last)) / 86400000) : null;
@@ -382,24 +385,40 @@ function backupBar(total, reload) {
     file.value = "";
     if (!f) return;
     try {
-      const r = await api.restore(await f.text());
+      let text = await f.text();
+      // A protected backup: ask for its passphrase until it opens.
+      if (isSealed(text)) {
+        let error = null;
+        for (;;) {
+          const a = await passphrasePrompt("open", error);
+          if (!a) return;
+          try { text = await openBackup(text, a.passphrase); break; } catch (e) { if (e.message !== "wrong passphrase") throw e; error = "wrong"; }
+        }
+      }
+      const r = await api.restore(text);
       toast(t("restore_done").replace("{added}", r.added).replace("{updated}", r.updated).replace("{skipped}", r.skipped) + (r.faces_missing ? ` ${t("restore_faces_missing").replace("{n}", r.faces_missing)}` : ""));
       await reload();
     } catch (e) { toast(`${t("restore_fail")} ${e.message}`, true); }
   });
   return h("div", { class: `backup-bar${stale ? " stale" : ""}` },
-    h("span", { class: "backup-when" }, stale ? "⚠ " : "", `${t("backup_last")} : `, h("b", {}, when)),
+    h("span", { class: "backup-when" },
+      vault.encrypted ? h("span", { class: "vault-enc" }, `🔒 ${t("vault_encrypted")} · `) : null,
+      stale ? "⚠ " : "", `${t("backup_last")} : `, h("b", {}, when)),
     h("div", { class: "backup-actions" },
       h("button", { class: "btn btn-sm", id: "backup-btn", disabled: !total, onclick: async (e) => {
         const b = e.currentTarget;
         b.disabled = true;
         try {
-          download(`simulacre-vault-${new Date().toISOString().slice(0, 10)}.json`, await api.backup(), "application/json");
+          const plain = await api.backup();
+          const a = await passphrasePrompt("seal");
+          if (!a) { b.disabled = false; return; }
+          download(`simulacre-vault-${new Date().toISOString().slice(0, 10)}.json`, await sealBackup(plain, a.passphrase), "application/json");
           try { localStorage.setItem(BACKUP_KEY, new Date().toISOString()); } catch { /* private mode */ }
           await reload();
         } catch (err) { toast(err.message, true); b.disabled = false; }
       } }, "⇩ " + t("backup_btn")),
       h("button", { class: "btn btn-sm btn-ghost", id: "restore-btn", onclick: () => file.click() }, "⇧ " + t("restore_btn")),
+      vault.encrypted ? h("button", { class: "btn btn-sm btn-ghost", id: "lock-btn", onclick: () => api.lock() }, "🔒 " + t("lock")) : null,
       file));
 }
 

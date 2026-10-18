@@ -1,6 +1,6 @@
 import "./migrate.js";
-import { api, onAuthNeeded, setToken } from "./api.js";
-import { tokenPrompt } from "./components.js";
+import { api, onAuthNeeded, onVaultKey, onVaultLocked, setToken } from "./api.js";
+import { passphrasePrompt, tokenPrompt } from "./components.js";
 import { lang, setLabels, setLang, t } from "./i18n.js";
 import { puppetMark } from "./puppet.js";
 import { initUv, isUv, setUv } from "./security.js";
@@ -67,6 +67,12 @@ async function route() {
     if (typeof res === "function") { if (root.isConnected) cleanup = res; else res(); }
   } catch (e) {
     if (!root.isConnected) return;
+    if (e.status === 423) {
+      // Prompt dismissed: offer to try again instead of an error.
+      root.append(h("div", { class: "lock-panel" }, h("span", { class: "lock-icon", "aria-hidden": "true" }, "🔒"), h("b", {}, t("locked_title")), h("p", { class: "muted" }, t("locked_sub")),
+        h("button", { class: "btn btn-primary", onclick: route }, t("unlock"))));
+      return;
+    }
     root.append(h("div", { class: "empty" }, h("b", {}, t("err")), e.message));
     toast(e.message, true);
   }
@@ -75,6 +81,14 @@ async function route() {
 }
 
 onAuthNeeded(async () => setToken(await tokenPrompt()));
+onVaultKey((mode, error) => passphrasePrompt(mode, error));
+// Auto-lock (or the Lock button): views showing vault data are redrawn, which
+// asks for the passphrase again; the forge page only loses its pictures.
+onVaultLocked(() => {
+  toast(t("locked_toast"));
+  refreshNav();
+  if (!/^#?\/?(\?.*)?$/.test(location.hash)) route();
+});
 
 async function boot() {
   // Always land at the top: the browser must not restore an old scroll offset.

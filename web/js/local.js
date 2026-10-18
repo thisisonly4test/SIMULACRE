@@ -5,17 +5,32 @@
 // hosting Worker's /api/face relay (thispersondoesnotexist.com sends no CORS
 // headers, so the browser cannot fetch it directly).
 //
+// The vault is encrypted at rest (see vaultcrypto.js): every legend, journal
+// entry and face picture is stored sealed with AES-GCM under a key derived
+// from the operator's passphrase. Forging needs no key; anything that reads
+// or writes the vault asks for the passphrase first, through the prompt the
+// UI registers with setKeyPrompt(). Record ids, face ids and the link between
+// a journal entry and its legend stay in clear, as IndexedDB keys.
+//
 // Errors are thrown as ApiError with the HTTP API's status codes and messages.
 
 import { ApiError } from "./errors.js";
+import { deriveKey, open, openJson, randomBytes, seal, sealJson, toBase64, fromBase64 } from "./vaultcrypto.js";
 
 const DB_NAME = "simulacre";
-const DB_VERSION = 1;
+const DB_VERSION = 2;
 const FACE_SIZE = 512;
 const MAX_UPLOAD = 8 * 1024 * 1024;
+const AUTO_LOCK_MS = 15 * 60 * 1000;
+/** Shown in place of a face while the vault is locked. */
+const LOCKED_FACE = `data:image/svg+xml,${encodeURIComponent("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 50'><rect width='40' height='50' fill='#ddd5c2'/><g fill='none' stroke='#8a8170' stroke-width='2.2'><rect x='12' y='23' width='16' height='13' rx='2'/><path d='M15 23v-4a5 5 0 0 1 10 0v4'/></g></svg>")}`;
 
 let wasm = null;
 let db = null;
+let key = null;                // AES-GCM key while unlocked, in memory only
+let unlocking = null;          // shared promise while a passphrase prompt is open
+let keyPrompt = null;          // (mode, error) => Promise<{passphrase}|{reset:true}|null>
+let onLocked = null;
 const faceUrls = new Map();   // face id → object URL, so <img> can show them synchronously
 
 // ── IndexedDB ───────────────────────────────────────────────────────────────
@@ -24,9 +39,10 @@ function openDb() {
     const req = indexedDB.open(DB_NAME, DB_VERSION);
     req.onupgradeneeded = () => {
       const d = req.result;
-      d.createObjectStore("personas", { keyPath: "id" });
-      d.createObjectStore("journal", { keyPath: "id", autoIncrement: true }).createIndex("persona", "persona_id");
-      d.createObjectStore("faces", { keyPath: "id" });
+      if (!d.objectStoreNames.contains("personas")) d.createObjectStore("personas", { keyPath: "id" });
+      if (!d.objectStoreNames.contains("journal")) d.createObjectStore("journal", { keyPath: "id", autoIncrement: true }).createIndex("persona", "persona_id");
+      if (!d.objectStoreNames.contains("faces")) d.createObjectStore("faces", { keyPath: "id" });
+      if (!d.objectStoreNames.contains("meta")) d.createObjectStore("meta", { keyPath: "k" });
     };
     req.onsuccess = () => resolve(req.result);
     req.onerror = () => reject(req.error);
@@ -36,7 +52,9 @@ function openDb() {
 
 const done = (req) => new Promise((resolve, reject) => { req.onsuccess = () => resolve(req.result); req.onerror = () => reject(req.error); });
 
-/** Runs `fn(stores)` in one transaction and resolves once it has committed. */
+/** Runs `fn(stores)` in one transaction and resolves once it has committed.
+ *  `fn` may only await IndexedDB requests: any other await (WebCrypto…) would
+ *  let the transaction commit early, so encryption happens before or after. */
 function tx(names, mode, fn) {
   return new Promise((resolve, reject) => {
     const t = db.transaction(names, mode);
@@ -65,19 +83,144 @@ function engine(fn, ...args) {
 }
 const J = (s) => JSON.parse(s);
 
+// ── Key management ──────────────────────────────────────────────────────────
+const cryptoMeta = () => tx("meta", "readonly", (s) => done(s.meta.get("crypto")));
+
+/** Lets the UI ask for the passphrase. `mode` is "create" or "unlock". */
+export const setKeyPrompt = (fn) => { keyPrompt = fn; };
+export const setOnLocked = (fn) => { onLocked = fn; };
+
+async function unlockWith(passphrase) {
+  const m = await cryptoMeta();
+  const k = await deriveKey(passphrase, m.salt, m.iterations);
+  try { await open(k, m.verifier, "verifier"); } catch { return null; }
+  return k;
+}
+
+/** First passphrase: seals whatever an older, unencrypted vault holds. */
+async function createKey(passphrase) {
+  const salt = randomBytes(16);
+  const iterations = 600_000;
+  const k = await deriveKey(passphrase, salt, iterations);
+  const verifier = await seal(k, randomBytes(16), "verifier");
+  const [recs, journal, faces] = await tx(["personas", "journal", "faces"], "readonly", (s) =>
+    Promise.all([done(s.personas.getAll()), done(s.journal.getAll()), done(s.faces.getAll())]));
+  const plainRecs = await Promise.all(recs.filter((r) => !r.ct).map((r) => sealRecord(k, r)));
+  const plainJournal = await Promise.all(journal.filter((j) => !j.ct).map(async (j) => ({ id: j.id, ...(await sealEntry(k, j)) })));
+  const plainFaces = await Promise.all(faces.filter((f) => !f.ct).map(async (f) => sealFace(k, f.id, f.source, f.created_at, new Uint8Array(await f.blob.arrayBuffer()))));
+  await tx(["personas", "journal", "faces", "meta"], "readwrite", async (s) => {
+    for (const r of plainRecs) await done(s.personas.put(r));
+    for (const j of plainJournal) await done(s.journal.put(j));
+    for (const f of plainFaces) await done(s.faces.put(f));
+    await done(s.meta.put({ k: "crypto", v: 1, salt, iterations, verifier }));
+  });
+  return k;
+}
+
+/** Erases the whole vault (forgotten passphrase). */
+async function wipe() {
+  await tx(["personas", "journal", "faces", "meta"], "readwrite", async (s) => {
+    for (const n of ["personas", "journal", "faces", "meta"]) await done(s[n].clear());
+  });
+  dropFaces();
+}
+
+/** Resolves with the key, asking for the passphrase if needed. */
+function needKey() {
+  if (key) return Promise.resolve(key);
+  unlocking ??= (async () => {
+    if (!keyPrompt) throw new ApiError(423, "vault locked");
+    let error = null;
+    for (;;) {
+      const mode = (await cryptoMeta()) ? "unlock" : "create";
+      const answer = await keyPrompt(mode, error);
+      if (!answer) throw new ApiError(423, "vault locked");
+      if (answer.reset) { await wipe(); error = null; continue; }
+      const k = mode === "unlock" ? await unlockWith(answer.passphrase) : await createKey(answer.passphrase);
+      if (!k) { error = "wrong"; continue; }
+      key = k;
+      await loadFaces();
+      touch();
+      return key;
+    }
+  })().finally(() => { unlocking = null; });
+  return unlocking;
+}
+
+function dropFaces() {
+  for (const url of faceUrls.values()) URL.revokeObjectURL(url);
+  faceUrls.clear();
+}
+
+/** Forgets the key (and the decrypted pictures). */
+export function lock() {
+  if (!key) return;
+  key = null;
+  dropFaces();
+  onLocked?.();
+}
+
+// Locks itself after a quarter of an hour without any input.
+let lastInput = Date.now();
+const touch = () => { lastInput = Date.now(); };
+for (const ev of ["pointerdown", "keydown", "wheel", "touchstart"]) addEventListener(ev, touch, { passive: true });
+setInterval(() => { if (key && Date.now() - lastInput > AUTO_LOCK_MS) lock(); }, 30_000);
+
+// ── Sealed rows ─────────────────────────────────────────────────────────────
+async function sealRecord(k, r) {
+  return { id: r.id, ...(await sealJson(k, { status: r.status, created_at: r.created_at, updated_at: r.updated_at, persona: r.persona }, `personas:${r.id}`)) };
+}
+async function openRecord(row) {
+  return row.ct ? { id: row.id, ...(await openJson(key, row, `personas:${row.id}`)) } : row;
+}
+async function sealEntry(k, e) {
+  return { persona_id: e.persona_id, ...(await sealJson(k, { at: e.at, kind: e.kind, text: e.text }, `journal:${e.persona_id}`)) };
+}
+async function openEntry(row) {
+  return row.ct ? { id: row.id, persona_id: row.persona_id, ...(await openJson(key, row, `journal:${row.persona_id}`)) } : row;
+}
+async function sealFace(k, id, source, created_at, bytes) {
+  return { id, source, created_at, ...(await seal(k, bytes, `faces:${id}`)) };
+}
+async function faceBytes(row) {
+  return row.ct ? open(key, row, `faces:${row.id}`) : new Uint8Array(await row.blob.arrayBuffer());
+}
+async function loadFaces() {
+  const rows = await tx("faces", "readonly", (s) => done(s.faces.getAll()));
+  for (const f of rows) {
+    if (faceUrls.has(f.id)) continue;
+    try { faceUrls.set(f.id, URL.createObjectURL(new Blob([await faceBytes(f)], { type: "image/jpeg" }))); } catch { /* unreadable picture: left out */ }
+  }
+}
+
+/** For reads: a vault that was never used is just empty, no passphrase
+ *  needed yet (it is chosen on the first write). Otherwise, unlock. */
+async function readable() {
+  if (key) return true;
+  const fresh = !(await cryptoMeta()) && !(await tx("personas", "readonly", (s) => done(s.personas.count())));
+  if (fresh) return false;
+  await needKey();
+  return true;
+}
+
 async function getRecord(id) {
-  const rec = await tx("personas", "readonly", (s) => done(s.personas.get(String(id))));
-  if (!rec) throw notFound();
-  return rec;
+  if (!(await readable())) throw notFound();
+  const row = await tx("personas", "readonly", (s) => done(s.personas.get(String(id))));
+  if (!row) throw notFound();
+  return openRecord(row);
 }
 async function allRecords() {
-  const recs = await tx("personas", "readonly", (s) => done(s.personas.getAll()));
+  if (!(await readable())) return [];
+  const rows = await tx("personas", "readonly", (s) => done(s.personas.getAll()));
+  const recs = await Promise.all(rows.map(openRecord));
   return recs.sort((a, b) => (a.updated_at < b.updated_at ? 1 : a.updated_at > b.updated_at ? -1 : 0));
 }
-const addJournal = (store, persona_id, kind, text) => done(store.add({ persona_id, at: now(), kind, text }));
+const entry = (persona_id, kind, text) => sealEntry(key, { persona_id, at: now(), kind, text });
 async function journalOf(id) {
+  if (!(await readable())) return [];
   const rows = await tx("journal", "readonly", (s) => done(s.journal.index("persona").getAll(String(id))));
-  return rows.sort((a, b) => b.id - a.id);
+  const entries = await Promise.all(rows.map(openEntry));
+  return entries.sort((a, b) => b.id - a.id);
 }
 
 async function validateFace(persona) {
@@ -110,35 +253,30 @@ async function normalize(blob) {
   bmp.close();
   const jpg = await new Promise((r) => canvas.toBlob(r, "image/jpeg", 0.88));
   if (!jpg) throw new ApiError(500, "image: cannot encode");
-  const digest = new Uint8Array(await crypto.subtle.digest("SHA-256", await jpg.arrayBuffer()));
-  return { id: hex(digest.slice(0, 16)), jpg };
+  const bytes = new Uint8Array(await jpg.arrayBuffer());
+  const digest = new Uint8Array(await crypto.subtle.digest("SHA-256", bytes));
+  return { id: hex(digest.slice(0, 16)), bytes };
+}
+
+async function putFace(id, source, created_at, bytes) {
+  const row = await sealFace(key, id, source, created_at, bytes);
+  const added = await tx("faces", "readwrite", async (s) => {
+    if (await done(s.faces.getKey(id))) return false;
+    await done(s.faces.put(row));
+    return true;
+  });
+  if (!faceUrls.has(id)) faceUrls.set(id, URL.createObjectURL(new Blob([bytes], { type: "image/jpeg" })));
+  return added;
 }
 
 async function storeFace(raw, source) {
-  const { id, jpg } = await normalize(raw);
-  await tx("faces", "readwrite", async (s) => {
-    if (!(await done(s.faces.getKey(id)))) await done(s.faces.put({ id, source, created_at: now(), blob: jpg }));
-  });
-  if (!faceUrls.has(id)) faceUrls.set(id, URL.createObjectURL(jpg));
+  await needKey();
+  const { id, bytes } = await normalize(raw);
+  await putFace(id, source, now(), bytes);
   return { id, url: faceUrls.get(id), source };
 }
 
-export const faceUrl = (id) => faceUrls.get(id) || "";
-
-function toBase64(blob) {
-  return new Promise((resolve, reject) => {
-    const r = new FileReader();
-    r.onload = () => resolve(String(r.result).slice(String(r.result).indexOf(",") + 1));
-    r.onerror = () => reject(r.error);
-    r.readAsDataURL(blob);
-  });
-}
-function fromBase64(b64) {
-  const bin = atob(b64);
-  const out = new Uint8Array(bin.length);
-  for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
-  return out;
-}
+export const faceUrl = (id) => faceUrls.get(id) || (key ? "" : LOCKED_FACE);
 
 // ── Backend ─────────────────────────────────────────────────────────────────
 export async function init() {
@@ -146,8 +284,6 @@ export async function init() {
   await mod.default();
   wasm = mod;
   db = await openDb();
-  const faces = await tx("faces", "readonly", (s) => done(s.faces.getAll()));
-  for (const f of faces) faceUrls.set(f.id, URL.createObjectURL(f.blob));
 }
 
 const vaultItem = (r) => ({ id: r.id, status: r.status, created_at: r.created_at, updated_at: r.updated_at, face: r.persona.face ?? null, ...J(engine(wasm.summary, JSON.stringify(r.persona))) });
@@ -165,14 +301,22 @@ export const local = {
   quiz: async (persona, round) => J(engine(wasm.quiz, JSON.stringify(persona), round >>> 0)),
   exportMd: async (persona, lang) => engine(wasm.export_md, JSON.stringify(persona), lang || "fr", "[]"),
 
+  /** Never prompts: while locked, only the legend count is known. */
   stats: async () => {
-    const recs = await allRecords();
     const statuses = J(wasm.rules()).statuses;
     const by_status = Object.fromEntries(statuses.map((s) => [s, 0]));
+    if (!key) {
+      const total = await tx("personas", "readonly", (s) => done(s.personas.count()));
+      return { total, by_status, avg_coherence: 0, locked: true };
+    }
+    const recs = await allRecords();
     for (const r of recs) if (r.status in by_status) by_status[r.status]++;
     const avg = recs.length ? recs.reduce((a, r) => a + r.persona.coherence.score, 0) / recs.length : 0;
     return { total: recs.length, by_status, avg_coherence: Math.round(avg) };
   },
+  vaultState: async () => ({ backend: "browser", encrypted: !!(await cryptoMeta()), unlocked: !!key }),
+  unlock: async () => { await needKey(); return null; },
+  lock: async () => { lock(); return null; },
   contamination: async () => {
     const recs = await allRecords();
     const live = recs.filter((r) => r.status !== "burned").map((r) => [r.id, r.persona]);
@@ -184,41 +328,47 @@ export const local = {
 
   list: async () => (await allRecords()).map(vaultItem),
   create: async (persona) => {
+    await needKey();
     await validateFace(persona);
     const p = J(engine(wasm.check, JSON.stringify(persona)));
     const t = now();
     const rec = { id: newId(), status: "draft", created_at: t, updated_at: t, persona: p };
+    const [row, j] = await Promise.all([sealRecord(key, rec), entry(rec.id, "system", "created")]);
     await tx(["personas", "journal"], "readwrite", async (s) => {
-      await done(s.personas.add(rec));
-      await addJournal(s.journal, rec.id, "system", "created");
+      await done(s.personas.add(row));
+      await done(s.journal.add(j));
     });
     return rec;
   },
   get: getRecord,
   update: async (id, persona) => {
+    const before = await getRecord(id);
     await validateFace(persona);
     const p = J(engine(wasm.check, JSON.stringify(persona)));
-    return tx(["personas", "journal"], "readwrite", async (s) => {
-      const before = await done(s.personas.get(String(id)));
-      if (!before) throw notFound();
-      const rec = { ...before, persona: p, updated_at: now() };
-      await done(s.personas.put(rec));
-      await addJournal(s.journal, rec.id, "edit", wasm.edit_note(before.persona.coherence.score, p.coherence.score));
-      return rec;
+    const rec = { ...before, persona: p, updated_at: now() };
+    const [row, j] = await Promise.all([sealRecord(key, rec), entry(rec.id, "edit", wasm.edit_note(before.persona.coherence.score, p.coherence.score))]);
+    await tx(["personas", "journal"], "readwrite", async (s) => {
+      if (!(await done(s.personas.getKey(rec.id)))) throw notFound();
+      await done(s.personas.put(row));
+      await done(s.journal.add(j));
     });
+    return rec;
   },
   status: async (id, status) => {
     if (!J(wasm.rules()).statuses.includes(status)) throw new ApiError(400, `invalid status '${status}'`);
-    return tx(["personas", "journal"], "readwrite", async (s) => {
-      const before = await done(s.personas.get(String(id)));
-      if (!before) throw notFound();
-      const rec = { ...before, status, updated_at: now() };
-      await done(s.personas.put(rec));
-      if (before.status !== status) await addJournal(s.journal, rec.id, "status", `${before.status} → ${status}`);
-      return rec;
+    const before = await getRecord(id);
+    const rec = { ...before, status, updated_at: now() };
+    const row = await sealRecord(key, rec);
+    const j = before.status !== status ? await entry(rec.id, "status", `${before.status} → ${status}`) : null;
+    await tx(["personas", "journal"], "readwrite", async (s) => {
+      if (!(await done(s.personas.getKey(rec.id)))) throw notFound();
+      await done(s.personas.put(row));
+      if (j) await done(s.journal.add(j));
     });
+    return rec;
   },
   remove: async (id) => {
+    await needKey();
     await tx(["personas", "journal"], "readwrite", async (s) => {
       if (!(await done(s.personas.getKey(String(id))))) throw notFound();
       await done(s.personas.delete(String(id)));
@@ -231,8 +381,10 @@ export const local = {
   journalAdd: async (id, kind, text) => {
     await getRecord(id);
     const e = J(engine(wasm.journal_entry, kind || undefined, String(text ?? "")));
-    const entryId = await tx("journal", "readwrite", (s) => addJournal(s.journal, String(id), e.kind, e.text));
-    return (await tx("journal", "readonly", (s) => done(s.journal.get(entryId))));
+    const at = now();
+    const row = await sealEntry(key, { persona_id: String(id), at, kind: e.kind, text: e.text });
+    const entryId = await tx("journal", "readwrite", (s) => done(s.journal.add(row)));
+    return { id: entryId, persona_id: String(id), at, kind: e.kind, text: e.text };
   },
   savedQuiz: async (id, round) => J(engine(wasm.quiz, JSON.stringify((await getRecord(id)).persona), round >>> 0)),
   savedMd: async (id, lang) => {
@@ -241,7 +393,52 @@ export const local = {
   },
   savedJson: async (id) => JSON.stringify({ record: await getRecord(id), journal: await journalOf(id) }, null, 2),
 
+  // ── Whole-vault backup ───────────────────────────────────────────────────
+  // Same file format as the server's (simulacre-core::backup), so a backup
+  // moves freely between the browser build and a self-hosted server. The UI
+  // seals the file with a passphrase before it is saved.
+  backup: async () => {
+    const recs = await allRecords();
+    const [journalRows, faceRows] = await tx(["journal", "faces"], "readonly", (s) => Promise.all([done(s.journal.getAll()), done(s.faces.getAll())]));
+    const journal = (await Promise.all(journalRows.map(openEntry))).sort((a, b) => a.id - b.id);
+    const byPersona = new Map();
+    for (const j of journal) {
+      if (!byPersona.has(j.persona_id)) byPersona.set(j.persona_id, []);
+      byPersona.get(j.persona_id).push({ at: j.at, kind: j.kind, text: j.text });
+    }
+    const records = recs.map((r) => ({ id: r.id, status: r.status, created_at: r.created_at, updated_at: r.updated_at, persona: r.persona, journal: byPersona.get(r.id) || [] }));
+    const faces = await Promise.all(faceRows.map(async (f) => ({ id: f.id, source: f.source, created_at: f.created_at, data: toBase64(await faceBytes(f)) })));
+    return JSON.stringify({ ...J(wasm.backup_header()), exported_at: now(), records, faces });
+  },
+  restore: async (text) => {
+    const b = J(engine(wasm.backup_parse, String(text)));
+    await needKey();
+    const report = { added: 0, updated: 0, skipped: 0, faces: 0, faces_missing: 0 };
+    // Faces first, so the legends that use them pass validation.
+    for (const f of b.faces) if (await putFace(f.id, f.source, f.created_at, fromBase64(f.data))) report.faces++;
+    for (const r of b.records) {
+      let persona = r.persona;
+      if (persona.face && !(await tx("faces", "readonly", (s) => done(s.faces.getKey(persona.face.id))))) {
+        persona = J(engine(wasm.check, JSON.stringify({ ...persona, face: null })));
+        report.faces_missing++;
+      }
+      const existing = await tx("personas", "readonly", (s) => done(s.personas.get(r.id)));
+      const before = existing ? await openRecord(existing) : null;
+      if (before && !wasm.backup_should_replace(before.updated_at, r.updated_at)) { report.skipped++; continue; }
+      const row = await sealRecord(key, { ...r, persona });
+      const entries = await Promise.all([...r.journal.map((j) => sealEntry(key, { persona_id: r.id, ...j })), entry(r.id, "system", "imported from backup")]);
+      await tx(["personas", "journal"], "readwrite", async (s) => {
+        if (before) for (const k of await done(s.journal.index("persona").getAllKeys(r.id))) await done(s.journal.delete(k));
+        await done(s.personas.put(row));
+        for (const e of entries) await done(s.journal.add(e));
+      });
+      report[before ? "updated" : "added"]++;
+    }
+    return report;
+  },
+
   facesFetch: async (count) => {
+    await needKey();
     const n = Math.min(Math.max(count | 0 || 6, 1), 9);
     const faces = [], seen = new Set();
     let last = "";
@@ -263,54 +460,6 @@ export const local = {
     const { id, url } = await storeFace(blob, "upload");
     return { id, url };
   },
-  // ── Whole-vault backup ───────────────────────────────────────────────────
-  // Same file format as the server's (simulacre-core::backup), so a backup
-  // moves freely between the browser build and a self-hosted server.
-  backup: async () => {
-    const [recs, journal, faces] = await tx(["personas", "journal", "faces"], "readonly", async (s) =>
-      Promise.all([done(s.personas.getAll()), done(s.journal.getAll()), done(s.faces.getAll())]));
-    const byPersona = new Map();
-    for (const j of journal.sort((a, b) => a.id - b.id)) {
-      if (!byPersona.has(j.persona_id)) byPersona.set(j.persona_id, []);
-      byPersona.get(j.persona_id).push({ at: j.at, kind: j.kind, text: j.text });
-    }
-    const records = recs.map((r) => ({ id: r.id, status: r.status, created_at: r.created_at, updated_at: r.updated_at, persona: r.persona, journal: byPersona.get(r.id) || [] }));
-    const encoded = await Promise.all(faces.map(async (f) => ({ id: f.id, source: f.source, created_at: f.created_at, data: await toBase64(f.blob) })));
-    return JSON.stringify({ ...J(wasm.backup_header()), exported_at: now(), records, faces: encoded });
-  },
-  restore: async (text) => {
-    const b = J(engine(wasm.backup_parse, String(text)));
-    const report = { added: 0, updated: 0, skipped: 0, faces: 0, faces_missing: 0 };
-    // Faces first, so the legends that use them pass validation.
-    for (const f of b.faces) {
-      const blob = new Blob([fromBase64(f.data)], { type: "image/jpeg" });
-      const added = await tx("faces", "readwrite", async (s) => {
-        if (await done(s.faces.getKey(f.id))) return false;
-        await done(s.faces.put({ id: f.id, source: f.source, created_at: f.created_at, blob }));
-        return true;
-      });
-      if (added) { report.faces++; if (!faceUrls.has(f.id)) faceUrls.set(f.id, URL.createObjectURL(blob)); }
-    }
-    for (const r of b.records) {
-      let persona = r.persona;
-      if (persona.face && !(await tx("faces", "readonly", (s) => done(s.faces.getKey(persona.face.id))))) {
-        persona = J(engine(wasm.check, JSON.stringify({ ...persona, face: null })));
-        report.faces_missing++;
-      }
-      const outcome = await tx(["personas", "journal"], "readwrite", async (s) => {
-        const before = await done(s.personas.get(r.id));
-        if (before && !wasm.backup_should_replace(before.updated_at, r.updated_at)) return "skipped";
-        if (before) for (const k of await done(s.journal.index("persona").getAllKeys(r.id))) await done(s.journal.delete(k));
-        await done(s.personas.put({ id: r.id, status: r.status, created_at: r.created_at, updated_at: r.updated_at, persona }));
-        for (const j of r.journal) await done(s.journal.add({ persona_id: r.id, at: j.at, kind: j.kind, text: j.text }));
-        await addJournal(s.journal, r.id, "system", "imported from backup");
-        return before ? "updated" : "added";
-      });
-      report[outcome]++;
-    }
-    return report;
-  },
-
   faceUsers: async (id) => {
     if (!wasm.is_valid_face_id(String(id))) throw new ApiError(400, "bad face id");
     return (await allRecords()).filter((r) => r.persona.face?.id === id).map((r) => r.id);

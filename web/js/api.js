@@ -21,6 +21,13 @@ export function setToken(v) {
 }
 export const onAuthNeeded = (fn) => { onUnauthorized = fn; };
 
+// Browser build only: how to ask for the vault passphrase, and what to do
+// when the vault locks itself.
+let keyPrompt = null;
+let onLocked = null;
+export const onVaultKey = (fn) => { keyPrompt = fn; };
+export const onVaultLocked = (fn) => { onLocked = fn; };
+
 async function req(method, url, body, raw = false) {
   const headers = {};
   if (token) headers.Authorization = `Bearer ${token}`;
@@ -66,6 +73,10 @@ const http = {
   savedMd: (id, lang) => req("GET", `/api/personas/${encodeURIComponent(id)}/export.md?lang=${lang}`, undefined, true),
   savedJson: (id) => req("GET", `/api/personas/${encodeURIComponent(id)}/export.json`, undefined, true),
   backup: () => req("GET", "/api/vault/backup", undefined, true),
+  // The server keeps its vault on its own disk: nothing to unlock here.
+  vaultState: async () => ({ backend: "server", encrypted: false, unlocked: true }),
+  unlock: async () => null,
+  lock: async () => null,
   restore: (text) => req("POST", "/api/vault/restore", new Blob([text], { type: "application/json" })),
   facesFetch: (count) => req("POST", `/api/faces/fetch?count=${count}`),
   faceUpload: (blob) => req("POST", "/api/faces/upload", blob),
@@ -89,6 +100,8 @@ function ready() {
     } catch { /* no server reachable: fall through */ }
     const local = await import("./local.js");
     await local.init();
+    local.setKeyPrompt((mode, error) => keyPrompt?.(mode, error) ?? null);
+    local.setOnLocked(() => onLocked?.());
     mode = "browser";
     faceUrlFn = local.faceUrl;
     return local.local;

@@ -46,6 +46,8 @@ Format commun au serveur et à la version navigateur : une sauvegarde prise dans
   "faces": [{ "id", "source", "created_at", "data": "<JPEG en base64>" }] }
 ```
 
+L'API renvoie la sauvegarde en clair. L'interface la chiffre avant de l'enregistrer (format `simulacre-vault-sealed`, voir ARCHITECTURE) et la déchiffre avant de l'envoyer à `/api/vault/restore`.
+
 Le journal est rangé du plus ancien au plus récent. À la restauration, tout est vérifié avant d'écrire quoi que ce soit : format et version, identifiants, statuts, dates RFC 3339, types et longueur des entrées du journal. Chaque visage doit être un JPEG dont le SHA-256 correspond à son identifiant. Chaque légende repasse par le moteur de cohérence. Une légende déjà présente n'est remplacée que par une copie strictement plus récente (`updated_at`). Sinon elle est comptée dans `skipped`. Une légende dont le visage ne se trouve ni dans le fichier ni dans le coffre perd ce visage (`faces_missing`). Chaque légende ajoutée ou remplacée reçoit l'entrée de journal `imported from backup`.
 
 ## Visages

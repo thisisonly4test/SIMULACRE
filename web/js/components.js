@@ -218,3 +218,44 @@ export function tokenPrompt() {
     input.focus();
   });
 }
+
+// ── Passphrase ──────────────────────────────────────────────────────────────
+/** Asks for a passphrase. `mode`:
+ *  - "create": first lock of the vault (typed twice);
+ *  - "unlock": open the vault (offers to erase it when forgotten);
+ *  - "seal": protect a backup file (typed twice);
+ *  - "open": open a protected backup file.
+ *  Resolves with { passphrase }, { reset: true }, or null when dismissed. */
+export function passphrasePrompt(mode, error = null) {
+  const twice = mode === "create" || mode === "seal";
+  return new Promise((resolve) => {
+    let answer = null;
+    const ac = twice ? "new-password" : "current-password";
+    const pass = h("input", { class: "input", type: "password", autocomplete: ac, id: "pass", "aria-label": t("pass_label") });
+    const again = twice ? h("input", { class: "input", type: "password", autocomplete: ac, id: "pass2", "aria-label": t("pass_again") }) : null;
+    const msg = h("p", { class: "pass-error", role: "alert" }, error === "wrong" ? t("pass_wrong") : "");
+    const form = h("form", { class: "pass-form", onsubmit: (e) => {
+      e.preventDefault();
+      const v = pass.value;
+      if (twice && [...v].length < 10) { msg.textContent = t("pass_short"); return; }
+      if (twice && v !== again.value) { msg.textContent = t("pass_mismatch"); return; }
+      if (!v) return;
+      answer = { passphrase: v };
+      dlg.close();
+    } },
+      h("p", { class: "muted" }, t(`pass_${mode}_sub`)),
+      h("label", { class: "field" }, h("span", {}, t("pass_label")), pass),
+      twice ? h("label", { class: "field" }, h("span", {}, t("pass_again")), again) : null,
+      msg,
+      h("div", { class: "pass-actions" },
+        mode === "unlock" ? h("button", { type: "button", class: "btn btn-sm btn-danger", id: "vault-reset", onclick: () => {
+          if (!confirm(t("pass_reset_confirm"))) return;
+          answer = { reset: true };
+          dlg.close();
+        } }, t("pass_reset")) : h("span"),
+        h("button", { class: "btn btn-primary", id: "pass-ok" }, "🔒 " + t(`pass_${mode}_ok`))));
+    const dlg = modal(t(`pass_${mode}_title`), form, { onClose: () => resolve(answer) });
+    dlg.classList.add("narrow");
+    pass.focus();
+  });
+}

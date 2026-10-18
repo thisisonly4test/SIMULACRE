@@ -598,6 +598,13 @@ body:has(#forge-btn:hover:not(:disabled))::after { opacity: .07; }
 
 /* ═════════ Modal ═════════ */
 dialog { border: 0; background: var(--card); color: var(--ink); border-radius: 4px; padding: 0; width: min(900px, calc(100vw - 24px)); max-height: calc(100vh - 40px); box-shadow: 0 40px 90px -30px #000c, 0 0 0 1px var(--line-2); }
+dialog.narrow { width: min(480px, calc(100vw - 24px)); }
+.pass-form { display: grid; gap: 14px; }
+.pass-form .muted { margin: 0; }
+.pass-error { margin: 0; min-height: 1.2em; color: var(--red); font: 700 .8rem var(--mono); }
+.pass-actions { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.lock-panel { display: grid; justify-items: center; gap: 12px; text-align: center; padding: 60px 16px; }
+.lock-panel b { font: italic 700 1.6rem var(--serif); }
 dialog::backdrop { background: #15203acc; backdrop-filter: blur(4px); }
 :root[data-theme="uv"] dialog::backdrop { background: #05020cdd; }
 .modal-head { display: flex; align-items: center; gap: 10px; padding: 14px 18px; border-bottom: 3px double var(--ink); position: sticky; top: 0; background: var(--card); z-index: 2; }
